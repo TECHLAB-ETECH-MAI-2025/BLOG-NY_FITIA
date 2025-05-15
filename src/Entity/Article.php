@@ -16,11 +16,11 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private string $title;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    private string $content;
 
     #[ORM\Column]
     private ?\DateTime $createdAt = null;
@@ -37,17 +37,10 @@ class Article
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'article')]
     private Collection $comments;
 
-    /**
-     * @var Collection<int, Comment>
-     */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'Article')]
-    private Collection $comment;
-
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,19 +48,19 @@ class Article
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(array $title): static
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -143,13 +136,5 @@ class Article
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Comment>
-     */
-    public function getComment(): Collection
-    {
-        return $this->comment;
     }
 }

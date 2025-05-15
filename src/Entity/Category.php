@@ -16,11 +16,11 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private string $title;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    private string $description;
 
     #[ORM\Column]
     private ?\DateTime $createAT = null;
@@ -31,16 +31,9 @@ class Category
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]
     private Collection $articles;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\ManyToMany(targetEntity: Article::class)]
-    private Collection $article;
-
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->article = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -48,7 +41,7 @@ class Category
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -60,7 +53,7 @@ class Category
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -109,13 +102,5 @@ class Category
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticle(): Collection
-    {
-        return $this->article;
     }
 }

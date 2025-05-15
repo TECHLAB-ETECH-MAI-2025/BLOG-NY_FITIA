@@ -27,9 +27,6 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comment')]
-    private ?Article $Article = null;
-
     public function getId(): ?int
     {
         return $this->id;
