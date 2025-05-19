@@ -16,14 +16,14 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
-    private string $title;
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
-    private string $description;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
     #[ORM\Column]
-    private ?\DateTime $createAT = null;
+    private ?\DateTime $createdAt = null;
 
     /**
      * @var Collection<int, Article>
@@ -41,7 +41,7 @@ class Category
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -53,7 +53,7 @@ class Category
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -65,14 +65,14 @@ class Category
         return $this;
     }
 
-    public function getCreateAT(): ?\DateTime
+    public function getCreatedAt(): ?\DateTime
     {
-        return $this->createAT;
+        return $this->createdAt;
     }
 
-    public function setCreateAT(\DateTime $createAT): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
-        $this->createAT = $createAT;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
