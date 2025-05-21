@@ -1678,6 +1678,6 @@ class __TwigTemplate_47269eaf94a261abcba734ddaf507eeb extends Template
 {% macro render_time_cell(item) %}
     <span class=\"nowrap\">{{ '%.2f'|format(item.time * 1000) }} ms</span>
 {% endmacro %}
-", "@WebProfiler/Collector/serializer.html.twig", "/home/eny-fiti/Documents/etech/my_blog/vendor/symfony/web-profiler-bundle/Resources/views/Collector/serializer.html.twig");
+", "@WebProfiler/Collector/serializer.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/vendor/symfony/web-profiler-bundle/Resources/views/Collector/serializer.html.twig");
     }
 }

@@ -1489,6 +1489,6 @@ class __TwigTemplate_1c688f44de4434072991c9cbceef9419 extends Template
         <span>{{ route|default(controller) }}</span>
     {%- endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/request.html.twig", "/home/eny-fiti/Documents/etech/my_blog/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
+", "@WebProfiler/Collector/request.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
     }
 }

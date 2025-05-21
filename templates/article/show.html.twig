@@ -6,11 +6,9 @@
 {% block body %}
     <article>
         <h1>{{ article.title }}</h1>
-        <p class="text-muted">Catégorie: {{ article.category.name }}</p>
         <p>{{ article.description }}</p>
+        <p class="text-muted">Catégorie: {{ article.category.name }}</p>
         <hr>
-        <div>{{ article.content|raw }}</div>
-        <p class="text-muted">Publié le {{ article.createdAt|date('d/m/Y H:i') }}</p>
     </article>
 
     <section class="mt-5">
@@ -18,9 +16,7 @@
         
         {% for comment in article.comments %}
             <div class="card mb-3">
-                <div class="card-body">
                     <p>{{ comment.content }}</p>
-                    <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
                 </div>
             </div>
         {% else %}
@@ -28,9 +24,6 @@
         {% endfor %}
         
         <h3 class="mt-4">Ajouter un commentaire</h3>
-        {{ form_start(commentForm) }}
-            {{ form_widget(commentForm) }}
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        {{ form_end(commentForm) }}
+        {{ include('article/_comment_form.html.twig') }}
     </section>
 {% endblock %}

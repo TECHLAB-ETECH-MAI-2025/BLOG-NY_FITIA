@@ -1441,6 +1441,6 @@ class __TwigTemplate_dc7d180a98d4f650af79e39c13104ecd extends Template
 
     Sfjs.loadToolbar('{{ token }}');
 /*]]>*/</script>
-", "@WebProfiler/Profiler/toolbar_js.html.twig", "/home/eny-fiti/Documents/etech/my_blog/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
+", "@WebProfiler/Profiler/toolbar_js.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
     }
 }

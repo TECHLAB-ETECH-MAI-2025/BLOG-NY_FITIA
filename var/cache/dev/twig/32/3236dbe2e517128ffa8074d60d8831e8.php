@@ -102,77 +102,55 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         // line 8
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 8, $this->source); })()), "title", [], "any", false, false, false, 8), "html", null, true);
         yield "</h1>
-        <p class=\"text-muted\">Catégorie: ";
-        // line 9
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "category", [], "any", false, false, false, 9), "name", [], "any", false, false, false, 9), "html", null, true);
-        yield "</p>
         <p>";
+        // line 9
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "description", [], "any", false, false, false, 9), "html", null, true);
+        yield "</p>
+        <p class=\"text-muted\">Catégorie: ";
         // line 10
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 10, $this->source); })()), "description", [], "any", false, false, false, 10), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 10, $this->source); })()), "category", [], "any", false, false, false, 10), "name", [], "any", false, false, false, 10), "html", null, true);
         yield "</p>
         <hr>
-        <div>";
-        // line 12
-        yield CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 12, $this->source); })()), "content", [], "any", false, false, false, 12);
-        yield "</div>
-        <p class=\"text-muted\">Publié le ";
-        // line 13
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 13, $this->source); })()), "createdAt", [], "any", false, false, false, 13), "d/m/Y H:i"), "html", null, true);
-        yield "</p>
     </article>
 
     <section class=\"mt-5\">
         <h2>Commentaires (";
-        // line 17
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 17, $this->source); })()), "comments", [], "any", false, false, false, 17)), "html", null, true);
+        // line 15
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 15, $this->source); })()), "comments", [], "any", false, false, false, 15)), "html", null, true);
         yield ")</h2>
         
         ";
-        // line 19
+        // line 17
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 19, $this->source); })()), "comments", [], "any", false, false, false, 19));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 17, $this->source); })()), "comments", [], "any", false, false, false, 17));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
-            // line 20
+            // line 18
             yield "            <div class=\"card mb-3\">
-                <div class=\"card-body\">
                     <p>";
-            // line 22
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 22), "html", null, true);
-            yield "</p>
-                    <p class=\"text-muted\">Posté le ";
-            // line 23
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "createdAt", [], "any", false, false, false, 23), "d/m/Y H:i"), "html", null, true);
+            // line 19
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 19), "html", null, true);
             yield "</p>
                 </div>
             </div>
         ";
             $context['_iterated'] = true;
         }
-        // line 26
+        // line 22
         if (!$context['_iterated']) {
-            // line 27
+            // line 23
             yield "            <p>Aucun commentaire pour le moment.</p>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['comment'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 29
+        // line 25
         yield "        
         <h3 class=\"mt-4\">Ajouter un commentaire</h3>
         ";
-        // line 31
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 31, $this->source); })()), 'form_start');
-        yield "
-            ";
-        // line 32
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 32, $this->source); })()), 'widget');
-        yield "
-            <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
-        ";
-        // line 34
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 34, $this->source); })()), 'form_end');
+        // line 27
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_comment_form.html.twig");
         yield "
     </section>
 ";
@@ -206,7 +184,7 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  175 => 34,  170 => 32,  166 => 31,  162 => 29,  155 => 27,  153 => 26,  145 => 23,  141 => 22,  137 => 20,  132 => 19,  127 => 17,  120 => 13,  116 => 12,  111 => 10,  107 => 9,  103 => 8,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  153 => 27,  149 => 25,  142 => 23,  140 => 22,  132 => 19,  129 => 18,  124 => 17,  119 => 15,  111 => 10,  107 => 9,  103 => 8,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -219,11 +197,9 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
 {% block body %}
     <article>
         <h1>{{ article.title }}</h1>
-        <p class=\"text-muted\">Catégorie: {{ article.category.name }}</p>
         <p>{{ article.description }}</p>
+        <p class=\"text-muted\">Catégorie: {{ article.category.name }}</p>
         <hr>
-        <div>{{ article.content|raw }}</div>
-        <p class=\"text-muted\">Publié le {{ article.createdAt|date('d/m/Y H:i') }}</p>
     </article>
 
     <section class=\"mt-5\">
@@ -231,9 +207,7 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         
         {% for comment in article.comments %}
             <div class=\"card mb-3\">
-                <div class=\"card-body\">
                     <p>{{ comment.content }}</p>
-                    <p class=\"text-muted\">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
                 </div>
             </div>
         {% else %}
@@ -241,11 +215,8 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         {% endfor %}
         
         <h3 class=\"mt-4\">Ajouter un commentaire</h3>
-        {{ form_start(commentForm) }}
-            {{ form_widget(commentForm) }}
-            <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
-        {{ form_end(commentForm) }}
+        {{ include('article/_comment_form.html.twig') }}
     </section>
-{% endblock %}", "article/show.html.twig", "/home/eny-fiti/Documents/etech/my_blog/templates/article/show.html.twig");
+{% endblock %}", "article/show.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/show.html.twig");
     }
 }

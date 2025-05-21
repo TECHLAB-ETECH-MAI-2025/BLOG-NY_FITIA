@@ -97,7 +97,7 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        yield "    <h1>Derniers articles</h1>
+        yield "    <h1>Article</h1>
     
     <a href=\"";
         // line 9
@@ -109,6 +109,19 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
         $context['_parent'] = $context;
         $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 11, $this->source); })()));
         $context['_iterated'] = false;
+        $context['loop'] = [
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        ];
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
             // line 12
             yield "        <div class=\"card mb-3\">
@@ -127,21 +140,37 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
             yield "</p>
                 <a href=\"";
             // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 17)]), "html", null, true);
-            yield "\" class=\"btn btn-primary\">Lire la suite</a>
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 17)]), "html", null, true);
+            yield "\" class=\"btn btn-primary\">Modifier</a>
+                ";
+            // line 18
+            yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_delete_form.html.twig");
+            yield "
+                ";
+            // line 19
+            yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_comment_form.html.twig");
+            yield "
             </div>
         </div>
     ";
             $context['_iterated'] = true;
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['revindex0'], $context['loop']['revindex'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
         }
-        // line 20
+        // line 22
         if (!$context['_iterated']) {
-            // line 21
+            // line 23
             yield "        <p>Aucun article pour le moment.</p>
     ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated']);
+        unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -173,7 +202,7 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  140 => 21,  138 => 20,  130 => 17,  126 => 16,  122 => 15,  118 => 14,  114 => 12,  109 => 11,  104 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  169 => 23,  167 => 22,  151 => 19,  147 => 18,  143 => 17,  139 => 16,  135 => 15,  131 => 14,  127 => 12,  109 => 11,  104 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -184,7 +213,7 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Derniers articles</h1>
+    <h1>Article</h1>
     
     <a href=\"{{ path('article_new') }}\" class=\"btn btn-primary mb-3\">Créer un article</a>
     
@@ -194,12 +223,14 @@ class __TwigTemplate_2eda10948eaa10f9ce6cd576401a8a2a extends Template
                 <h2 class=\"card-title\">{{ article.title }}</h2>
                 <p class=\"card-text\">{{ article.description }}</p>
                 <p class=\"text-muted\">Catégorie: {{ article.category.name }}</p>
-                <a href=\"{{ path('article_show', {'id': article.id}) }}\" class=\"btn btn-primary\">Lire la suite</a>
+                <a href=\"{{ path('article_edit', {'id': article.id}) }}\" class=\"btn btn-primary\">Modifier</a>
+                {{ include('article/_delete_form.html.twig') }}
+                {{ include('article/_comment_form.html.twig') }}
             </div>
         </div>
     {% else %}
         <p>Aucun article pour le moment.</p>
     {% endfor %}
-{% endblock %}", "article/index.html.twig", "/home/eny-fiti/Documents/etech/my_blog/templates/article/index.html.twig");
+{% endblock %}", "article/index.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/index.html.twig");
     }
 }

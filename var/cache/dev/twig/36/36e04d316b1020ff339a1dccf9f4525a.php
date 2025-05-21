@@ -101,16 +101,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
 
     ";
         // line 9
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), 'form_start');
-        yield "
-        ";
-        // line 10
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 10, $this->source); })()), 'widget');
-        yield "
-        <button type=\"submit\" class=\"btn btn-primary\">Ajouter l'Article</button>
-    ";
-        // line 12
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), 'form_end');
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig");
         yield "
 ";
         
@@ -143,7 +134,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  113 => 12,  108 => 10,  104 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  104 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -156,10 +147,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
 {% block body %}
     <h1>Ajouter un nouvel article</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type=\"submit\" class=\"btn btn-primary\">Ajouter l'Article</button>
-    {{ form_end(form) }}
-{% endblock %}", "article/new.html.twig", "/home/eny-fiti/Documents/etech/my_blog/templates/article/new.html.twig");
+    {{ include('article/_form.html.twig') }}
+{% endblock %}", "article/new.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/new.html.twig");
     }
 }

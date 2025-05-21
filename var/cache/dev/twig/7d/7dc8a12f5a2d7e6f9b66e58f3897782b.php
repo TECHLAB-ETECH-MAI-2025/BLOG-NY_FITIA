@@ -85,6 +85,6 @@ class __TwigTemplate_31159c0842b22f39d6cfcb872c660f15 extends Template
     <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\"></path>
     <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\"></path>
 </svg>
-", "@Doctrine/Collector/database.svg", "/home/eny-fiti/Documents/etech/my_blog/vendor/doctrine/doctrine-bundle/templates/Collector/database.svg");
+", "@Doctrine/Collector/database.svg", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/vendor/doctrine/doctrine-bundle/templates/Collector/database.svg");
     }
 }

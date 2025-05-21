@@ -472,6 +472,6 @@ class __TwigTemplate_8928507ee0b8a7a161efd23f2e70a58b extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@Debug/Profiler/dump.html.twig", "/home/eny-fiti/Documents/etech/my_blog/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
+", "@Debug/Profiler/dump.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
     }
 }

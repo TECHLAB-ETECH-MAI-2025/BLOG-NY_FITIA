@@ -34,7 +34,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{id}', name: 'article_show')]
+    #[Route('/article/{id}', name: 'article_show',  methods: ['GET'])]
     public function show(Article $article, Request $request, EntityManagerInterface $entityManager): Response
     {
         $comment = new Comment();
@@ -56,11 +56,45 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[Route('/article/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('article/edit.html.twig', [
+            'article' => $article,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/article/{id}', name: 'article_delete', methods: ['POST'])]
+    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    {
+
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($article);
+            $entityManager->flush();
+        }
+        
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/', name: 'home')]
     public function index(ArticleRepository $articleRepository): Response
     {
+        $commentForm = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
+            'form' =>  $commentForm,
         ]);
     }
 }
