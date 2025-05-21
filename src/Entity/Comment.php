@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,28 +14,18 @@ class Comment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $author = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTime $createdAt = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'comments')]
-    private ?self $article = null;
-
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'article')]
-    private Collection $comments;
-
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Article $article = null;
 
     public function getId(): ?int
     {
@@ -49,7 +37,7 @@ class Comment
         return $this->author;
     }
 
-    public function setAuthor(string $author): static
+    public function setAuthor(?string $author): static
     {
         $this->author = $author;
 
@@ -61,7 +49,7 @@ class Comment
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    public function setContent(?string $content): static
     {
         $this->content = $content;
 
@@ -73,51 +61,21 @@ class Comment
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): static
+    public function setCreatedAt(?\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getArticle(): ?self
+    public function getArticle(): ?Article
     {
         return $this->article;
     }
 
-    public function setArticle(?self $article): static
+    public function setArticle(?Article $article): static
     {
         $this->article = $article;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(self $comment): static
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments->add($comment);
-            $comment->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(self $comment): static
-    {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getArticle() === $this) {
-                $comment->setArticle(null);
-            }
-        }
 
         return $this;
     }

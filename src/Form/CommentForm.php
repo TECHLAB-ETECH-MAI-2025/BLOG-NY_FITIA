@@ -1,5 +1,4 @@
 <?php
-	// src/Form/CommentType.php
 
 	namespace App\Form;
 

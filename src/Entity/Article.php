@@ -31,13 +31,10 @@ class Article
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'comments')]
-    private ?self $article = null;
-
     /**
-     * @var Collection<int, self>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'article')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'article')]
     private Collection $comments;
 
     public function __construct()
@@ -111,27 +108,15 @@ class Article
         return $this;
     }
 
-    public function getArticle(): ?self
-    {
-        return $this->article;
-    }
-
-    public function setArticle(?self $article): static
-    {
-        $this->article = $article;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, self>
+     * @return Collection<int, Comment>
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(self $comment): static
+    public function addComment(Comment $comment): static
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -141,7 +126,7 @@ class Article
         return $this;
     }
 
-    public function removeComment(self $comment): static
+    public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
