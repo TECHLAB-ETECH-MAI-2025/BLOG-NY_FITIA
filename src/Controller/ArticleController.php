@@ -89,12 +89,12 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ArticleRepository $articleRepository): Response
     {
-        $commentForm = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        // $commentForm = $this->createForm(ArticleType::class, $article);
+        // $form->handleRequest($request);
 
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
-            'form' =>  $commentForm,
+            // 'form' =>  $commentForm,
         ]);
     }
 }
