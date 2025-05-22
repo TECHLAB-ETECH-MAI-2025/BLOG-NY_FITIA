@@ -4,7 +4,15 @@
 {% block title %}Nouvel Article{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un nouvel article</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Add article</h1>
 
-    {{ include('article/_form.html.twig') }}
+        {{ include('article/_form.html.twig', {'button_label': 'Add'}) }}
+
+        <div class="text-center mt-3">
+            <a href="{{ path('home') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Cancel
+            </a>
+        </div>
+    </div>
 {% endblock %}

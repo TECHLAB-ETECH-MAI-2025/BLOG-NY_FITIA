@@ -99,6 +99,6 @@ class __TwigTemplate_3a7d3f1e3f2e3d236c2d0bf2b59d4352 extends Template
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-", "user/_form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/user/_form.html.twig");
+", "user/_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/user/_form.html.twig");
     }
 }

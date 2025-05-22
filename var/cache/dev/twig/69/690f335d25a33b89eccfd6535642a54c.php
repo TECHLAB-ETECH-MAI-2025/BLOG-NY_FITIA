@@ -45,19 +45,34 @@ class __TwigTemplate_73be1163cac2b0313a601fb22917ae3e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "article/_form.html.twig"));
 
         // line 1
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 1, $this->source); })()), 'form_start');
+        yield "<div class=\"container mt-5\">
+    <div class=\"row justify-content-center\">
+        <div class=\"col-md-6\">
+            <div class=\"card shadow\">
+                <div class=\"card-body\">
+                    ";
+        // line 6
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 6, $this->source); })()), 'form_start', ["attr" => ["class" => "needs-validation"]]);
         yield "
-    ";
-        // line 2
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 2, $this->source); })()), 'widget');
+                        ";
+        // line 7
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 7, $this->source); })()), 'widget');
         yield "
-    <button type=\"submit\" class=\"btn btn-primary\">";
-        // line 3
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("button_label", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 3, $this->source); })()), "Save")) : ("Save")), "html", null, true);
-        yield "</button>
-";
-        // line 4
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 4, $this->source); })()), 'form_end');
+                        <button type=\"submit\" class=\"btn btn-primary mt-3 w-100\">
+                            ";
+        // line 9
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("button_label", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 9, $this->source); })()), "Save")) : ("Save")), "html", null, true);
+        yield "
+                        </button>
+                    ";
+        // line 11
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), 'form_end');
+        yield "
+                </div>
+            </div>
+        </div>
+    </div>
+</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -88,14 +103,26 @@ class __TwigTemplate_73be1163cac2b0313a601fb22917ae3e extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  60 => 4,  56 => 3,  52 => 2,  48 => 1,);
+        return array (  69 => 11,  64 => 9,  59 => 7,  55 => 6,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type=\"submit\" class=\"btn btn-primary\">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}", "article/_form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/_form.html.twig");
+        return new Source("<div class=\"container mt-5\">
+    <div class=\"row justify-content-center\">
+        <div class=\"col-md-6\">
+            <div class=\"card shadow\">
+                <div class=\"card-body\">
+                    {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+                        {{ form_widget(form) }}
+                        <button type=\"submit\" class=\"btn btn-primary mt-3 w-100\">
+                            {{ button_label|default('Save') }}
+                        </button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>", "article/_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/_form.html.twig");
     }
 }

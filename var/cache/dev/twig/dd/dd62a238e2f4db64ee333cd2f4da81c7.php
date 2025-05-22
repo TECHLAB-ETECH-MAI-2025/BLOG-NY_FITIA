@@ -60,22 +60,23 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         yield "</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
         <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
+        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css\" rel=\"stylesheet\">
         <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
         ";
-        // line 9
+        // line 10
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 11
+        // line 12
         yield "
         ";
-        // line 12
+        // line 13
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 15
+        // line 16
         yield "    </head>
     <body>
         ";
-        // line 17
-        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
         // line 18
+        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
+        // line 19
         yield "    </body>
 </html>
 ";
@@ -111,7 +112,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         yield from [];
     }
 
-    // line 9
+    // line 10
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -124,7 +125,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 10
+        // line 11
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -135,7 +136,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         yield from [];
     }
 
-    // line 12
+    // line 13
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -148,10 +149,10 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
+        // line 14
         yield "            ";
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 14
+        // line 15
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -162,7 +163,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         yield from [];
     }
 
-    // line 13
+    // line 14
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -185,7 +186,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         yield from [];
     }
 
-    // line 17
+    // line 18
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -220,7 +221,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  189 => 17,  166 => 13,  155 => 14,  152 => 13,  139 => 12,  128 => 10,  115 => 9,  92 => 5,  79 => 18,  77 => 17,  73 => 15,  71 => 12,  68 => 11,  66 => 9,  59 => 5,  53 => 1,);
+        return array (  190 => 18,  167 => 14,  156 => 15,  153 => 14,  140 => 13,  129 => 11,  116 => 10,  93 => 5,  80 => 19,  78 => 18,  74 => 16,  72 => 13,  69 => 12,  67 => 10,  59 => 5,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -232,6 +233,7 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
         <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
+        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css\" rel=\"stylesheet\">
         <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
         {% block stylesheets %}
         {% endblock %}
@@ -244,6 +246,6 @@ class __TwigTemplate_9e0672a34dfbdb40fc09d326162a9b1f extends Template
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/base.html.twig");
+", "base.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/base.html.twig");
     }
 }

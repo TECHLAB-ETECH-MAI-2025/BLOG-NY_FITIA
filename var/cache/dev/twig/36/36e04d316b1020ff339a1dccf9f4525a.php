@@ -97,12 +97,23 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        yield "    <h1>Ajouter un nouvel article</h1>
+        yield "    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">Add article</h1>
 
-    ";
-        // line 9
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig");
+        ";
+        // line 10
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig", ["button_label" => "Add"]);
         yield "
+
+        <div class=\"text-center mt-3\">
+            <a href=\"";
+        // line 13
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        yield "\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -134,7 +145,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  104 => 9,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  111 => 13,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -145,9 +156,17 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
 {% block title %}Nouvel Article{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un nouvel article</h1>
+    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">Add article</h1>
 
-    {{ include('article/_form.html.twig') }}
-{% endblock %}", "article/new.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/new.html.twig");
+        {{ include('article/_form.html.twig', {'button_label': 'Add'}) }}
+
+        <div class=\"text-center mt-3\">
+            <a href=\"{{ path('home') }}\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    </div>
+{% endblock %}", "article/new.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/new.html.twig");
     }
 }

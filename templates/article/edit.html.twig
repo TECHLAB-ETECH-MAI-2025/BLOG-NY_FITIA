@@ -3,9 +3,15 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Edit article</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('home') }}">Back</a>
+        <div class="text-center mt-3">
+            <a href="{{ path('home') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Cancel
+            </a>
+        </div>
+    </div>
 {% endblock %}

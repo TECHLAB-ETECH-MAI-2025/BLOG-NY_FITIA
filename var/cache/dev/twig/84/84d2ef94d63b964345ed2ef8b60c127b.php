@@ -52,7 +52,7 @@ class __TwigTemplate_721ca577d039cb4a411efba5d445c971 extends Template
         // line 2
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 2, $this->source); })()), "id", [], "any", false, false, false, 2))), "html", null, true);
         yield "\">
-    <button class=\"btn\">Delete</button>
+    <button class=\"btn\"><i class=\"bi bi-trash\"></i></button>
 </form>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -91,7 +91,7 @@ class __TwigTemplate_721ca577d039cb4a411efba5d445c971 extends Template
     {
         return new Source("<form method=\"post\" action=\"{{ path('article_delete', {'id': article.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ article.id) }}\">
-    <button class=\"btn\">Delete</button>
-</form>", "article/_delete_form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/_delete_form.html.twig");
+    <button class=\"btn\"><i class=\"bi bi-trash\"></i></button>
+</form>", "article/_delete_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/_delete_form.html.twig");
     }
 }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interagir avec l'article{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <p><strong>Catégorie :</strong> {{ article.category.name }}</p>
+        <hr>
+
+        <h5>All commentaire</h5>
+        {% for comment in article.comments %}
+            <div class="mb-2 p-2 border rounded">
+                {{ comment.content }}
+            </div>
+        {% endfor %}
+        {{ form_start(commentForm) }}
+            {{ form_widget(commentForm) }}
+            <button class="btn btn-success">Envoyer</button>
+        {{ form_end(commentForm) }}
+        </br>
+        <a href="{{ path('home') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i>Cancel
+        </a>
+
+        <hr>
+    </div>
+{% endblock %}

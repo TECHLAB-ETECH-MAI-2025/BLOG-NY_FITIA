@@ -97,17 +97,23 @@ class __TwigTemplate_72d8f426ffb9aec3fd8d0cf88cb1e526 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <h1>Edit Article</h1>
+        yield "    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">Edit article</h1>
 
-    ";
-        // line 8
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "user/_form.html.twig", ["button_label" => "Update"]);
+        ";
+        // line 9
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig", ["button_label" => "Update"]);
         yield "
 
-    <a href=\"";
-        // line 10
+        <div class=\"text-center mt-3\">
+            <a href=\"";
+        // line 12
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
-        yield "\">Back</a>
+        yield "\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -139,7 +145,7 @@ class __TwigTemplate_72d8f426ffb9aec3fd8d0cf88cb1e526 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  109 => 10,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  111 => 12,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -149,12 +155,18 @@ class __TwigTemplate_72d8f426ffb9aec3fd8d0cf88cb1e526 extends Template
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">Edit article</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href=\"{{ path('home') }}\">Back</a>
+        <div class=\"text-center mt-3\">
+            <a href=\"{{ path('home') }}\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    </div>
 {% endblock %}
-", "article/edit.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/edit.html.twig");
+", "article/edit.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/edit.html.twig");
     }
 }

@@ -73,7 +73,7 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 4, $this->source); })()), "title", [], "any", false, false, false, 4), "html", null, true);
+        yield "Accueil";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -97,62 +97,103 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        yield "    <article>
-        <h1>";
-        // line 8
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 8, $this->source); })()), "title", [], "any", false, false, false, 8), "html", null, true);
-        yield "</h1>
-        <p>";
-        // line 9
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "description", [], "any", false, false, false, 9), "html", null, true);
-        yield "</p>
-        <p class=\"text-muted\">Catégorie: ";
-        // line 10
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 10, $this->source); })()), "category", [], "any", false, false, false, 10), "name", [], "any", false, false, false, 10), "html", null, true);
-        yield "</p>
-        <hr>
-    </article>
+        yield "    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">All Article</h1>
 
-    <section class=\"mt-5\">
-        <h2>Commentaires (";
-        // line 15
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 15, $this->source); })()), "comments", [], "any", false, false, false, 15)), "html", null, true);
-        yield ")</h2>
-        
-        ";
-        // line 17
+        <a href=\"";
+        // line 10
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_new");
+        yield "\" class=\"btn btn-primary mb-3\">Créer un article</a>
+        <a href=\"";
+        // line 11
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        yield "\" class=\"btn btn-primary mb-3\">Mon Blog</a>
+
+        <table class=\"table table-striped table-bordered align-middle text-center\">
+            <thead class=\"table-dark\">
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                ";
+        // line 24
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 17, $this->source); })()), "comments", [], "any", false, false, false, 17));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 24, $this->source); })()));
         $context['_iterated'] = false;
-        foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
-            // line 18
-            yield "            <div class=\"card mb-3\">
-                    <p>";
-            // line 19
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 19), "html", null, true);
-            yield "</p>
-                </div>
-            </div>
-        ";
-            $context['_iterated'] = true;
+        $context['loop'] = [
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        ];
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
         }
-        // line 22
+        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+            // line 25
+            yield "                    <tr>
+                        <td>";
+            // line 26
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 26), "html", null, true);
+            yield "</td>
+                        <td>";
+            // line 27
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 27), "html", null, true);
+            yield "</td>
+                        <td>";
+            // line 28
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 28), "html", null, true);
+            yield "</td>
+                        <td>
+                            <a href=\"";
+            // line 30
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 30)]), "html", null, true);
+            yield "\" class=\"btn btn-sm btn-warning\">
+                                <i class=\"bi bi-pencil\"></i>
+                            </a>
+                        </td>
+                        <td>
+                            ";
+            // line 35
+            yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_delete_form.html.twig");
+            yield "
+                        </td>
+                    </tr>
+                ";
+            $context['_iterated'] = true;
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['revindex0'], $context['loop']['revindex'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        // line 38
         if (!$context['_iterated']) {
-            // line 23
-            yield "            <p>Aucun commentaire pour le moment.</p>
-        ";
+            // line 39
+            yield "                    <tr>
+                        <td colspan=\"5\">Aucun article pour le moment.</td>
+                    </tr>
+                ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_key'], $context['comment'], $context['_parent'], $context['_iterated']);
+        unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
-        yield "        
-        <h3 class=\"mt-4\">Ajouter un commentaire</h3>
-        ";
-        // line 27
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_comment_form.html.twig");
-        yield "
-    </section>
+        // line 43
+        yield "            </tbody>
+        </table>
+    </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -184,7 +225,7 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  153 => 27,  149 => 25,  142 => 23,  140 => 22,  132 => 19,  129 => 18,  124 => 17,  119 => 15,  111 => 10,  107 => 9,  103 => 8,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  194 => 43,  185 => 39,  183 => 38,  167 => 35,  159 => 30,  154 => 28,  150 => 27,  146 => 26,  143 => 25,  125 => 24,  109 => 11,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -192,31 +233,49 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         return new Source("{# templates/article/show.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ article.title }}{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <article>
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.description }}</p>
-        <p class=\"text-muted\">Catégorie: {{ article.category.name }}</p>
-        <hr>
-    </article>
+    <div class=\"container mt-5\">
+        <h1 class=\"text-center mb-4\">All Article</h1>
 
-    <section class=\"mt-5\">
-        <h2>Commentaires ({{ article.comments|length }})</h2>
-        
-        {% for comment in article.comments %}
-            <div class=\"card mb-3\">
-                    <p>{{ comment.content }}</p>
-                </div>
-            </div>
-        {% else %}
-            <p>Aucun commentaire pour le moment.</p>
-        {% endfor %}
-        
-        <h3 class=\"mt-4\">Ajouter un commentaire</h3>
-        {{ include('article/_comment_form.html.twig') }}
-    </section>
-{% endblock %}", "article/show.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/BLOG-NY_FITIA/templates/article/show.html.twig");
+        <a href=\"{{ path('article_new') }}\" class=\"btn btn-primary mb-3\">Créer un article</a>
+        <a href=\"{{ path('home') }}\" class=\"btn btn-primary mb-3\">Mon Blog</a>
+
+        <table class=\"table table-striped table-bordered align-middle text-center\">
+            <thead class=\"table-dark\">
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.description }}</td>
+                        <td>
+                            <a href=\"{{ path('article_edit', {'id': article.id}) }}\" class=\"btn btn-sm btn-warning\">
+                                <i class=\"bi bi-pencil\"></i>
+                            </a>
+                        </td>
+                        <td>
+                            {{ include('article/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan=\"5\">Aucun article pour le moment.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+", "article/show.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/show.html.twig");
     }
 }

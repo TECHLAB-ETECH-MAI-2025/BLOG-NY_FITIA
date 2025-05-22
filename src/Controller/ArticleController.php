@@ -16,43 +16,28 @@ use Symfony\Component\Routing\Attribute\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/article/new', name: 'article_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(ArticleRepository $articleRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
-        
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
             
-            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+            $allArticles = $articleRepository->findBy([], ['createdAt' => 'ASC']); // plus ancien en premier
+            if (count($allArticles) > 9) {
+                $toRemove = $allArticles[0]; // le plus ancien
+                $entityManager->remove($toRemove);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('home');
         }
         
         return $this->render('article/new.html.twig', [
             'form' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/article/{id}', name: 'article_show',  methods: ['GET'])]
-    public function show(Article $article, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $comment = new Comment();
-        $comment->setArticle($article);
-        
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($comment);
-            $entityManager->flush();
-            
-            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
-        }
-        
-        return $this->render('article/show.html.twig', [
-            'article' => $article,
-            'commentForm' => $form->createView(),
         ]);
     }
 
@@ -89,12 +74,39 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ArticleRepository $articleRepository): Response
     {
-        // $commentForm = $this->createForm(ArticleType::class, $article);
-        // $form->handleRequest($request);
-
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
-            // 'form' =>  $commentForm,
+            'articles' => $articleRepository->findby([], ['createdAt' => 'DESC']),
         ]);
     }
+
+    #[Route('/article', name: 'article_show',  methods: ['GET'])]
+    public function show(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/show.html.twig', [
+            'articles' => $articleRepository->findby([], ['createdAt' => 'DESC']),
+        ]);
+    }
+
+    #[Route('/article/{id}/interact', name: 'article_interact', methods: ['GET', 'POST'])]
+    public function interact(Article $article, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $comment = new Comment();
+        $comment->setArticle($article);
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('article_interact', ['id' => $article->getId()]);
+        }
+
+        return $this->render('article/interact.html.twig', [
+            'article' => $article,
+            'commentForm' => $form->createView(),
+        ]);
+    }
+
 }
