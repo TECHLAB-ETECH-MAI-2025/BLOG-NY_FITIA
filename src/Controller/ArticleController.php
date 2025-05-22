@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
             $entityManager->flush();
             
             $allArticles = $articleRepository->findBy([], ['createdAt' => 'ASC']); // plus ancien en premier
-            if (count($allArticles) > 9) {
+            if (count($allArticles) > 6) {
                 $toRemove = $allArticles[0]; // le plus ancien
                 $entityManager->remove($toRemove);
                 $entityManager->flush();

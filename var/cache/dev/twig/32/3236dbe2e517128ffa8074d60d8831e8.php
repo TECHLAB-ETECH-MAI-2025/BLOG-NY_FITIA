@@ -100,15 +100,6 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         yield "    <div class=\"container mt-5\">
         <h1 class=\"text-center mb-4\">All Article</h1>
 
-        <a href=\"";
-        // line 10
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_new");
-        yield "\" class=\"btn btn-primary mb-3\">Créer un article</a>
-        <a href=\"";
-        // line 11
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
-        yield "\" class=\"btn btn-primary mb-3\">Mon Blog</a>
-
         <table class=\"table table-striped table-bordered align-middle text-center\">
             <thead class=\"table-dark\">
                 <tr>
@@ -121,9 +112,9 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
             </thead>
             <tbody>
                 ";
-        // line 24
+        // line 21
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 24, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 21, $this->source); })()));
         $context['_iterated'] = false;
         $context['loop'] = [
           'parent' => $context['_parent'],
@@ -139,31 +130,31 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 25
+            // line 22
             yield "                    <tr>
                         <td>";
-            // line 26
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 26), "html", null, true);
+            // line 23
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 23), "html", null, true);
             yield "</td>
                         <td>";
-            // line 27
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 27), "html", null, true);
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 24), "html", null, true);
             yield "</td>
                         <td>";
-            // line 28
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 28), "html", null, true);
+            // line 25
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 25), "html", null, true);
             yield "</td>
                         <td>
                             <a href=\"";
-            // line 30
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 30)]), "html", null, true);
+            // line 27
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 27)]), "html", null, true);
             yield "\" class=\"btn btn-sm btn-warning\">
                                 <i class=\"bi bi-pencil\"></i>
                             </a>
                         </td>
                         <td>
                             ";
-            // line 35
+            // line 32
             yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_delete_form.html.twig");
             yield "
                         </td>
@@ -179,9 +170,9 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
                 $context['loop']['last'] = 0 === $context['loop']['revindex0'];
             }
         }
-        // line 38
+        // line 35
         if (!$context['_iterated']) {
-            // line 39
+            // line 36
             yield "                    <tr>
                         <td colspan=\"5\">Aucun article pour le moment.</td>
                     </tr>
@@ -190,9 +181,15 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
+        // line 40
         yield "            </tbody>
         </table>
+        <div class=\"text-center mb-4\">
+            <a href=\"";
+        // line 43
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        yield "\" class=\"btn btn-primary mb-3\">Back</a>
+        </div>
     </div>
 ";
         
@@ -225,7 +222,7 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  194 => 43,  185 => 39,  183 => 38,  167 => 35,  159 => 30,  154 => 28,  150 => 27,  146 => 26,  143 => 25,  125 => 24,  109 => 11,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  190 => 43,  185 => 40,  176 => 36,  174 => 35,  158 => 32,  150 => 27,  145 => 25,  141 => 24,  137 => 23,  134 => 22,  116 => 21,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -238,9 +235,6 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
 {% block body %}
     <div class=\"container mt-5\">
         <h1 class=\"text-center mb-4\">All Article</h1>
-
-        <a href=\"{{ path('article_new') }}\" class=\"btn btn-primary mb-3\">Créer un article</a>
-        <a href=\"{{ path('home') }}\" class=\"btn btn-primary mb-3\">Mon Blog</a>
 
         <table class=\"table table-striped table-bordered align-middle text-center\">
             <thead class=\"table-dark\">
@@ -274,6 +268,9 @@ class __TwigTemplate_c81136e1fd7a1f9be87a0827f6136477 extends Template
                 {% endfor %}
             </tbody>
         </table>
+        <div class=\"text-center mb-4\">
+            <a href=\"{{ path('home') }}\" class=\"btn btn-primary mb-3\">Back</a>
+        </div>
     </div>
 {% endblock %}
 ", "article/show.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/show.html.twig");

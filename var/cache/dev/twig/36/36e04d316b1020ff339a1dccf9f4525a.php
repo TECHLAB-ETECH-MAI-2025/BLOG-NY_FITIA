@@ -31,6 +31,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -83,7 +84,69 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
         yield from [];
     }
 
-    // line 6
+    // line 7
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 8
+        yield "    ";
+        yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
+        yield "
+    <style>
+        body {
+            background-color:rgb(255, 255, 255);
+            color: #f8f9fa;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            color:#002366;
+        }
+
+        .container {
+            background-color:rgb(255, 255, 255);
+            border-radius: 12px;
+        }
+
+        label {
+            color:rgb(3, 1, 15);
+        }
+
+        input, textarea, select {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            border: 1px solid #444;
+        }
+
+        .btn-secondary i {
+            margin-right: 5px;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 6px;
+        }
+    </style>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 46
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -96,18 +159,18 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 7
+        // line 47
         yield "    <div class=\"container mt-5\">
-        <h1 class=\"text-center mb-4\">Add article</h1>
+        <h1 class=\"text-center mb-4\">Add a new article</h1>
 
         ";
-        // line 10
+        // line 50
         yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig", ["button_label" => "Add"]);
         yield "
 
         <div class=\"text-center mt-3\">
             <a href=\"";
-        // line 13
+        // line 53
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" class=\"btn btn-secondary\">
                 <i class=\"bi bi-arrow-left\"></i> Cancel
@@ -145,7 +208,7 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  111 => 13,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  174 => 53,  168 => 50,  163 => 47,  150 => 46,  101 => 8,  88 => 7,  65 => 4,  42 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -155,9 +218,49 @@ class __TwigTemplate_0be7b287af6bf2cca455f01aac962872 extends Template
 
 {% block title %}Nouvel Article{% endblock %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color:rgb(255, 255, 255);
+            color: #f8f9fa;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            color:#002366;
+        }
+
+        .container {
+            background-color:rgb(255, 255, 255);
+            border-radius: 12px;
+        }
+
+        label {
+            color:rgb(3, 1, 15);
+        }
+
+        input, textarea, select {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            border: 1px solid #444;
+        }
+
+        .btn-secondary i {
+            margin-right: 5px;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 6px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class=\"container mt-5\">
-        <h1 class=\"text-center mb-4\">Add article</h1>
+        <h1 class=\"text-center mb-4\">Add a new article</h1>
 
         {{ include('article/_form.html.twig', {'button_label': 'Add'}) }}
 

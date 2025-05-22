@@ -17,16 +17,16 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => "Titre",
+                'label' => "Title",
                 'attr' => [
-                    'placeholder' => 'Titre de l\'article'
+                    'placeholder' => 'Article Title'
                 ]
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'label' => "Contenu",
+                'label' => "Content",
                 'attr' => [
-                    'placeholder' => 'Contenu de l\'article'
+                    'placeholder' => 'Article Contents'
                 ]
             ])
             ->add('category', EntityType::class, [

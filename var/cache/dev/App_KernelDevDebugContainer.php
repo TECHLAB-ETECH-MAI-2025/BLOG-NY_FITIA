@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerQR1JAVc\App_KernelDevDebugContainer([
     'container.build_hash' => 'QR1JAVc',
-    'container.build_id' => 'a5467421',
-    'container.build_time' => 1747889055,
+    'container.build_id' => '8a51adc6',
+    'container.build_time' => 1747893236,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerQR1JAVc');
