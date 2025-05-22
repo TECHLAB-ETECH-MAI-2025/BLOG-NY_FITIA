@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ArticleController extends AbstractController
 {
@@ -25,14 +26,6 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
-            
-            $allArticles = $articleRepository->findBy([], ['createdAt' => 'ASC']); // plus ancien en premier
-            if (count($allArticles) > 6) {
-                $toRemove = $allArticles[0]; // le plus ancien
-                $entityManager->remove($toRemove);
-                $entityManager->flush();
-            }
-
             return $this->redirectToRoute('home');
         }
         
@@ -67,7 +60,6 @@ class ArticleController extends AbstractController
             $entityManager->remove($article);
             $entityManager->flush();
         }
-        
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 

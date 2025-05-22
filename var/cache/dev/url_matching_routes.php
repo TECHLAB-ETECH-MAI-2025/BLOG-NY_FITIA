@@ -18,6 +18,11 @@ return [
         '/article/new' => [[['_route' => 'article_new', '_controller' => 'App\\Controller\\ArticleController::new'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ArticleController::index'], null, null, null, false, false, null]],
         '/article' => [[['_route' => 'article_show', '_controller' => 'App\\Controller\\ArticleController::show'], null, ['GET' => 0], null, false, false, null]],
+        '/category' => [
+            [['_route' => 'category_index', '_controller' => 'App\\Controller\\CategoryController::index'], null, ['GET' => 0], null, false, false, null],
+            [['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], null, ['GET' => 0], null, false, false, null],
+        ],
+        '/category/new' => [[['_route' => 'category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -46,6 +51,10 @@ return [
                     .')'
                     .'|(*:255)'
                 .')'
+                .'|/category/([^/]++)(?'
+                    .'|/edit(*:290)'
+                    .'|(*:298)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -59,8 +68,10 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         230 => [[['_route' => 'article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         246 => [[['_route' => 'article_interact', '_controller' => 'App\\Controller\\ArticleController::interact'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        255 => [
-            [['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null],
+        255 => [[['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        290 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        298 => [
+            [['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
