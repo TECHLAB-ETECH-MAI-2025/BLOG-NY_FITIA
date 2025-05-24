@@ -12,4 +12,14 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
+
+    public function search(string $query): array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.title LIKE :query OR a.content LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

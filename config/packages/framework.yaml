@@ -1,15 +1,32 @@
-# see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
+    http_method_override: false
+    session:
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        cookie_secure: auto
+        cookie_samesite: lax
+        gc_probability: 1
+        gc_divisor: 100
+        gc_maxlifetime: 3600
+        metadata_update_threshold: 0
 
-    # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    php_errors:
+        log: true
 
-    #esi: true
-    #fragments: true
+    csrf_protection: true
+    assets: true
+    router:
+        utf8: true
+        strict_requirements: null
 
 when@test:
     framework:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4 # Valeur minimale pour les tests

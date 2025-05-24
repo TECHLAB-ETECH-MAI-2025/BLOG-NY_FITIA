@@ -32,10 +32,17 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    /**
+     * @var Collection<int, Vote>
+     */
+    #[ORM\OneToMany(targetEntity: Vote::class, mappedBy: 'article')]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,5 +126,77 @@ class Article
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote) && $vote->getArticle() === $this) {
+            $vote->setArticle(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Compte le nombre de likes
+     */
+    public function countLikes(): int
+    {
+        return $this->votes->filter(fn(Vote $vote) => $vote->getValue() === 1)->count();
+    }
+
+    /**
+     * Compte le nombre de dislikes
+     */
+    public function countDislikes(): int
+    {
+        return $this->votes->filter(fn(Vote $vote) => $vote->getValue() === -1)->count();
+    }
+
+    /**
+     * Retourne le vote de l'utilisateur (1 = like, -1 = dislike, null = pas voté)
+     */
+    public function getUserVote(User $user): ?int
+    {
+        foreach ($this->votes as $vote) {
+            if ($vote->getUser() === $user) {
+                return $vote->getValue();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Vérifie si l'utilisateur a liké
+     */
+    public function isLikedBy(User $user): bool
+    {
+        return $this->getUserVote($user) === 1;
+    }
+
+    /**
+     * Vérifie si l'utilisateur a disliké
+     */
+    public function isDislikedBy(User $user): bool
+    {
+        return $this->getUserVote($user) === -1;
     }
 }

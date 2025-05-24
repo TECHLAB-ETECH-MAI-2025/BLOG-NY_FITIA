@@ -4,6 +4,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <style>
         h1 {
             background-color: #002366;
@@ -72,30 +73,125 @@
             border-bottom-right-radius: 12px;
         }
 
-        .card-footer i {
-            font-size: 1.2rem;
-            margin-left: 8px;
+        .vote-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
             cursor: pointer;
-            color:rgb(2, 25, 46);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .vote-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .vote-btn.like.active {
+            color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .vote-btn.dislike.active {
+            color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .vote-count {
+            font-size: 0.9rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .comment-btn {
+            color: rgb(2, 25, 46);
             transition: color 0.3s;
         }
 
-        .card-footer i:hover {
+        .comment-btn:hover {
             color: #0d6efd;
         }
     </style>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.vote-btn').forEach(button => {
+                button.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    
+                    if (this.disabled) return;
+                    
+                    const articleId = this.dataset.articleId;
+                    const voteType = this.dataset.voteType;
+
+                    try {
+                        const response = await fetch(`/article/${articleId}/vote/${voteType}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) throw new Error('Erreur de vote');
+
+                        const data = await response.json();
+
+                        // Mise à jour des compteurs
+                        document.querySelectorAll(`[data-article-id="${articleId}"] .vote-count`).forEach(span => {
+                            span.textContent = span.classList.contains('like-count') 
+                                ? data.likes 
+                                : data.dislikes;
+                        });
+
+                        // Mise à jour des styles
+                        document.querySelectorAll(`[data-article-id="${articleId}"] .vote-btn`).forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        
+                        if (data.userVote === 1) {
+                            document.querySelector(`[data-article-id="${articleId}"][data-vote-type="like"]`).classList.add('active');
+                        } else if (data.userVote === -1) {
+                            document.querySelector(`[data-article-id="${articleId}"][data-vote-type="dislike"]`).classList.add('active');
+                        }
+
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Vous devez être connecté pour voter !');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h1>Mon Blog</h1>
-        </br>
+        <br>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for article in articles %}
+        <div style="position: fixed; bottom: 0; background: white; padding: 10px; z-index: 1000;">
+            Statut connexion : {{ app.user ? 'CONNECTÉ (' ~ app.user.email ~ ')' : 'NON CONNECTÉ' }}
+            <br>Token session : {{ app.session.get('_security_main')|slice(0, 20) ~ '...' }}
+        </div>
             <div class="col">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h5 >{{ article.title }}</h5>
+                        <h5>{{ article.title }}</h5>
                         <small class="text-body-secondary">Publié le : {{ article.createdAt|date('Y-m-d') }}</small>
                     </div>
                     <div class="card-body">
@@ -109,18 +205,31 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ path('article_interact', {'id': article.id}) }}" class="btn btn-sm">
+                        <a href="{{ path('article_interact', {'id': article.id}) }}" class="comment-btn">
                             <i class="bi bi-chat-dots"></i>
                         </a>
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        <i class="bi bi-hand-thumbs-down"></i>
+                        <div class="vote-container">
+                            <button class="vote-btn like {% if app.user and article.isLikedBy(app.user) %}active{% endif %}"
+                                    data-article-id="{{ article.id }}"
+                                    data-vote-type="like"
+                                    {{ not app.user ? 'disabled' }}>
+                                👍 <span class="vote-count like-count">{{ article.countLikes() }}</span>
+                            </button>
+                            <button class="vote-btn dislike {% if app.user and article.isDislikedBy(app.user) %}active{% endif %}"
+                                    data-article-id="{{ article.id }}"
+                                    data-vote-type="dislike"
+                                    {{ not app.user ? 'disabled' }}>
+                                👎 <span class="vote-count dislike-count">{{ article.countDislikes() }}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         {% else %}
-            <p>Aucun article pour le moment.</p>
+            <div class="col-12">
+                <p class="text-center">Aucun article pour le moment.</p>
+            </div>
         {% endfor %}
+        </div>
     </div>
-
- </div>
 {% endblock %}

@@ -56,31 +56,26 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-                    <div class="nav flex-column">
-                        <a href="{{ path('home') }}" class="nav-link {{ app.request.get('_route') == 'home' ? 'active' }}">
-                            <i class="bi bi-house-door me-2"></i> Accueil
-                        </a>
-                        <a href="{{ path('article_show') }}" class="nav-link {{ app.request.get('_route') == 'article_show' ? 'active' }}">
-                            <i class="bi bi-file-earmark-text me-2"></i> Articles
-                        </a>
-                        <a href="{{ path('category_index') }}" class="nav-link">
-                            <i class="bi bi-bookmark me-2"></i> Catégories
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-chat-left-text me-2"></i> Commentaires
-                        </a>
+        {% if app.request.get('_route') not in ['app_login', 'app_register'] %}
+            <!-- Structure avec menu -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Sidebar Menu -->
+                    <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                        <!-- Votre menu ici -->
                     </div>
+                    <!-- Main Content -->
+                    <main class="col-md-9 col-lg-10 main-content">
+                        {{ block('body') }}
+                    </main>
                 </div>
-
-                <!-- Main content -->
-                <main class="col-md-9 col-lg-10 main-content">
-                    {% block body %}{% endblock %}
-                </main>
             </div>
-        </div>
+        {% else %}
+            <!-- Pages sans menu -->
+            <div class="auth-container">
+                {{ block('body') }}
+            </div>
+        {% endif %}
     </body>
+
 </html>

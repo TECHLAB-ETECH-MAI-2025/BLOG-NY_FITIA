@@ -63,7 +63,7 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/', name: 'home')]
+    #[Route('/home', name: 'home')]
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
@@ -101,4 +101,23 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[Route('/search', name: 'app_search', methods: ['GET'])]
+    public function search(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+
+        $results = [];
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $query = $form->get('query')->getData();
+            $results = $articleRepository->search($query);
+        }
+
+        return $this->render('article/search.html.twig', [
+            'searchForm' => $form->createView(),
+            'results' => $results,
+            'query' => $query ?? null
+        ]);
+    }
 }

@@ -36,7 +36,6 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
             'stylesheets' => [$this, 'block_stylesheets'],
             'javascripts' => [$this, 'block_javascripts'],
             'importmap' => [$this, 'block_importmap'],
-            'body' => [$this, 'block_body'],
         ];
     }
 
@@ -74,49 +73,41 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         // line 57
         yield "    </head>
     <body>
-        <div class=\"container-fluid\">
-            <div class=\"row\">
-                <!-- Sidebar -->
-                <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-                    <div class=\"nav flex-column\">
-                        <a href=\"";
-        // line 64
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
-        yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 64, $this->source); })()), "request", [], "any", false, false, false, 64), "get", ["_route"], "method", false, false, false, 64) == "home")) ? ("active") : (""));
-        yield "\">
-                            <i class=\"bi bi-house-door me-2\"></i> Accueil
-                        </a>
-                        <a href=\"";
-        // line 67
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show");
-        yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 67, $this->source); })()), "request", [], "any", false, false, false, 67), "get", ["_route"], "method", false, false, false, 67) == "article_show")) ? ("active") : (""));
-        yield "\">
-                            <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
-                        </a>
-                        <a href=\"";
-        // line 70
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_index");
-        yield "\" class=\"nav-link\">
-                            <i class=\"bi bi-bookmark me-2\"></i> Catégories
-                        </a>
-                        <a href=\"#\" class=\"nav-link\">
-                            <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-                        </a>
+        ";
+        // line 59
+        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 59, $this->source); })()), "request", [], "any", false, false, false, 59), "get", ["_route"], "method", false, false, false, 59), ["app_login", "app_register"])) {
+            // line 60
+            yield "            <!-- Structure avec menu -->
+            <div class=\"container-fluid\">
+                <div class=\"row\">
+                    <!-- Sidebar Menu -->
+                    <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
+                        <!-- Votre menu ici -->
                     </div>
+                    <!-- Main Content -->
+                    <main class=\"col-md-9 col-lg-10 main-content\">
+                        ";
+            // line 69
+            yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
+            yield "
+                    </main>
                 </div>
-
-                <!-- Main content -->
-                <main class=\"col-md-9 col-lg-10 main-content\">
-                    ";
-        // line 81
-        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 82
-        yield "                </main>
             </div>
-        </div>
-    </body>
+        ";
+        } else {
+            // line 74
+            yield "            <!-- Pages sans menu -->
+            <div class=\"auth-container\">
+                ";
+            // line 76
+            yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
+            yield "
+            </div>
+        ";
+        }
+        // line 79
+        yield "    </body>
+
 </html>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -265,28 +256,6 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 81
-    /**
-     * @return iterable<null|scalar|\Stringable>
-     */
-    public function block_body(array $context, array $blocks = []): iterable
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-        yield from [];
-    }
-
     /**
      * @codeCoverageIgnore
      */
@@ -308,7 +277,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  269 => 81,  246 => 55,  235 => 56,  233 => 55,  230 => 54,  217 => 53,  167 => 12,  154 => 11,  131 => 5,  116 => 82,  114 => 81,  100 => 70,  92 => 67,  84 => 64,  75 => 57,  73 => 53,  70 => 52,  68 => 11,  59 => 5,  53 => 1,);
+        return array (  237 => 55,  226 => 56,  224 => 55,  221 => 54,  208 => 53,  158 => 12,  145 => 11,  122 => 5,  109 => 79,  103 => 76,  99 => 74,  91 => 69,  80 => 60,  78 => 59,  74 => 57,  72 => 53,  69 => 52,  67 => 11,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -371,33 +340,28 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         {% endblock %}
     </head>
     <body>
-        <div class=\"container-fluid\">
-            <div class=\"row\">
-                <!-- Sidebar -->
-                <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-                    <div class=\"nav flex-column\">
-                        <a href=\"{{ path('home') }}\" class=\"nav-link {{ app.request.get('_route') == 'home' ? 'active' }}\">
-                            <i class=\"bi bi-house-door me-2\"></i> Accueil
-                        </a>
-                        <a href=\"{{ path('article_show') }}\" class=\"nav-link {{ app.request.get('_route') == 'article_show' ? 'active' }}\">
-                            <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
-                        </a>
-                        <a href=\"{{ path('category_index') }}\" class=\"nav-link\">
-                            <i class=\"bi bi-bookmark me-2\"></i> Catégories
-                        </a>
-                        <a href=\"#\" class=\"nav-link\">
-                            <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-                        </a>
+        {% if app.request.get('_route') not in ['app_login', 'app_register'] %}
+            <!-- Structure avec menu -->
+            <div class=\"container-fluid\">
+                <div class=\"row\">
+                    <!-- Sidebar Menu -->
+                    <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
+                        <!-- Votre menu ici -->
                     </div>
+                    <!-- Main Content -->
+                    <main class=\"col-md-9 col-lg-10 main-content\">
+                        {{ block('body') }}
+                    </main>
                 </div>
-
-                <!-- Main content -->
-                <main class=\"col-md-9 col-lg-10 main-content\">
-                    {% block body %}{% endblock %}
-                </main>
             </div>
-        </div>
+        {% else %}
+            <!-- Pages sans menu -->
+            <div class=\"auth-container\">
+                {{ block('body') }}
+            </div>
+        {% endif %}
     </body>
+
 </html>", "base.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/base.html.twig");
     }
 }
