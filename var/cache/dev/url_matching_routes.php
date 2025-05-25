@@ -35,7 +35,6 @@ return [
         '/mon-profil/modifier' => [[['_route' => 'app_user_profile_edit', '_controller' => 'App\\Controller\\UserProfileController::edit'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/mon-profil/avatar' => [[['_route' => 'app_user_avatar_upload', '_controller' => 'App\\Controller\\UserProfileController::uploadAvatar'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/mon-profil/supprimer-avatar' => [[['_route' => 'app_user_avatar_delete', '_controller' => 'App\\Controller\\UserProfileController::deleteAvatar'], null, ['POST' => 0], null, false, false, null]],
-        '/vote' => [[['_route' => 'app_vote', '_controller' => 'App\\Controller\\VoteController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

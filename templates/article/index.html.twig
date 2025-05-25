@@ -128,49 +128,64 @@
     {{ parent() }}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.vote-btn').forEach(button => {
+            const voteButtons = document.querySelectorAll('.vote-btn');
+            
+            voteButtons.forEach(button => {
                 button.addEventListener('click', async function(e) {
                     e.preventDefault();
                     
-                    if (this.disabled) return;
-                    
-                    const articleId = this.dataset.articleId;
-                    const voteType = this.dataset.voteType;
+                    if (button.disabled) {
+                        const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+                        modal.show();
+                        return;
+                    }
 
+                    const articleId = button.dataset.articleId;
+                    const voteType = button.dataset.voteType;
+                    const isActive = button.classList.contains('active');
+                    
                     try {
                         const response = await fetch(`/article/${articleId}/vote/${voteType}`, {
                             method: 'POST',
                             headers: {
                                 'X-Requested-With': 'XMLHttpRequest',
+                                'Content-Type': 'application/json',
                                 'Accept': 'application/json'
-                            }
+                            },
+                            credentials: 'include'
                         });
-
-                        if (!response.ok) throw new Error('Erreur de vote');
 
                         const data = await response.json();
 
-                        // Mise à jour des compteurs
-                        document.querySelectorAll(`[data-article-id="${articleId}"] .vote-count`).forEach(span => {
-                            span.textContent = span.classList.contains('like-count') 
-                                ? data.likes 
-                                : data.dislikes;
-                        });
-
-                        // Mise à jour des styles
-                        document.querySelectorAll(`[data-article-id="${articleId}"] .vote-btn`).forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        
-                        if (data.userVote === 1) {
-                            document.querySelector(`[data-article-id="${articleId}"][data-vote-type="like"]`).classList.add('active');
-                        } else if (data.userVote === -1) {
-                            document.querySelector(`[data-article-id="${articleId}"][data-vote-type="dislike"]`).classList.add('active');
+                        if (response.status === 401) {
+                            throw new Error('Unauthorized');
                         }
 
+                        if (!response.ok) {
+                            throw new Error(data.message || 'Error');
+                        }
+
+                        // Update UI
+                        const voteContainer = button.closest('.vote-container');
+                        const likeBtn = voteContainer.querySelector('.vote-btn.like');
+                        const dislikeBtn = voteContainer.querySelector('.vote-btn.dislike');
+                        
+                        // Update counts
+                        likeBtn.querySelector('.like-count').textContent = data.likes;
+                        dislikeBtn.querySelector('.dislike-count').textContent = data.dislikes;
+                        
+                        // Update active states
+                        likeBtn.classList.toggle('active', data.userVote === 1);
+                        dislikeBtn.classList.toggle('active', data.userVote === -1);
+
                     } catch (error) {
-                        console.error('Error:', error);
-                        alert('Vous devez être connecté pour voter !');
+                        console.error('Vote error:', error);
+                        if (error.message === 'Unauthorized') {
+                            const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+                            modal.show();
+                        } else {
+                            alert('An error occurred: ' + error.message);
+                        }
                     }
                 });
             });
@@ -213,13 +228,15 @@
                                     data-article-id="{{ article.id }}"
                                     data-vote-type="like"
                                     {{ not app.user ? 'disabled' }}>
-                                👍 <span class="vote-count like-count">{{ article.countLikes() }}</span>
+                                    <i class="bi bi-hand-thumbs-up"></i> 
+                                    <span class="vote-count like-count">{{ article.countLikes() }}</span>
                             </button>
                             <button class="vote-btn dislike {% if app.user and article.isDislikedBy(app.user) %}active{% endif %}"
                                     data-article-id="{{ article.id }}"
                                     data-vote-type="dislike"
                                     {{ not app.user ? 'disabled' }}>
-                                👎 <span class="vote-count dislike-count">{{ article.countDislikes() }}</span>
+                                    <i class="bi bi-hand-thumbs-down"></i> 
+                                    <span class="vote-count dislike-count">{{ article.countDislikes() }}</span>
                             </button>
                         </div>
                     </div>

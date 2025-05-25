@@ -42,7 +42,6 @@ return [
     'app_user_profile_edit' => [[], ['_controller' => 'App\\Controller\\UserProfileController::edit'], [], [['text', '/mon-profil/modifier']], [], [], []],
     'app_user_avatar_upload' => [[], ['_controller' => 'App\\Controller\\UserProfileController::uploadAvatar'], [], [['text', '/mon-profil/avatar']], [], [], []],
     'app_user_avatar_delete' => [[], ['_controller' => 'App\\Controller\\UserProfileController::deleteAvatar'], [], [['text', '/mon-profil/supprimer-avatar']], [], [], []],
-    'app_vote' => [[], ['_controller' => 'App\\Controller\\VoteController::index'], [], [['text', '/vote']], [], [], []],
     'article_vote' => [['id', 'type'], ['_controller' => 'App\\Controller\\VoteController::vote'], [], [['variable', '/', '[^/]++', 'type', true], ['text', '/vote'], ['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],
     'App\Controller\ArticleController::new' => [[], ['_controller' => 'App\\Controller\\ArticleController::new'], [], [['text', '/article/new']], [], [], []],
     'App\Controller\ArticleController::edit' => [['id'], ['_controller' => 'App\\Controller\\ArticleController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],
@@ -68,6 +67,5 @@ return [
     'App\Controller\UserProfileController::edit' => [[], ['_controller' => 'App\\Controller\\UserProfileController::edit'], [], [['text', '/mon-profil/modifier']], [], [], []],
     'App\Controller\UserProfileController::uploadAvatar' => [[], ['_controller' => 'App\\Controller\\UserProfileController::uploadAvatar'], [], [['text', '/mon-profil/avatar']], [], [], []],
     'App\Controller\UserProfileController::deleteAvatar' => [[], ['_controller' => 'App\\Controller\\UserProfileController::deleteAvatar'], [], [['text', '/mon-profil/supprimer-avatar']], [], [], []],
-    'App\Controller\VoteController::index' => [[], ['_controller' => 'App\\Controller\\VoteController::index'], [], [['text', '/vote']], [], [], []],
     'App\Controller\VoteController::vote' => [['id', 'type'], ['_controller' => 'App\\Controller\\VoteController::vote'], [], [['variable', '/', '[^/]++', 'type', true], ['text', '/vote'], ['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],
 ];

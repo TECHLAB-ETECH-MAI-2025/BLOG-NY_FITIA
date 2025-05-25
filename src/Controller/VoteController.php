@@ -2,49 +2,55 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\Vote;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class VoteController extends AbstractController
 {
-    #[Route('/vote', name: 'app_vote')]
-    public function index(): Response
-    {
-        return $this->render('vote/index.html.twig', [
-            'controller_name' => 'VoteController',
-        ]);
-    }
-
     #[Route('/article/{id}/vote/{type}', name: 'article_vote', methods: ['POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function vote(
         Article $article,
         string $type,
         EntityManagerInterface $em,
         Request $request
     ): JsonResponse {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
+        
+        if (!$user) {
+            return $this->json([
+                'status' => 'error',
+                'message' => 'Authentication required'
+            ], 401);
+        }
+
         $value = ($type === 'like') ? 1 : -1;
+        $voteRepository = $em->getRepository(Vote::class);
 
-        // Trouver le vote existant
-        $existingVote = $em->getRepository(Vote::class)->findExistingVote($user, $article);
+        $existingVote = $voteRepository->findOneBy([
+            'user' => $user,
+            'article' => $article
+        ]);
 
-        // Logique de vote
         if ($existingVote) {
             if ($existingVote->getValue() === $value) {
-                $em->remove($existingVote); // Annule le vote existant
+                $em->remove($existingVote);
                 $message = 'Vote retiré';
             } else {
-                $existingVote->setValue($value); // Change de like à dislike ou inversement
+                $existingVote->setValue($value);
                 $message = 'Vote modifié';
             }
         } else {
             $vote = new Vote();
             $vote->setUser($user)
-                ->setArticle($article)
-                ->setValue($value);
+                 ->setArticle($article)
+                 ->setValue($value);
             $em->persist($vote);
             $message = 'Vote enregistré';
         }
