@@ -65,31 +65,31 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         ";
         // line 11
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 80
+        // line 84
         yield "
         ";
-        // line 81
-        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         // line 85
+        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
+        // line 89
         yield "    </head>
     <body>
         ";
-        // line 87
-        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 87, $this->source); })()), "request", [], "any", false, false, false, 87), "get", ["_route"], "method", false, false, false, 87), ["app_login", "app_register", "app_forgot_password_request"])) {
-            // line 88
+        // line 91
+        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 91, $this->source); })()), "request", [], "any", false, false, false, 91), "get", ["_route"], "method", false, false, false, 91), ["app_login", "app_register", "app_forgot_password_request", "app_check_email"])) {
+            // line 92
             yield "            <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <!-- Sidebar Menu -->
                     <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
                         ";
-            // line 93
+            // line 97
             yield Twig\Extension\CoreExtension::include($this->env, $context, "includes/_menu.html.twig");
             yield "
                     </div>
                     <main class=\"col-md-9 col-lg-10 main-content\">
                         ";
-            // line 96
+            // line 100
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
                     </main>
@@ -97,17 +97,17 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
             </div>
         ";
         } else {
-            // line 101
+            // line 105
             yield "            <!-- Pages sans menu -->
             <div class=\"auth-container\">
                 ";
-            // line 103
+            // line 107
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
             </div>
         ";
         }
-        // line 106
+        // line 110
         yield "    </body>
 
 </html>";
@@ -223,6 +223,10 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     color: #0d6efd;
                     padding: 0.375rem 0.75rem;
                 }
+
+                .shadow-blue {
+                     box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
+                }       
             </style>
         ";
         
@@ -234,7 +238,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 81
+    // line 85
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -247,12 +251,12 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 82
+        // line 86
         yield "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
             ";
-        // line 83
+        // line 87
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 84
+        // line 88
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -263,7 +267,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 83
+    // line 87
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -307,7 +311,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  267 => 83,  256 => 84,  254 => 83,  251 => 82,  238 => 81,  160 => 12,  147 => 11,  124 => 5,  111 => 106,  105 => 103,  101 => 101,  93 => 96,  87 => 93,  80 => 88,  78 => 87,  74 => 85,  72 => 81,  69 => 80,  67 => 11,  58 => 5,  52 => 1,);
+        return array (  271 => 87,  260 => 88,  258 => 87,  255 => 86,  242 => 85,  160 => 12,  147 => 11,  124 => 5,  111 => 110,  105 => 107,  101 => 105,  93 => 100,  87 => 97,  80 => 92,  78 => 91,  74 => 89,  72 => 85,  69 => 84,  67 => 11,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -389,6 +393,10 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     color: #0d6efd;
                     padding: 0.375rem 0.75rem;
                 }
+
+                .shadow-blue {
+                     box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
+                }       
             </style>
         {% endblock %}
 
@@ -398,7 +406,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         {% endblock %}
     </head>
     <body>
-        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request'] %}
+        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request', 'app_check_email'] %}
             <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">

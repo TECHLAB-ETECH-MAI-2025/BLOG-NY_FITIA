@@ -3,14 +3,6 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    {% set category = article.categoryStatus %}
-
-    {% if not category.exists %}
-        <div class="alert alert-warning mb-3">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            L'ancienne catégorie a été supprimée - Veuillez en sélectionner une nouvelle
-        </div>
-    {% endif %}
     <div class="container mt-5">
         <h1 class="text-center mb-4">Edit article</h1>
 

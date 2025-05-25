@@ -19,16 +19,31 @@ class RegistrationForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phone')
+       $builder
+            ->add('email', null, [
+                'label' => 'Email *',
+                'attr' => ['placeholder' => 'Enter your email']
+            ])
+            ->add('firstName', null, [
+                'attr' => ['placeholder' => 'First Name']
+            ])
+            ->add('lastName', null, [
+                'attr' => ['placeholder' => 'Last Name']
+            ])
+            ->add('phone', null, [
+                'attr' => ['placeholder' => 'Phone number']
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre',
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmez le mot de passe'],
+                'first_options'  => [
+                    'label' => 'Password *',
+                    'attr' => ['placeholder' => 'Enter your password']
+                ],
+                'second_options' => [
+                    'label' => 'Confirm password *',
+                    'attr' => ['placeholder' => 'Confirm your password']
+                ],
                 'mapped' => false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -39,6 +54,7 @@ class RegistrationForm extends AbstractType
                     ]),
                 ],
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

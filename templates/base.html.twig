@@ -75,6 +75,10 @@
                     color: #0d6efd;
                     padding: 0.375rem 0.75rem;
                 }
+
+                .shadow-blue {
+                     box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
+                }       
             </style>
         {% endblock %}
 
@@ -84,7 +88,7 @@
         {% endblock %}
     </head>
     <body>
-        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request'] %}
+        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request', 'app_check_email'] %}
             <!-- Structure avec menu -->
             <div class="container-fluid">
                 <div class="row">

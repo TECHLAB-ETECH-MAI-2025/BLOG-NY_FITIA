@@ -101,18 +101,31 @@ class __TwigTemplate_b94a7ddffd8bd2efb73ad5cf5ee01d7b extends Template
 
     ";
         // line 8
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "category/_form.html.twig", ["button_label" => "Update"]);
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), 'form_start');
         yield "
-
-    <a href=\"";
-        // line 10
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_index");
-        yield "\">back to list</a>
-
-    ";
+        ";
+        // line 9
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), 'widget');
+        yield "
+        <div class=\"d-flex gap-2 mt-3\">
+            <button type=\"submit\" class=\"btn btn-primary\">
+                ";
         // line 12
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "category/_delete_form.html.twig");
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("button_label", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 12, $this->source); })()), "Save")) : ("Save")), "html", null, true);
         yield "
+            </button>
+            <a href=\"";
+        // line 14
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_show");
+        yield "\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    ";
+        // line 18
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 18, $this->source); })()), 'form_end');
+        yield "
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -144,7 +157,7 @@ class __TwigTemplate_b94a7ddffd8bd2efb73ad5cf5ee01d7b extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  114 => 12,  109 => 10,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  126 => 18,  119 => 14,  114 => 12,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -156,11 +169,18 @@ class __TwigTemplate_b94a7ddffd8bd2efb73ad5cf5ee01d7b extends Template
 {% block body %}
     <h1>Edit Category</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class=\"d-flex gap-2 mt-3\">
+            <button type=\"submit\" class=\"btn btn-primary\">
+                {{ button_label|default('Save') }}
+            </button>
+            <a href=\"{{ path('category_show') }}\" class=\"btn btn-secondary\">
+                <i class=\"bi bi-arrow-left\"></i> Cancel
+            </a>
+        </div>
+    {{ form_end(form) }}
 
-    <a href=\"{{ path('category_index') }}\">back to list</a>
-
-    {{ include('category/_delete_form.html.twig') }}
 {% endblock %}
 ", "category/edit.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/category/edit.html.twig");
     }

@@ -1,43 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log in{% endblock %}
 
 {% block body %}
-<form method="post">
+<style>
+    body {
+        background-color: rgb(16, 44, 71);
+        color: white;
+    }
+    
+    .login-container {
+        width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        background-color: #ffffff10;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+    .form-control, .btn {
+        border-radius: 8px;
+    }
+</style>
+
+<div class="login-container">
+    <h1 class="text-center mb-4">Sing In</h1>
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            Logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+    <form method="post">
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" required autofocus>
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
-    <div class="checkbox mb-3">
-        <label>
-            <a href="{{ path('app_forgot_password_request') }}">Forgot password</a>
-        </label>
-    </div>
-    <div class="checkbox mb-3">
-        <label> Don't have an account? </label>
-        <a href="{{ path('app_register') }}"> Sing Up </a>
-    </div>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control mb-3" required>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="form-check mb-2">
+            <input type="checkbox" name="_remember_me" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ path('app_forgot_password_request') }}" class="text-white-50">Forgot password ?</a>
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Sing In</button></hr>
+        Don't have an account ? <a href="{{ path('app_register') }}" class="text-white-50">Sing Up</a>
+    </form>
+</div>
 {% endblock %}

@@ -97,17 +97,12 @@ class __TwigTemplate_958ccb37f2341ab560fbd21f8461d309 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <h1>Create new Category</h1>
+        yield "    <h1>Create New Category</h1>
 
     ";
         // line 8
         yield Twig\Extension\CoreExtension::include($this->env, $context, "category/_form.html.twig");
         yield "
-
-    <a href=\"";
-        // line 10
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_index");
-        yield "\">back to list</a>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -139,7 +134,7 @@ class __TwigTemplate_958ccb37f2341ab560fbd21f8461d309 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  109 => 10,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -149,11 +144,9 @@ class __TwigTemplate_958ccb37f2341ab560fbd21f8461d309 extends Template
 {% block title %}New Category{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
+    <h1>Create New Category</h1>
 
     {{ include('category/_form.html.twig') }}
-
-    <a href=\"{{ path('category_index') }}\">back to list</a>
 {% endblock %}
 ", "category/new.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/category/new.html.twig");
     }
