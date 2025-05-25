@@ -189,8 +189,15 @@ class __TwigTemplate_3ef700a99d2b8de9bbd56c8e8372bcaf extends Template
         unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 44
-        yield "            </tbody>
+        yield "                
+            </tbody>
         </table>
+        <div class=\"navigation\">
+            ";
+        // line 48
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 48, $this->source); })()), "pagination/bootstrap_v5.html.twig");
+        yield "
+        </div>
     </div>
 ";
         
@@ -223,7 +230,7 @@ class __TwigTemplate_3ef700a99d2b8de9bbd56c8e8372bcaf extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  192 => 44,  183 => 40,  181 => 39,  165 => 36,  157 => 31,  152 => 29,  148 => 28,  144 => 27,  141 => 26,  123 => 25,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
+        return array (  198 => 48,  192 => 44,  183 => 40,  181 => 39,  165 => 36,  157 => 31,  152 => 29,  148 => 28,  144 => 27,  141 => 26,  123 => 25,  105 => 10,  100 => 7,  87 => 6,  64 => 4,  41 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -271,8 +278,12 @@ class __TwigTemplate_3ef700a99d2b8de9bbd56c8e8372bcaf extends Template
                         <td colspan=\"5\">Aucun article pour le moment.</td>
                     </tr>
                 {% endfor %}
+                
             </tbody>
         </table>
+        <div class=\"navigation\">
+            {{ knp_pagination_render(articles, 'pagination/bootstrap_v5.html.twig') }}
+        </div>
     </div>
 {% endblock %}
 ", "article/show.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/show.html.twig");

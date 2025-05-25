@@ -195,6 +195,12 @@ class __TwigTemplate_8ffc6e05b125fe7b07f5452bc88a7026 extends Template
         // line 50
         yield "                    </tbody>
                 </table>
+                <div class=\"navigation\">
+                    ";
+        // line 53
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 53, $this->source); })()), "pagination/bootstrap_v5.html.twig");
+        yield "
+                </div>
             </div>
         </div>
     </div>
@@ -229,7 +235,7 @@ class __TwigTemplate_8ffc6e05b125fe7b07f5452bc88a7026 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  196 => 50,  184 => 43,  182 => 42,  166 => 39,  155 => 31,  149 => 28,  145 => 27,  142 => 26,  124 => 25,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  201 => 53,  196 => 50,  184 => 43,  182 => 42,  166 => 39,  155 => 31,  149 => 28,  145 => 27,  142 => 26,  124 => 25,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -285,6 +291,9 @@ class __TwigTemplate_8ffc6e05b125fe7b07f5452bc88a7026 extends Template
                     {% endfor %}
                     </tbody>
                 </table>
+                <div class=\"navigation\">
+                    {{ knp_pagination_render(categories, 'pagination/bootstrap_v5.html.twig') }}
+                </div>
             </div>
         </div>
     </div>

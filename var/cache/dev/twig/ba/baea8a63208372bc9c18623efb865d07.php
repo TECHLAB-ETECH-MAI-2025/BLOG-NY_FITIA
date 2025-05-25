@@ -139,29 +139,33 @@ class __TwigTemplate_ef40b099c30a6ad13b4e5e9dfe0cf276 extends Template
                                 <div class=\"btn-group\" role=\"group\">
                                     <a href=\"";
             // line 31
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 31)]), "html", null, true);
-            yield "\" 
-                                       class=\"btn btn-sm btn-outline-primary\"
-                                       title=\"View\">
-                                        <i class=\"bi bi-eye-fill\"></i>
-                                    </a>
-                                    <a href=\"";
-            // line 36
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 36)]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 31)]), "html", null, true);
             yield "\" 
                                        class=\"btn btn-sm btn-outline-secondary\"
                                        title=\"Edit\">
                                         <i class=\"bi bi-pencil-fill\"></i>
                                     </a>
+                                    <form method=\"post\" action=\"";
+            // line 36
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 36)]), "html", null, true);
+            yield "\" onsubmit=\"return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');\" style=\"display: inline;\">
+                                        <input type=\"hidden\" name=\"_token\" value=\"";
+            // line 37
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 37))), "html", null, true);
+            yield "\">
+                                        <button class=\"btn btn-sm btn-outline-danger\" title=\"Supprimer\">
+                                            <i class=\"bi bi-trash-fill\"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                     ";
             $context['_iterated'] = true;
         }
-        // line 44
+        // line 45
         if (!$context['_iterated']) {
-            // line 45
+            // line 46
             yield "                        <tr>
                             <td colspan=\"3\" class=\"text-center text-muted py-4\">
                                 <i class=\"bi bi-exclamation-circle me-2\"></i>
@@ -173,9 +177,15 @@ class __TwigTemplate_ef40b099c30a6ad13b4e5e9dfe0cf276 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['category'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 52
+        // line 53
         yield "                    </tbody>
                 </table>
+                <div class=\"navigation\">
+                    ";
+        // line 56
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 56, $this->source); })()), "pagination/bootstrap_v5.html.twig");
+        yield "
+                </div>
             </div>
         </div>
     </div>
@@ -210,7 +220,7 @@ class __TwigTemplate_ef40b099c30a6ad13b4e5e9dfe0cf276 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  177 => 52,  165 => 45,  163 => 44,  150 => 36,  142 => 31,  136 => 28,  132 => 27,  129 => 26,  124 => 25,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  186 => 56,  181 => 53,  169 => 46,  167 => 45,  154 => 37,  150 => 36,  142 => 31,  136 => 28,  132 => 27,  129 => 26,  124 => 25,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -245,16 +255,17 @@ class __TwigTemplate_ef40b099c30a6ad13b4e5e9dfe0cf276 extends Template
                             <td>{{ category.name }}</td>
                             <td class=\"text-end\">
                                 <div class=\"btn-group\" role=\"group\">
-                                    <a href=\"{{ path('category_show', {'id': category.id}) }}\" 
-                                       class=\"btn btn-sm btn-outline-primary\"
-                                       title=\"View\">
-                                        <i class=\"bi bi-eye-fill\"></i>
-                                    </a>
                                     <a href=\"{{ path('category_edit', {'id': category.id}) }}\" 
                                        class=\"btn btn-sm btn-outline-secondary\"
                                        title=\"Edit\">
                                         <i class=\"bi bi-pencil-fill\"></i>
                                     </a>
+                                    <form method=\"post\" action=\"{{ path('category_delete', {'id': category.id}) }}\" onsubmit=\"return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');\" style=\"display: inline;\">
+                                        <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ category.id) }}\">
+                                        <button class=\"btn btn-sm btn-outline-danger\" title=\"Supprimer\">
+                                            <i class=\"bi bi-trash-fill\"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -268,6 +279,9 @@ class __TwigTemplate_ef40b099c30a6ad13b4e5e9dfe0cf276 extends Template
                     {% endfor %}
                     </tbody>
                 </table>
+                <div class=\"navigation\">
+                    {{ knp_pagination_render(categories, 'pagination/bootstrap_v5.html.twig') }}
+                </div>
             </div>
         </div>
     </div>

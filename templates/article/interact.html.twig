@@ -6,7 +6,25 @@
     <div class="container mt-4">
         <h2>{{ article.title }}</h2>
         <p>{{ article.description }}</p>
-        <p><strong>Catégorie :</strong> {{ article.category.name }}</p>
+        {# article/interact.html.twig #}
+
+        <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-tag me-2"></i>
+            <strong class="me-2">Catégorie :</strong>
+            
+            {# article/interact.html.twig #}
+
+            {% set category = article.categoryStatus %}
+
+            {% if category.exists %}
+                <span class="badge bg-primary">{{ category.name }}</span>
+            {% else %}
+                <span class="badge bg-warning">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+                    {{ category.name }}
+                </span>
+            {% endif %}
+        </div>
         <hr>
 
         <h5>All commentaire</h5>

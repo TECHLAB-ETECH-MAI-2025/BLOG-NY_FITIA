@@ -116,28 +116,49 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
         <li class=\"nav-item\">
             <a href=\"";
         // line 43
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_index");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_show");
         yield "\" class=\"nav-link ";
         yield (((is_string($_v0 = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 43, $this->source); })()), "request", [], "any", false, false, false, 43), "get", ["_route"], "method", false, false, false, 43)) && is_string($_v1 = "category_") && str_starts_with($_v0, $_v1))) ? ("active") : (""));
         yield "\">
                 <i class=\"bi bi-bookmark me-2\"></i> Catégories
             </a>
         </li>
-        <li class=\"nav-item\">
-            <a href=\"#\" class=\"nav-link\">
-                <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-            </a>
-        </li>
+
+        <form action=\"";
+        // line 48
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_search");
+        yield "\" method=\"get\" onsubmit=\"return validateSearch()\">
+           <div class=\"input-group\">
+                <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
+                    placeholder=\"Rechercher...\" value=\"";
+        // line 51
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 51, $this->source); })()), "request", [], "any", false, false, false, 51), "query", [], "any", false, false, false, 51), "get", ["q"], "method", false, false, false, 51), "html", null, true);
+        yield "\" required>
+                <button type=\"submit\" class=\"btn btn-outline-secondary\">
+                    <i class=\"bi bi-search\"></i>
+                </button>
+            </div>
+        </form>
+        <script>
+            function validateSearch() {
+                const query = document.getElementById('searchInput').value.trim();
+                if (query === '') {
+                    alert('Veuillez saisir un terme de recherche.');
+                    return false; // Bloque l'envoi du formulaire
+                }
+                return true;
+            }
+        </script>
     </ul>
 
     <!-- Bouton Déconnexion en bas -->
     ";
-        // line 55
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 55, $this->source); })()), "user", [], "any", false, false, false, 55)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 56
+        // line 70
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 70, $this->source); })()), "user", [], "any", false, false, false, 70)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 71
             yield "    <div class=\"mt-auto pt-3 border-top\">
         <a href=\"";
-            // line 57
+            // line 72
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"btn btn-outline-danger btn-sm w-10 d-inline-flex align-items-center\">
             <i class=\"bi bi-box-arrow-right me-2\"></i> Logout
@@ -145,7 +166,7 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
     </div>
     ";
         }
-        // line 62
+        // line 77
         yield "</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -177,7 +198,7 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  149 => 62,  141 => 57,  138 => 56,  136 => 55,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
+        return array (  170 => 77,  162 => 72,  159 => 71,  157 => 70,  135 => 51,  129 => 48,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -224,15 +245,30 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
             </a>
         </li>
         <li class=\"nav-item\">
-            <a href=\"{{ path('category_index') }}\" class=\"nav-link {{ app.request.get('_route') starts with 'category_' ? 'active' : '' }}\">
+            <a href=\"{{ path('category_show') }}\" class=\"nav-link {{ app.request.get('_route') starts with 'category_' ? 'active' : '' }}\">
                 <i class=\"bi bi-bookmark me-2\"></i> Catégories
             </a>
         </li>
-        <li class=\"nav-item\">
-            <a href=\"#\" class=\"nav-link\">
-                <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-            </a>
-        </li>
+
+        <form action=\"{{ path('app_search') }}\" method=\"get\" onsubmit=\"return validateSearch()\">
+           <div class=\"input-group\">
+                <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
+                    placeholder=\"Rechercher...\" value=\"{{ app.request.query.get('q') }}\" required>
+                <button type=\"submit\" class=\"btn btn-outline-secondary\">
+                    <i class=\"bi bi-search\"></i>
+                </button>
+            </div>
+        </form>
+        <script>
+            function validateSearch() {
+                const query = document.getElementById('searchInput').value.trim();
+                if (query === '') {
+                    alert('Veuillez saisir un terme de recherche.');
+                    return false; // Bloque l'envoi du formulaire
+                }
+                return true;
+            }
+        </script>
     </ul>
 
     <!-- Bouton Déconnexion en bas -->

@@ -37,7 +37,23 @@ class ArticleController extends AbstractController
     #[Route('/article/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
+        try {
+            $categoryExists = ($article->getCategory() !== null && $article->getCategory()->getId() !== null);
+        } catch (\Doctrine\ORM\EntityNotFoundException $e) {
+            $categoryExists = false;
+            $article->setCategory(null); // Nettoie la référence
+            $entityManager->persist($article);
+            $entityManager->flush();
+        }
+
+        $form = $this->createForm(ArticleType::class, $article, [
+            'empty_category' => $categoryExists ? null : '-- Catégorie supprimée --'
+        ]);
+
+        if (!$categoryExists) {
+            $form->get('category')->setData(null); // Réinitialise le champ
+        }
+    
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -60,22 +76,42 @@ class ArticleController extends AbstractController
             $entityManager->remove($article);
             $entityManager->flush();
         }
-        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('article_show', ['id' => $article->getId()], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/home', name: 'home')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $articleRepository->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery();
+
+        $articles = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findby([], ['createdAt' => 'DESC']),
+            'articles' => $articles,
         ]);
     }
-
+    
     #[Route('/article', name: 'article_show',  methods: ['GET'])]
-    public function show(ArticleRepository $articleRepository): Response
+    public function show(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $articleRepository->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery();
+
+        $articles = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('article/show.html.twig', [
-            'articles' => $articleRepository->findby([], ['createdAt' => 'DESC']),
+            'articles' => $articles,
         ]);
     }
 

@@ -103,14 +103,11 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
     <style>
-        h1 {
+        .tete {
             background-color:rgb(16, 44, 71);
             color: white;
             padding: 24px 0;
             margin: 24px;
-            font-family: 'Georgia', serif;
-            font-size: 2.6rem;
-            text-transform: uppercase;
             letter-spacing: 2px;
             text-align: center;
         }
@@ -218,6 +215,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         .comment-btn:hover {
             color: #0d6efd;
         }
+
     </style>
 ";
         
@@ -229,7 +227,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         yield from [];
     }
 
-    // line 127
+    // line 125
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -242,7 +240,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 128
+        // line 126
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -321,7 +319,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         yield from [];
     }
 
-    // line 196
+    // line 194
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -334,92 +332,88 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 197
+        // line 195
         yield "    <div class=\"container\">
-        <h1>Mon Blog</h1>
+        <div class=\"tete\">
+            <h1>Bienvenue sur le Blog</h1>
+            <p> Bonjour et bienvenue sur ce blog ! Installez-vous confortablement et explorez les articles à votre rythme.</p>
+        </div>
         <br>
         <div class=\"row row-cols-1 row-cols-md-3 g-4\">
         ";
-        // line 201
+        // line 202
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 201, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 202, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 202
+            // line 203
             yield "        <div style=\"position: fixed; bottom: 0; background: white; padding: 10px; z-index: 1000;\">
             Statut connexion : ";
-            // line 203
-            yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 203, $this->source); })()), "user", [], "any", false, false, false, 203)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((("CONNECTÉ (" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 203, $this->source); })()), "user", [], "any", false, false, false, 203), "email", [], "any", false, false, false, 203)) . ")"), "html", null, true)) : ("NON CONNECTÉ"));
+            // line 204
+            yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 204, $this->source); })()), "user", [], "any", false, false, false, 204)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((("CONNECTÉ (" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 204, $this->source); })()), "user", [], "any", false, false, false, 204), "email", [], "any", false, false, false, 204)) . ")"), "html", null, true)) : ("NON CONNECTÉ"));
             yield "
             <br>Token session : ";
-            // line 204
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 204, $this->source); })()), "session", [], "any", false, false, false, 204), "get", ["_security_main"], "method", false, false, false, 204), 0, 20) . "..."), "html", null, true);
+            // line 205
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 205, $this->source); })()), "session", [], "any", false, false, false, 205), "get", ["_security_main"], "method", false, false, false, 205), 0, 20) . "..."), "html", null, true);
             yield "
         </div>
             <div class=\"col\">
                 <div class=\"card h-100\">
                     <div class=\"card-header\">
                         <h5>";
-            // line 209
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 209), "html", null, true);
+            // line 210
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 210), "html", null, true);
             yield "</h5>
                         <small class=\"text-body-secondary\">Publié le : ";
-            // line 210
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 210), "Y-m-d"), "html", null, true);
+            // line 211
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 211), "Y-m-d"), "html", null, true);
             yield "</small>
                     </div>
                     <div class=\"card-body\">
                         <p class=\"card-text\">";
-            // line 213
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 213), "html", null, true);
+            // line 214
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 214), "html", null, true);
             yield "</p>
                         <p class=\"text-muted\">
                             Catégorie :
                             ";
-            // line 216
-            if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, $context["article"], "category", [], "any", false, false, false, 216)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-                // line 217
-                yield "                            ";
+            // line 217
+            $context["category"] = CoreExtension::getAttribute($this->env, $this->source, $context["article"], "categoryStatus", [], "any", false, false, false, 217);
+            // line 218
+            yield "
+                            ";
+            // line 219
+            if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["category"]) || array_key_exists("category", $context) ? $context["category"] : (function () { throw new RuntimeError('Variable "category" does not exist.', 219, $this->source); })()), "exists", [], "any", false, false, false, 219)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+                // line 220
+                yield "                                <span class=\"badge bg-primary\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["category"]) || array_key_exists("category", $context) ? $context["category"] : (function () { throw new RuntimeError('Variable "category" does not exist.', 220, $this->source); })()), "name", [], "any", false, false, false, 220), "html", null, true);
+                yield "</span>
+                            ";
             } else {
-                // line 218
-                yield "                                <span class=\"text-muted\">Aucune catégorie</span>
+                // line 222
+                yield "                                <span class=\"badge bg-warning\">
+                                    <i class=\"bi bi-exclamation-triangle me-1\"></i>
+                                    ";
+                // line 224
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["category"]) || array_key_exists("category", $context) ? $context["category"] : (function () { throw new RuntimeError('Variable "category" does not exist.', 224, $this->source); })()), "name", [], "any", false, false, false, 224), "html", null, true);
+                yield "
+                                </span>
                             ";
             }
-            // line 220
+            // line 227
             yield "                        </p>
                     </div>
                     <div class=\"card-footer\">
                         <a href=\"";
-            // line 223
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_interact", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 223)]), "html", null, true);
+            // line 230
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_interact", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 230)]), "html", null, true);
             yield "\" class=\"comment-btn\">
                             <i class=\"bi bi-chat-dots\"></i>
                         </a>
                         <div class=\"vote-container\">
                             <button class=\"vote-btn like ";
-            // line 227
-            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 227, $this->source); })()), "user", [], "any", false, false, false, 227) && CoreExtension::getAttribute($this->env, $this->source, $context["article"], "isLikedBy", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 227, $this->source); })()), "user", [], "any", false, false, false, 227)], "method", false, false, false, 227))) {
-                yield "active";
-            }
-            yield "\"
-                                    data-article-id=\"";
-            // line 228
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 228), "html", null, true);
-            yield "\"
-                                    data-vote-type=\"like\"
-                                    ";
-            // line 230
-            yield (((($tmp =  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 230, $this->source); })()), "user", [], "any", false, false, false, 230)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("disabled") : (""));
-            yield ">
-                                    <i class=\"bi bi-hand-thumbs-up\"></i> 
-                                    <span class=\"vote-count like-count\">";
-            // line 232
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "countLikes", [], "method", false, false, false, 232), "html", null, true);
-            yield "</span>
-                            </button>
-                            <button class=\"vote-btn dislike ";
             // line 234
-            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 234, $this->source); })()), "user", [], "any", false, false, false, 234) && CoreExtension::getAttribute($this->env, $this->source, $context["article"], "isDislikedBy", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 234, $this->source); })()), "user", [], "any", false, false, false, 234)], "method", false, false, false, 234))) {
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 234, $this->source); })()), "user", [], "any", false, false, false, 234) && CoreExtension::getAttribute($this->env, $this->source, $context["article"], "isLikedBy", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 234, $this->source); })()), "user", [], "any", false, false, false, 234)], "method", false, false, false, 234))) {
                 yield "active";
             }
             yield "\"
@@ -427,15 +421,36 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
             // line 235
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 235), "html", null, true);
             yield "\"
-                                    data-vote-type=\"dislike\"
+                                    data-vote-type=\"like\"
                                     ";
             // line 237
             yield (((($tmp =  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 237, $this->source); })()), "user", [], "any", false, false, false, 237)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("disabled") : (""));
             yield ">
+                                    <i class=\"bi bi-hand-thumbs-up\"></i> 
+                                    <span class=\"vote-count like-count\">";
+            // line 239
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "countLikes", [], "method", false, false, false, 239), "html", null, true);
+            yield "</span>
+                            </button>
+                            <button class=\"vote-btn dislike ";
+            // line 241
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 241, $this->source); })()), "user", [], "any", false, false, false, 241) && CoreExtension::getAttribute($this->env, $this->source, $context["article"], "isDislikedBy", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 241, $this->source); })()), "user", [], "any", false, false, false, 241)], "method", false, false, false, 241))) {
+                yield "active";
+            }
+            yield "\"
+                                    data-article-id=\"";
+            // line 242
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 242), "html", null, true);
+            yield "\"
+                                    data-vote-type=\"dislike\"
+                                    ";
+            // line 244
+            yield (((($tmp =  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 244, $this->source); })()), "user", [], "any", false, false, false, 244)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("disabled") : (""));
+            yield ">
                                     <i class=\"bi bi-hand-thumbs-down\"></i> 
                                     <span class=\"vote-count dislike-count\">";
-            // line 239
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "countDislikes", [], "method", false, false, false, 239), "html", null, true);
+            // line 246
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "countDislikes", [], "method", false, false, false, 246), "html", null, true);
             yield "</span>
                             </button>
                         </div>
@@ -445,9 +460,9 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         ";
             $context['_iterated'] = true;
         }
-        // line 245
+        // line 252
         if (!$context['_iterated']) {
-            // line 246
+            // line 253
             yield "            <div class=\"col-12\">
                 <p class=\"text-center\">Aucun article pour le moment.</p>
             </div>
@@ -456,8 +471,13 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 250
-        yield "        </div>
+        // line 257
+        yield "        <div class=\"navigation d-flex justify-content-center\">
+            ";
+        // line 258
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 258, $this->source); })()), "pagination/bootstrap_v5.html.twig");
+        yield "
+        </div>
     </div>
 ";
         
@@ -490,7 +510,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  460 => 250,  451 => 246,  449 => 245,  438 => 239,  433 => 237,  428 => 235,  422 => 234,  417 => 232,  412 => 230,  407 => 228,  401 => 227,  394 => 223,  389 => 220,  385 => 218,  382 => 217,  380 => 216,  374 => 213,  368 => 210,  364 => 209,  356 => 204,  352 => 203,  349 => 202,  344 => 201,  338 => 197,  325 => 196,  246 => 128,  233 => 127,  102 => 7,  89 => 6,  66 => 4,  43 => 2,);
+        return array (  478 => 258,  475 => 257,  466 => 253,  464 => 252,  453 => 246,  448 => 244,  443 => 242,  437 => 241,  432 => 239,  427 => 237,  422 => 235,  416 => 234,  409 => 230,  404 => 227,  398 => 224,  394 => 222,  388 => 220,  386 => 219,  383 => 218,  381 => 217,  375 => 214,  369 => 211,  365 => 210,  357 => 205,  353 => 204,  350 => 203,  345 => 202,  336 => 195,  323 => 194,  244 => 126,  231 => 125,  102 => 7,  89 => 6,  66 => 4,  43 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -503,14 +523,11 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        h1 {
+        .tete {
             background-color:rgb(16, 44, 71);
             color: white;
             padding: 24px 0;
             margin: 24px;
-            font-family: 'Georgia', serif;
-            font-size: 2.6rem;
-            text-transform: uppercase;
             letter-spacing: 2px;
             text-align: center;
         }
@@ -618,6 +635,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         .comment-btn:hover {
             color: #0d6efd;
         }
+
     </style>
 {% endblock %}
 
@@ -692,7 +710,10 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
 
 {% block body %}
     <div class=\"container\">
-        <h1>Mon Blog</h1>
+        <div class=\"tete\">
+            <h1>Bienvenue sur le Blog</h1>
+            <p> Bonjour et bienvenue sur ce blog ! Installez-vous confortablement et explorez les articles à votre rythme.</p>
+        </div>
         <br>
         <div class=\"row row-cols-1 row-cols-md-3 g-4\">
         {% for article in articles %}
@@ -710,9 +731,15 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
                         <p class=\"card-text\">{{ article.description }}</p>
                         <p class=\"text-muted\">
                             Catégorie :
-                            {% if article.category %}
+                            {% set category = article.categoryStatus %}
+
+                            {% if category.exists %}
+                                <span class=\"badge bg-primary\">{{ category.name }}</span>
                             {% else %}
-                                <span class=\"text-muted\">Aucune catégorie</span>
+                                <span class=\"badge bg-warning\">
+                                    <i class=\"bi bi-exclamation-triangle me-1\"></i>
+                                    {{ category.name }}
+                                </span>
                             {% endif %}
                         </p>
                     </div>
@@ -744,6 +771,8 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
                 <p class=\"text-center\">Aucun article pour le moment.</p>
             </div>
         {% endfor %}
+        <div class=\"navigation d-flex justify-content-center\">
+            {{ knp_pagination_render(articles, 'pagination/bootstrap_v5.html.twig') }}
         </div>
     </div>
 {% endblock %}", "article/index.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/index.html.twig");

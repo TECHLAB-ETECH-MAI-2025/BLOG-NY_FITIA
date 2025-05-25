@@ -40,15 +40,30 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ path('category_index') }}" class="nav-link {{ app.request.get('_route') starts with 'category_' ? 'active' : '' }}">
+            <a href="{{ path('category_show') }}" class="nav-link {{ app.request.get('_route') starts with 'category_' ? 'active' : '' }}">
                 <i class="bi bi-bookmark me-2"></i> Catégories
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="bi bi-chat-left-text me-2"></i> Commentaires
-            </a>
-        </li>
+
+        <form action="{{ path('app_search') }}" method="get" onsubmit="return validateSearch()">
+           <div class="input-group">
+                <input class="form-control" type="text" name="q" id="searchInput"
+                    placeholder="Rechercher..." value="{{ app.request.query.get('q') }}" required>
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+        <script>
+            function validateSearch() {
+                const query = document.getElementById('searchInput').value.trim();
+                if (query === '') {
+                    alert('Veuillez saisir un terme de recherche.');
+                    return false; // Bloque l'envoi du formulaire
+                }
+                return true;
+            }
+        </script>
     </ul>
 
     <!-- Bouton Déconnexion en bas -->

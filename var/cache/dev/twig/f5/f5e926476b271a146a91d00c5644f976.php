@@ -65,31 +65,31 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         ";
         // line 11
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 68
+        // line 80
         yield "
         ";
-        // line 69
+        // line 81
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 73
+        // line 85
         yield "    </head>
     <body>
         ";
-        // line 75
-        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 75, $this->source); })()), "request", [], "any", false, false, false, 75), "get", ["_route"], "method", false, false, false, 75), ["app_login", "app_register", "app_forgot_password_request"])) {
-            // line 76
+        // line 87
+        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 87, $this->source); })()), "request", [], "any", false, false, false, 87), "get", ["_route"], "method", false, false, false, 87), ["app_login", "app_register", "app_forgot_password_request"])) {
+            // line 88
             yield "            <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <!-- Sidebar Menu -->
                     <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
                         ";
-            // line 81
+            // line 93
             yield Twig\Extension\CoreExtension::include($this->env, $context, "includes/_menu.html.twig");
             yield "
                     </div>
                     <main class=\"col-md-9 col-lg-10 main-content\">
                         ";
-            // line 84
+            // line 96
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
                     </main>
@@ -97,17 +97,17 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
             </div>
         ";
         } else {
-            // line 89
+            // line 101
             yield "            <!-- Pages sans menu -->
             <div class=\"auth-container\">
                 ";
-            // line 91
+            // line 103
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
             </div>
         ";
         }
-        // line 94
+        // line 106
         yield "    </body>
 
 </html>";
@@ -211,6 +211,18 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     border-color: rgba(255, 255, 255, 0.1) !important;
                     padding-top: 1rem;
                 }
+
+                .pagination {
+                    margin: 20px 0;
+                }
+                .page-item.active .page-link {
+                    background-color: #0d6efd;
+                    border-color: #0d6efd;
+                }
+                .page-link {
+                    color: #0d6efd;
+                    padding: 0.375rem 0.75rem;
+                }
             </style>
         ";
         
@@ -222,7 +234,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 69
+    // line 81
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -235,12 +247,12 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 70
+        // line 82
         yield "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
             ";
-        // line 71
+        // line 83
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 72
+        // line 84
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -251,7 +263,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 71
+    // line 83
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -295,7 +307,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  255 => 71,  244 => 72,  242 => 71,  239 => 70,  226 => 69,  160 => 12,  147 => 11,  124 => 5,  111 => 94,  105 => 91,  101 => 89,  93 => 84,  87 => 81,  80 => 76,  78 => 75,  74 => 73,  72 => 69,  69 => 68,  67 => 11,  58 => 5,  52 => 1,);
+        return array (  267 => 83,  256 => 84,  254 => 83,  251 => 82,  238 => 81,  160 => 12,  147 => 11,  124 => 5,  111 => 106,  105 => 103,  101 => 101,  93 => 96,  87 => 93,  80 => 88,  78 => 87,  74 => 85,  72 => 81,  69 => 80,  67 => 11,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -364,6 +376,18 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                 .sidebar-sticky .border-top {
                     border-color: rgba(255, 255, 255, 0.1) !important;
                     padding-top: 1rem;
+                }
+
+                .pagination {
+                    margin: 20px 0;
+                }
+                .page-item.active .page-link {
+                    background-color: #0d6efd;
+                    border-color: #0d6efd;
+                }
+                .page-link {
+                    color: #0d6efd;
+                    padding: 0.375rem 0.75rem;
                 }
             </style>
         {% endblock %}

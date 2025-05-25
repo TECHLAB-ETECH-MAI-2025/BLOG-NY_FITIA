@@ -6,14 +6,11 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        h1 {
+        .tete {
             background-color:rgb(16, 44, 71);
             color: white;
             padding: 24px 0;
             margin: 24px;
-            font-family: 'Georgia', serif;
-            font-size: 2.6rem;
-            text-transform: uppercase;
             letter-spacing: 2px;
             text-align: center;
         }
@@ -121,6 +118,7 @@
         .comment-btn:hover {
             color: #0d6efd;
         }
+
     </style>
 {% endblock %}
 
@@ -195,7 +193,10 @@
 
 {% block body %}
     <div class="container">
-        <h1>Mon Blog</h1>
+        <div class="tete">
+            <h1>Bienvenue sur le Blog</h1>
+            <p> Bonjour et bienvenue sur ce blog ! Installez-vous confortablement et explorez les articles à votre rythme.</p>
+        </div>
         <br>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for article in articles %}
@@ -213,9 +214,15 @@
                         <p class="card-text">{{ article.description }}</p>
                         <p class="text-muted">
                             Catégorie :
-                            {% if article.category %}
+                            {% set category = article.categoryStatus %}
+
+                            {% if category.exists %}
+                                <span class="badge bg-primary">{{ category.name }}</span>
                             {% else %}
-                                <span class="text-muted">Aucune catégorie</span>
+                                <span class="badge bg-warning">
+                                    <i class="bi bi-exclamation-triangle me-1"></i>
+                                    {{ category.name }}
+                                </span>
                             {% endif %}
                         </p>
                     </div>
@@ -247,6 +254,8 @@
                 <p class="text-center">Aucun article pour le moment.</p>
             </div>
         {% endfor %}
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(articles, 'pagination/bootstrap_v5.html.twig') }}
         </div>
     </div>
 {% endblock %}

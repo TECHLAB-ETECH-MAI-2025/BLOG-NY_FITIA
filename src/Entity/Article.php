@@ -199,4 +199,17 @@ class Article
     {
         return $this->getUserVote($user) === -1;
     }
+
+   public function getCategoryStatus(): array
+    {
+        try {
+            return $this->category?->getId() ? [
+                'exists' => true,
+                'id' => $this->category->getId(),
+                'name' => $this->category->getName()
+            ] : ['exists' => false, 'name' => 'Non classé'];
+        } catch (\Exception $e) {
+            return ['exists' => false, 'name' => ''];
+        }
+    }
 }

@@ -16,10 +16,11 @@ class ArticleRepository extends ServiceEntityRepository
     public function search(string $query): array
     {
         return $this->createQueryBuilder('a')
-            ->where('a.title LIKE :query OR a.content LIKE :query')
+            ->where('a.title LIKE :query OR a.description LIKE :query')
             ->setParameter('query', '%'.$query.'%')
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
+
 }
