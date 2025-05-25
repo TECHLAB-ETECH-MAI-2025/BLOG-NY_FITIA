@@ -65,29 +65,31 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         ";
         // line 11
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 52
+        // line 68
         yield "
         ";
-        // line 53
+        // line 69
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 57
+        // line 73
         yield "    </head>
     <body>
         ";
-        // line 59
-        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 59, $this->source); })()), "request", [], "any", false, false, false, 59), "get", ["_route"], "method", false, false, false, 59), ["app_login", "app_register"])) {
-            // line 60
+        // line 75
+        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 75, $this->source); })()), "request", [], "any", false, false, false, 75), "get", ["_route"], "method", false, false, false, 75), ["app_login", "app_register", "app_forgot_password_request"])) {
+            // line 76
             yield "            <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <!-- Sidebar Menu -->
                     <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-                        <!-- Votre menu ici -->
+                        ";
+            // line 81
+            yield Twig\Extension\CoreExtension::include($this->env, $context, "includes/_menu.html.twig");
+            yield "
                     </div>
-                    <!-- Main Content -->
                     <main class=\"col-md-9 col-lg-10 main-content\">
                         ";
-            // line 69
+            // line 84
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
                     </main>
@@ -95,17 +97,17 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
             </div>
         ";
         } else {
-            // line 74
+            // line 89
             yield "            <!-- Pages sans menu -->
             <div class=\"auth-container\">
                 ";
-            // line 76
+            // line 91
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
             </div>
         ";
         }
-        // line 79
+        // line 94
         yield "    </body>
 
 </html>";
@@ -184,6 +186,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     padding: 10px 15px;
                     margin-bottom: 5px;
                     border-radius: 4px;
+                    color: white;
                 }
                 .nav-link:hover {
                     background-color: rgba(0,0,0,0.05);
@@ -192,7 +195,22 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     background-color: #0d6efd;
                     color: white !important;
                 }
-                
+
+                .sidebar-sticky .rounded-circle {
+                    object-fit: cover;
+                    border: 3px solid var(--bs-primary);
+                }
+
+                .sidebar-sticky .dropdown-menu {
+                    margin-top: 10px;
+                    border: none;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                }
+
+                .sidebar-sticky .border-top {
+                    border-color: rgba(255, 255, 255, 0.1) !important;
+                    padding-top: 1rem;
+                }
             </style>
         ";
         
@@ -204,7 +222,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 53
+    // line 69
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -217,12 +235,12 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 54
+        // line 70
         yield "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
             ";
-        // line 55
+        // line 71
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 56
+        // line 72
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -233,7 +251,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         yield from [];
     }
 
-    // line 55
+    // line 71
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -277,7 +295,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  237 => 55,  226 => 56,  224 => 55,  221 => 54,  208 => 53,  158 => 12,  145 => 11,  122 => 5,  109 => 79,  103 => 76,  99 => 74,  91 => 69,  80 => 60,  78 => 59,  74 => 57,  72 => 53,  69 => 52,  67 => 11,  58 => 5,  52 => 1,);
+        return array (  255 => 71,  244 => 72,  242 => 71,  239 => 70,  226 => 69,  160 => 12,  147 => 11,  124 => 5,  111 => 94,  105 => 91,  101 => 89,  93 => 84,  87 => 81,  80 => 76,  78 => 75,  74 => 73,  72 => 69,  69 => 68,  67 => 11,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -322,6 +340,7 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     padding: 10px 15px;
                     margin-bottom: 5px;
                     border-radius: 4px;
+                    color: white;
                 }
                 .nav-link:hover {
                     background-color: rgba(0,0,0,0.05);
@@ -330,7 +349,22 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
                     background-color: #0d6efd;
                     color: white !important;
                 }
-                
+
+                .sidebar-sticky .rounded-circle {
+                    object-fit: cover;
+                    border: 3px solid var(--bs-primary);
+                }
+
+                .sidebar-sticky .dropdown-menu {
+                    margin-top: 10px;
+                    border: none;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                }
+
+                .sidebar-sticky .border-top {
+                    border-color: rgba(255, 255, 255, 0.1) !important;
+                    padding-top: 1rem;
+                }
             </style>
         {% endblock %}
 
@@ -340,15 +374,14 @@ class __TwigTemplate_7ce5957dc5bc4029e0891a843434a1e2 extends Template
         {% endblock %}
     </head>
     <body>
-        {% if app.request.get('_route') not in ['app_login', 'app_register'] %}
+        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request'] %}
             <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <!-- Sidebar Menu -->
                     <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-                        <!-- Votre menu ici -->
+                        {{ include('includes/_menu.html.twig') }}
                     </div>
-                    <!-- Main Content -->
                     <main class=\"col-md-9 col-lg-10 main-content\">
                         {{ block('body') }}
                     </main>

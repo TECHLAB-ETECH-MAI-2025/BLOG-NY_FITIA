@@ -127,11 +127,22 @@ class __TwigTemplate_fb566bb8b67fb8f1ff77940d6a0c0acb extends Template
                 link to reset your password.
             </small>
         </div>
-
-        <button class=\"btn btn-primary\">Send password reset email</button>
-    ";
-        // line 21
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["requestForm"]) || array_key_exists("requestForm", $context) ? $context["requestForm"] : (function () { throw new RuntimeError('Variable "requestForm" does not exist.', 21, $this->source); })()), 'form_end');
+        <div class=\"mt-4 justify-content-between\">
+            <button type=\"submit\" class=\"btn btn-primary px-4\">
+                <i class=\"bi bi-check-circle me-4\"></i>
+                Send
+            </button>
+            <a href=\"";
+        // line 24
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_profile");
+        yield "\" class=\"btn btn-outline-secondary\">
+                <i class=\"bi bi-x-circle me-2\"></i>
+                Cancel
+            </a>
+        </div>
+        ";
+        // line 29
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["requestForm"]) || array_key_exists("requestForm", $context) ? $context["requestForm"] : (function () { throw new RuntimeError('Variable "requestForm" does not exist.', 29, $this->source); })()), 'form_end');
         yield "
 ";
         
@@ -164,7 +175,7 @@ class __TwigTemplate_fb566bb8b67fb8f1ff77940d6a0c0acb extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  134 => 21,  122 => 12,  118 => 11,  114 => 9,  105 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  145 => 29,  137 => 24,  122 => 12,  118 => 11,  114 => 9,  105 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -187,9 +198,17 @@ class __TwigTemplate_fb566bb8b67fb8f1ff77940d6a0c0acb extends Template
                 link to reset your password.
             </small>
         </div>
-
-        <button class=\"btn btn-primary\">Send password reset email</button>
-    {{ form_end(requestForm) }}
+        <div class=\"mt-4 justify-content-between\">
+            <button type=\"submit\" class=\"btn btn-primary px-4\">
+                <i class=\"bi bi-check-circle me-4\"></i>
+                Send
+            </button>
+            <a href=\"{{ path('app_user_profile') }}\" class=\"btn btn-outline-secondary\">
+                <i class=\"bi bi-x-circle me-2\"></i>
+                Cancel
+            </a>
+        </div>
+        {{ form_end(requestForm) }}
 {% endblock %}
 ", "reset_password/request.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/reset_password/request.html.twig");
     }

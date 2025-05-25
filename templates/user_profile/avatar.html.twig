@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon avatar{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h5 mb-0">Modifier mon avatar</h2>
+                </div>
+                <div class="card-body">
+                    {{ form_start(uploadForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                        <div class="mb-4 text-center">
+                            <img src="{{ app.user.avatar ? asset('uploads/avatars/' ~ app.user.avatar) : asset('images/default-avatar.png') }}" 
+                                 class="rounded-circle img-thumbnail mb-3" 
+                                 width="150" 
+                                 height="150"
+                                 alt="Avatar actuel">
+                        </div>
+                        
+                        {{ form_row(uploadForm.avatar) }}
+                        
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-upload me-2"></i> Enregistrer
+                            </button>
+                            
+                            {% if app.user.avatar %}
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAvatarModal">
+                                    <i class="bi bi-trash me-2"></i> Supprimer
+                                </button>
+                            {% endif %}
+                        </div>
+                    {{ form_end(uploadForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+{% if app.user.avatar %}
+<div class="modal fade" id="deleteAvatarModal" tabindex="-1" aria-labelledby="deleteAvatarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAvatarModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="btn-close" data-bs-close="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer votre avatar ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form action="{{ path('app_user_avatar_delete') }}" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete-avatar') }}">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i> Supprimer définitivement
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

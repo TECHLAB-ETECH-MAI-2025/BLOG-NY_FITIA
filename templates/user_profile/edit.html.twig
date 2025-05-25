@@ -1,0 +1,77 @@
+{# templates/user_profile/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil - {{ parent() }}{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="h4 mb-0">
+                        <i class="bi bi-pencil-square me-2"></i>
+                       Edit Profil
+                    </h1>
+                </div>
+                
+                <div class="card-body">
+                    {{ form_start(editForm, {
+                        'attr': {
+                            'class': 'needs-validation',
+                            'novalidate': 'novalidate'
+                        }
+                    }) }}
+                    
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                {{ form_row(editForm.firstname, {
+                                    'label': 'First Name',
+                                    'attr': {
+                                        'value': app.user.firstName ?? ''
+                                    }
+                                }) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.lastname, {
+                                    'label': 'Last Name',
+                                    'attr': {
+                                        'value': app.user.lastName ?? ''
+                                    }
+                                }) }}
+                            </div>
+                            <div class="col-12">
+                                {{ form_row(editForm.email, {
+                                    'attr': {
+                                        'value': app.user.email ?? ''
+                                    }
+                                }) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.phone, {
+                                    'label': 'Phone',
+                                    'attr': {
+                                        'value': app.user.phone ?? ''
+                                    }
+                                }) }}
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-check-circle me-2"></i>
+                                Save
+                            </button>
+                            <a href="{{ path('app_user_profile') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle me-2"></i>
+                                Cancel
+                            </a>
+                        </div>
+                        
+                    {{ form_end(editForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

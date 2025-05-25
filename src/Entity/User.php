@@ -34,18 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\Length(
-        min: 8,
-        minMessage: 'Le mot de passe doit contenir au moins {{ limit }} caractères'
-    )]
-    #[Assert\Regex(
-        pattern: '/[A-Z]/',
-        message: 'Le mot de passe doit contenir au moins une majuscule'
-    )]
-    #[Assert\Regex(
-        pattern: '/[0-9]/',
-        message: 'Le mot de passe doit contenir au moins un chiffre'
-)]
     private ?string $password = null;
 
     #[ORM\Column]
@@ -68,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Vote::class, mappedBy: 'user')]
     private Collection $votes;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
 
     public function __construct()
     {
@@ -234,6 +225,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $vote->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

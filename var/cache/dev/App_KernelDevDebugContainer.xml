@@ -98,6 +98,8 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="avatars_directory">/home/eny-fiti/Documents/etech/blog/public/uploads/avatars</parameter>
+    <parameter key="default_avatar">images/default-avatar.png</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -393,21 +395,21 @@
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ArticleController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\ArticleController"/>
       </call>
     </service>
     <service id="App\Controller\BaseController" class="App\Controller\BaseController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\BaseController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\BaseController"/>
       </call>
     </service>
     <service id="App\Controller\CategoryController" class="App\Controller\CategoryController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\CategoryController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\CategoryController"/>
       </call>
     </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
@@ -415,7 +417,7 @@
       <tag name="container.service_subscriber"/>
       <argument type="service" id="App\Security\EmailVerifier"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\RegistrationController"/>
       </call>
     </service>
     <service id="App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" public="true" autowire="true" autoconfigure="true">
@@ -424,21 +426,31 @@
       <argument type="service" id="symfonycasts.reset_password.helper"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\ResetPasswordController"/>
       </call>
     </service>
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\SecurityController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\SecurityController"/>
+      </call>
+    </service>
+    <service id="App\Controller\UserProfileController" class="App\Controller\UserProfileController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="slugger"/>
+      <argument>/home/eny-fiti/Documents/etech/blog/public/uploads/avatars</argument>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\UserProfileController"/>
       </call>
     </service>
     <service id="App\Controller\VoteController" class="App\Controller\VoteController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\VoteController"/>
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\VoteController"/>
       </call>
     </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
@@ -450,6 +462,9 @@
     <service id="App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Form\AvatarUploadType" class="App\Form\AvatarUploadType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Form\CategoryForm" class="App\Form\CategoryForm" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
@@ -457,6 +472,9 @@
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
     <service id="App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
+    <service id="App\Form\ProfileEditFormType" class="App\Form\ProfileEditFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
     <service id="App\Form\RegistrationForm" class="App\Form\RegistrationForm" autowire="true" autoconfigure="true">
@@ -1489,9 +1507,11 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ArticleType</argument>
+        <argument>App\Form\AvatarUploadType</argument>
         <argument>App\Form\CategoryForm</argument>
         <argument>App\Form\ChangePasswordForm</argument>
         <argument>App\Form\CommentType</argument>
+        <argument>App\Form\ProfileEditFormType</argument>
         <argument>App\Form\RegistrationForm</argument>
         <argument>App\Form\ResetPasswordRequestForm</argument>
         <argument>App\Form\SearchType</argument>
@@ -3771,7 +3791,7 @@
     <service id="router.default" class="Symfony\Bundle\FrameworkBundle\Routing\Router">
       <tag name="monolog.logger" channel="router"/>
       <tag name="container.service_subscriber" id="routing.loader"/>
-      <argument type="service" id=".service_locator.euaNshl.router.default"/>
+      <argument type="service" id=".service_locator.LVEG_Wo.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
         <argument key="cache_dir">/home/eny-fiti/Documents/etech/blog/var/cache/dev</argument>
@@ -4241,7 +4261,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.b0MWfQJ"/>
+      <argument type="service" id=".service_locator.N1IiD1r"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4340,9 +4360,11 @@
       <argument>%form.type_extension.csrf.field_attr%</argument>
       <argument type="collection">
         <argument key="App\Form\ArticleType">submit</argument>
+        <argument key="App\Form\AvatarUploadType">submit</argument>
         <argument key="App\Form\CategoryForm">submit</argument>
         <argument key="App\Form\ChangePasswordForm">submit</argument>
         <argument key="App\Form\CommentType">submit</argument>
+        <argument key="App\Form\ProfileEditFormType">submit</argument>
         <argument key="App\Form\RegistrationForm">submit</argument>
         <argument key="App\Form\ResetPasswordRequestForm">submit</argument>
         <argument key="App\Form\SearchType">submit</argument>
@@ -7911,6 +7933,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserProfileController" class="App\Controller\UserProfileController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserProfileController" class="App\Controller\UserProfileController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\UserProfileController" class="App\Controller\UserProfileController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\VoteController" class="App\Controller\VoteController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\VoteController" class="App\Controller\VoteController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\VoteController" class="App\Controller\VoteController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7920,12 +7945,16 @@
     <service id=".abstract.instanceof.App\DataFixtures\CategoryFixtures" class="App\DataFixtures\CategoryFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AvatarUploadType" class="App\Form\AvatarUploadType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AvatarUploadType" class="App\Form\AvatarUploadType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategoryForm" class="App\Form\CategoryForm" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CategoryForm" class="App\Form\CategoryForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordForm" class="App\Form\ChangePasswordForm" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordForm" class="App\Form\ChangePasswordForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentType" class="App\Form\CommentType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProfileEditFormType" class="App\Form\ProfileEditFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ProfileEditFormType" class="App\Form\ProfileEditFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationForm" class="App\Form\RegistrationForm" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationForm" class="App\Form\RegistrationForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestForm" class="App\Form\ResetPasswordRequestForm" autowire="true" abstract="true"/>
@@ -8943,13 +8972,15 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.b0MWfQJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.N1IiD1r" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArticleType" type="service_closure" id="App\Form\ArticleType"/>
+        <argument key="App\Form\AvatarUploadType" type="service_closure" id="App\Form\AvatarUploadType"/>
         <argument key="App\Form\CategoryForm" type="service_closure" id="App\Form\CategoryForm"/>
         <argument key="App\Form\ChangePasswordForm" type="service_closure" id="App\Form\ChangePasswordForm"/>
         <argument key="App\Form\CommentType" type="service_closure" id="App\Form\CommentType"/>
+        <argument key="App\Form\ProfileEditFormType" type="service_closure" id="App\Form\ProfileEditFormType"/>
         <argument key="App\Form\RegistrationForm" type="service_closure" id="App\Form\RegistrationForm"/>
         <argument key="App\Form\ResetPasswordRequestForm" type="service_closure" id="App\Form\ResetPasswordRequestForm"/>
         <argument key="App\Form\SearchType" type="service_closure" id="App\Form\SearchType"/>
@@ -9330,7 +9361,7 @@
         <argument key="translation.loader.json" type="service_closure" id="translation.loader.json"/>
       </argument>
     </service>
-    <service id=".service_locator.ZyP9f7K" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
@@ -9346,47 +9377,53 @@
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\ArticleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\ArticleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController"/>
       <argument>App\Controller\ArticleController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\BaseController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\BaseController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\BaseController"/>
       <argument>App\Controller\BaseController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\CategoryController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\CategoryController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CategoryController"/>
       <argument>App\Controller\CategoryController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
       <argument>App\Controller\RegistrationController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\ResetPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController"/>
       <argument>App\Controller\ResetPasswordController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
       <argument>App\Controller\SecurityController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\VoteController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjaHQ8c.App\Controller\UserProfileController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\UserProfileController"/>
+      <argument>App\Controller\UserProfileController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
+    </service>
+    <service id=".service_locator.UjaHQ8c.App\Controller\VoteController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\VoteController"/>
       <argument>App\Controller\VoteController</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
     <service id=".service_locator.7jukgan" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9400,17 +9437,17 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.7jukgan" method="withContext"/>
     </service>
-    <service id=".service_locator.euaNshl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LVEG_Wo" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="routing.loader" type="service_closure" id="routing.loader"/>
       </argument>
     </service>
-    <service id=".service_locator.euaNshl.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LVEG_Wo.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="router.default"/>
       <argument>router.default</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.euaNshl" method="withContext"/>
+      <factory service=".service_locator.LVEG_Wo" method="withContext"/>
     </service>
     <service id=".service_locator.qXR9Hv0" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9585,6 +9622,7 @@
           <argument>App\Controller\RegistrationController</argument>
           <argument>App\Controller\ResetPasswordController</argument>
           <argument>App\Controller\SecurityController</argument>
+          <argument>App\Controller\UserProfileController</argument>
           <argument>App\Controller\VoteController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
@@ -11032,6 +11070,7 @@
     <service id=".service_locator.xqODiDp" alias="messenger.receiver_locator"/>
     <service id=".service_locator.kVuTj7R" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.hUPzsWO" alias=".service_locator.ea.H0ae"/>
+    <service id=".service_locator.hdVlADA" alias=".service_locator.UjaHQ8c"/>
     <service id="validator" alias="debug.validator"/>
     <service id="http_client" alias=".debug.http_client"/>
     <service id=".debug.http_client.inner" alias="http_client.uri_template"/>
@@ -11064,6 +11103,6 @@
     <service id=".service_locator.pXS8eDA" alias=".service_locator.FAUiyCT"/>
     <service id=".service_locator.iUxN36D" alias=".service_locator.HKv6Vyy"/>
     <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
-    <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
+    <service id=".service_locator.Lz7FIqu" alias=".service_locator.UjaHQ8c"/>
   </services>
 </container>

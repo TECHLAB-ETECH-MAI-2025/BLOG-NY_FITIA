@@ -32,7 +32,6 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
         $this->parent = false;
 
         $this->blocks = [
-            'body' => [$this, 'block_body'],
         ];
     }
 
@@ -46,75 +45,113 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "includes/_menu.html.twig"));
 
         // line 1
-        yield "<div class=\"container-fluid\">
-    <div class=\"row\">
-        <!-- Sidebar -->
-        <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-            <div class=\"nav flex-column\">
-                <a href=\"";
-        // line 6
+        yield "<div class=\"sidebar-sticky pt-3\">
+    <!-- Section Photo de profil (seulement si connecté) -->
+    ";
+        // line 3
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 3, $this->source); })()), "user", [], "any", false, false, false, 3)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 4
+            yield "    <div class=\"text-center mb-4\">
+        <div class=\"dropdown\">
+            <a href=\"#\" class=\"d-block text-decoration-none dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                <img src=\"";
+            // line 7
+            yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7), "avatar", [], "any", false, false, false, 7)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7), "avatar", [], "any", false, false, false, 7))), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true)));
+            yield "\" 
+                     class=\"rounded-circle mb-2\" 
+                     width=\"80\" 
+                     height=\"80\" 
+                     alt=\"Photo profil\">
+                <div class=\"text-white small\">";
+            // line 12
+            yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 12), "firstname", [], "any", true, true, false, 12) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "firstname", [], "any", false, false, false, 12)))) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "firstname", [], "any", false, false, false, 12), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "email", [], "any", false, false, false, 12), "html", null, true)));
+            yield "</div>
+            </a>
+            <ul class=\"dropdown-menu dropdown-menu-dark\">
+                <li>
+                    <a class=\"dropdown-item\" href=\"";
+            // line 16
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_profile");
+            yield "\">
+                        <i class=\"bi bi-person-lines-fill me-2\"></i> Mon profil
+                    </a>
+                </li>
+                <li>
+                    <a class=\"dropdown-item\" href=\"";
+            // line 21
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_profile_edit");
+            yield "\">
+                        <i class=\"bi bi-gear me-2\"></i> Paramètres
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    ";
+        }
+        // line 29
+        yield "
+    <!-- Menu principal -->
+    <ul class=\"nav flex-column\">
+        <li class=\"nav-item\">
+            <a href=\"";
+        // line 33
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "request", [], "any", false, false, false, 6), "get", ["_route"], "method", false, false, false, 6) == "home")) ? ("active") : (""));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 33, $this->source); })()), "request", [], "any", false, false, false, 33), "get", ["_route"], "method", false, false, false, 33) == "home")) ? ("active") : (""));
         yield "\">
-                    <i class=\"bi bi-house-door me-2\"></i> Accueil
-                </a>
-                <a href=\"";
-        // line 9
+                <i class=\"bi bi-house-door me-2\"></i> Accueil
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"";
+        // line 38
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show");
         yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 9, $this->source); })()), "request", [], "any", false, false, false, 9), "get", ["_route"], "method", false, false, false, 9) == "article_show")) ? ("active") : (""));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 38, $this->source); })()), "request", [], "any", false, false, false, 38), "get", ["_route"], "method", false, false, false, 38) == "article_show")) ? ("active") : (""));
         yield "\">
-                    <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
-                </a>
-                <a href=\"";
-        // line 12
+                <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"";
+        // line 43
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_index");
-        yield "\" class=\"nav-link\">
-                    <i class=\"bi bi-bookmark me-2\"></i> Catégories
-                </a>
-                <a href=\"#\" class=\"nav-link\">
-                    <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-                </a>
-            </div>
-        </div>
+        yield "\" class=\"nav-link ";
+        yield (((is_string($_v0 = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 43, $this->source); })()), "request", [], "any", false, false, false, 43), "get", ["_route"], "method", false, false, false, 43)) && is_string($_v1 = "category_") && str_starts_with($_v0, $_v1))) ? ("active") : (""));
+        yield "\">
+                <i class=\"bi bi-bookmark me-2\"></i> Catégories
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"#\" class=\"nav-link\">
+                <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
+            </a>
+        </li>
+    </ul>
 
-        <!-- Main content -->
-        <main class=\"col-md-9 col-lg-10 main-content\">
-            ";
-        // line 23
-        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 24
-        yield "        </main>
+    <!-- Bouton Déconnexion en bas -->
+    ";
+        // line 55
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 55, $this->source); })()), "user", [], "any", false, false, false, 55)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 56
+            yield "    <div class=\"mt-auto pt-3 border-top\">
+        <a href=\"";
+            // line 57
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            yield "\" class=\"btn btn-outline-danger btn-sm w-10 d-inline-flex align-items-center\">
+            <i class=\"bi bi-box-arrow-right me-2\"></i> Logout
+        </a>
     </div>
-</div>";
+    ";
+        }
+        // line 62
+        yield "</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        yield from [];
-    }
-
-    // line 23
-    /**
-     * @return iterable<null|scalar|\Stringable>
-     */
-    public function block_body(array $context, array $blocks = []): iterable
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
         yield from [];
     }
@@ -140,36 +177,72 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  101 => 23,  88 => 24,  86 => 23,  72 => 12,  64 => 9,  56 => 6,  49 => 1,);
+        return array (  149 => 62,  141 => 57,  138 => 56,  136 => 55,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("<div class=\"container-fluid\">
-    <div class=\"row\">
-        <!-- Sidebar -->
-        <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
-            <div class=\"nav flex-column\">
-                <a href=\"{{ path('home') }}\" class=\"nav-link {{ app.request.get('_route') == 'home' ? 'active' }}\">
-                    <i class=\"bi bi-house-door me-2\"></i> Accueil
-                </a>
-                <a href=\"{{ path('article_show') }}\" class=\"nav-link {{ app.request.get('_route') == 'article_show' ? 'active' }}\">
-                    <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
-                </a>
-                <a href=\"{{ path('category_index') }}\" class=\"nav-link\">
-                    <i class=\"bi bi-bookmark me-2\"></i> Catégories
-                </a>
-                <a href=\"#\" class=\"nav-link\">
-                    <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
-                </a>
-            </div>
+        return new Source("<div class=\"sidebar-sticky pt-3\">
+    <!-- Section Photo de profil (seulement si connecté) -->
+    {% if app.user %}
+    <div class=\"text-center mb-4\">
+        <div class=\"dropdown\">
+            <a href=\"#\" class=\"d-block text-decoration-none dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                <img src=\"{{ app.user.avatar ? asset('uploads/avatars/' ~ app.user.avatar) : asset('images/default-avatar.png') }}\" 
+                     class=\"rounded-circle mb-2\" 
+                     width=\"80\" 
+                     height=\"80\" 
+                     alt=\"Photo profil\">
+                <div class=\"text-white small\">{{ app.user.firstname ?? app.user.email }}</div>
+            </a>
+            <ul class=\"dropdown-menu dropdown-menu-dark\">
+                <li>
+                    <a class=\"dropdown-item\" href=\"{{ path('app_user_profile') }}\">
+                        <i class=\"bi bi-person-lines-fill me-2\"></i> Mon profil
+                    </a>
+                </li>
+                <li>
+                    <a class=\"dropdown-item\" href=\"{{ path('app_user_profile_edit') }}\">
+                        <i class=\"bi bi-gear me-2\"></i> Paramètres
+                    </a>
+                </li>
+            </ul>
         </div>
-
-        <!-- Main content -->
-        <main class=\"col-md-9 col-lg-10 main-content\">
-            {% block body %}{% endblock %}
-        </main>
     </div>
+    {% endif %}
+
+    <!-- Menu principal -->
+    <ul class=\"nav flex-column\">
+        <li class=\"nav-item\">
+            <a href=\"{{ path('home') }}\" class=\"nav-link {{ app.request.get('_route') == 'home' ? 'active' : '' }}\">
+                <i class=\"bi bi-house-door me-2\"></i> Accueil
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"{{ path('article_show') }}\" class=\"nav-link {{ app.request.get('_route') == 'article_show' ? 'active' : '' }}\">
+                <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"{{ path('category_index') }}\" class=\"nav-link {{ app.request.get('_route') starts with 'category_' ? 'active' : '' }}\">
+                <i class=\"bi bi-bookmark me-2\"></i> Catégories
+            </a>
+        </li>
+        <li class=\"nav-item\">
+            <a href=\"#\" class=\"nav-link\">
+                <i class=\"bi bi-chat-left-text me-2\"></i> Commentaires
+            </a>
+        </li>
+    </ul>
+
+    <!-- Bouton Déconnexion en bas -->
+    {% if app.user %}
+    <div class=\"mt-auto pt-3 border-top\">
+        <a href=\"{{ path('app_logout') }}\" class=\"btn btn-outline-danger btn-sm w-10 d-inline-flex align-items-center\">
+            <i class=\"bi bi-box-arrow-right me-2\"></i> Logout
+        </a>
+    </div>
+    {% endif %}
 </div>", "includes/_menu.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/includes/_menu.html.twig");
     }
 }

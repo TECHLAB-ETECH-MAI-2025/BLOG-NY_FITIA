@@ -104,7 +104,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
         yield "
     <style>
         h1 {
-            background-color: #002366;
+            background-color:rgb(16, 44, 71);
             color: white;
             padding: 24px 0;
             margin: 24px;
@@ -487,7 +487,7 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
     {{ parent() }}
     <style>
         h1 {
-            background-color: #002366;
+            background-color:rgb(16, 44, 71);
             color: white;
             padding: 24px 0;
             margin: 24px;

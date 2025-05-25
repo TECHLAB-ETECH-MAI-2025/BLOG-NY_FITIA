@@ -38,6 +38,7 @@
                     padding: 10px 15px;
                     margin-bottom: 5px;
                     border-radius: 4px;
+                    color: white;
                 }
                 .nav-link:hover {
                     background-color: rgba(0,0,0,0.05);
@@ -46,7 +47,22 @@
                     background-color: #0d6efd;
                     color: white !important;
                 }
-                
+
+                .sidebar-sticky .rounded-circle {
+                    object-fit: cover;
+                    border: 3px solid var(--bs-primary);
+                }
+
+                .sidebar-sticky .dropdown-menu {
+                    margin-top: 10px;
+                    border: none;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                }
+
+                .sidebar-sticky .border-top {
+                    border-color: rgba(255, 255, 255, 0.1) !important;
+                    padding-top: 1rem;
+                }
             </style>
         {% endblock %}
 
@@ -56,15 +72,14 @@
         {% endblock %}
     </head>
     <body>
-        {% if app.request.get('_route') not in ['app_login', 'app_register'] %}
+        {% if app.request.get('_route') not in ['app_login', 'app_register', 'app_forgot_password_request'] %}
             <!-- Structure avec menu -->
             <div class="container-fluid">
                 <div class="row">
                     <!-- Sidebar Menu -->
                     <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-                        <!-- Votre menu ici -->
+                        {{ include('includes/_menu.html.twig') }}
                     </div>
-                    <!-- Main Content -->
                     <main class="col-md-9 col-lg-10 main-content">
                         {{ block('body') }}
                     </main>

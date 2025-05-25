@@ -15,6 +15,7 @@ framework:
         log: true
 
     csrf_protection: true
+    default_locale: fr
     assets: true
     router:
         utf8: true

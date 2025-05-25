@@ -171,7 +171,7 @@ class __TwigTemplate_566cd323dcd2338bf9f77cb513681cd2 extends Template
         <div class=\"text-center mt-3\">
             <a href=\"";
         // line 53
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show");
         yield "\" class=\"btn btn-secondary\">
                 <i class=\"bi bi-arrow-left\"></i> Cancel
             </a>
@@ -265,7 +265,7 @@ class __TwigTemplate_566cd323dcd2338bf9f77cb513681cd2 extends Template
         {{ include('article/_form.html.twig', {'button_label': 'Add'}) }}
 
         <div class=\"text-center mt-3\">
-            <a href=\"{{ path('home') }}\" class=\"btn btn-secondary\">
+            <a href=\"{{ path('article_show') }}\" class=\"btn btn-secondary\">
                 <i class=\"bi bi-arrow-left\"></i> Cancel
             </a>
         </div>

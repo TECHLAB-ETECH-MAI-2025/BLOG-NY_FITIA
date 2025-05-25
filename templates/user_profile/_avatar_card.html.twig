@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body text-center">
+        <img src="{{ user.avatar ? asset('uploads/avatars/' ~ user.avatar) : asset('images/default-avatar.png') }}" 
+             class="rounded-circle mb-3" 
+             width="150" 
+             height="150"
+             alt="Avatar">
+             
+        <h4>{{ user.username }}</h4>
+    </div>
+</div>
