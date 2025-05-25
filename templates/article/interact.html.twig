@@ -35,13 +35,14 @@
         {% endfor %}
         {{ form_start(commentForm) }}
             {{ form_widget(commentForm) }}
-            <button class="btn btn-success">Envoyer</button>
+            
+            <div class="d-flex gap-2 mt-2">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <a href="{{ path('home') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+            </div>
         {{ form_end(commentForm) }}
-        </br>
-        <a href="{{ path('home') }}" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i>Cancel
-        </a>
-
         <hr>
     </div>
 {% endblock %}

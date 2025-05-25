@@ -170,19 +170,20 @@ class __TwigTemplate_ddf6b3f2eb531aba3745e1b915cd2dd7 extends Template
         // line 37
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 37, $this->source); })()), 'widget');
         yield "
-            <button class=\"btn btn-success\">Envoyer</button>
-        ";
-        // line 39
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 39, $this->source); })()), 'form_end');
-        yield "
-        </br>
-        <a href=\"";
+            
+            <div class=\"d-flex gap-2 mt-2\">
+                <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
+                <a href=\"";
         // line 41
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" class=\"btn btn-secondary\">
-            <i class=\"bi bi-arrow-left\"></i>Cancel
-        </a>
-
+                    <i class=\"bi bi-arrow-left\"></i> Cancel
+                </a>
+            </div>
+        ";
+        // line 45
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["commentForm"]) || array_key_exists("commentForm", $context) ? $context["commentForm"] : (function () { throw new RuntimeError('Variable "commentForm" does not exist.', 45, $this->source); })()), 'form_end');
+        yield "
         <hr>
     </div>
 ";
@@ -216,7 +217,7 @@ class __TwigTemplate_ddf6b3f2eb531aba3745e1b915cd2dd7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  181 => 41,  176 => 39,  171 => 37,  166 => 36,  157 => 33,  154 => 32,  150 => 31,  144 => 27,  138 => 24,  134 => 22,  128 => 20,  126 => 19,  123 => 18,  121 => 17,  118 => 16,  111 => 10,  107 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  185 => 45,  178 => 41,  171 => 37,  166 => 36,  157 => 33,  154 => 32,  150 => 31,  144 => 27,  138 => 24,  134 => 22,  128 => 20,  126 => 19,  123 => 18,  121 => 17,  118 => 16,  111 => 10,  107 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -258,13 +259,14 @@ class __TwigTemplate_ddf6b3f2eb531aba3745e1b915cd2dd7 extends Template
         {% endfor %}
         {{ form_start(commentForm) }}
             {{ form_widget(commentForm) }}
-            <button class=\"btn btn-success\">Envoyer</button>
+            
+            <div class=\"d-flex gap-2 mt-2\">
+                <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
+                <a href=\"{{ path('home') }}\" class=\"btn btn-secondary\">
+                    <i class=\"bi bi-arrow-left\"></i> Cancel
+                </a>
+            </div>
         {{ form_end(commentForm) }}
-        </br>
-        <a href=\"{{ path('home') }}\" class=\"btn btn-secondary\">
-            <i class=\"bi bi-arrow-left\"></i>Cancel
-        </a>
-
         <hr>
     </div>
 {% endblock %}
