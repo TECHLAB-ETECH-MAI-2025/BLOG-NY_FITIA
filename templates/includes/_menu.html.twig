@@ -46,24 +46,58 @@
         </li>
 
         <form action="{{ path('app_search') }}" method="get" onsubmit="return validateSearch()">
-           <div class="input-group">
-                <input class="form-control" type="text" name="q" id="searchInput"
-                    placeholder="Rechercher..." value="{{ app.request.query.get('q') }}" required>
-                <button type="submit" class="btn btn-outline-secondary">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </form>
-        <script>
-            function validateSearch() {
-                const query = document.getElementById('searchInput').value.trim();
-                if (query === '') {
-                    alert('Veuillez saisir un terme de recherche.');
-                    return false; // Bloque l'envoi du formulaire
-                }
-                return true;
-            }
-        </script>
+    <div class="input-group position-relative">
+        <input class="form-control" type="text" name="q" id="searchInput"
+            placeholder="Rechercher..." value="{{ app.request.query.get('q') }}" required autocomplete="off">
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="bi bi-search"></i>
+        </button>
+
+        {# Conteneur pour les suggestions #}
+        <div id="searchResultats" class="dropdown-menu show w-100 mt-1 p-2 shadow-sm"
+             style="display: none; max-height: 300px; overflow-y: auto;">
+            <!-- Résultats en direct s’affichent ici -->
+        </div>
+    </div>
+</form>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const resultsDiv = document.getElementById('searchResultats');
+    let timeout;
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.trim();
+
+        if (query.length < 2) {
+            resultsDiv.style.display = 'none';
+            resultsDiv.innerHTML = '';
+            return;
+        }
+
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fetch('{{ path('app_search_live') }}?q=' + encodeURIComponent(query))
+                .then(response => response.text())
+                .then(html => {
+                    resultsDiv.innerHTML = html;
+                    resultsDiv.style.display = 'block';
+                })
+                .catch(() => {
+                    resultsDiv.innerHTML = '<div class="text-danger">Erreur de chargement</div>';
+                    resultsDiv.style.display = 'block';
+                });
+        }, 300);
+    });
+
+    // Cacher suggestions quand on clique en dehors
+    document.addEventListener('click', function (e) {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+</script>
+
     </ul>
 
     <!-- Bouton Déconnexion en bas -->

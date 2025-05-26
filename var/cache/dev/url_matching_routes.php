@@ -26,6 +26,7 @@ return [
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/reset-password/test-mail' => [[['_route' => 'app_resetpassword_testmail', '_controller' => 'App\\Controller\\ResetPasswordController::testMail'], null, null, null, false, false, null]],
         '/search' => [[['_route' => 'app_search', '_controller' => 'App\\Controller\\SearchController::search'], null, null, null, false, false, null]],
+        '/search/live' => [[['_route' => 'app_search_live', '_controller' => 'App\\Controller\\SearchController::searchLive'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/mon-profil' => [[['_route' => 'app_user_profile', '_controller' => 'App\\Controller\\UserProfileController::index'], null, null, null, false, false, null]],
@@ -61,11 +62,14 @@ return [
                     .')'
                     .'|(*:276)'
                 .')'
-                .'|/category/([^/]++)(?'
-                    .'|/edit(*:311)'
-                    .'|(*:319)'
+                .'|/category/(?'
+                    .'|category/([^/]++)(*:315)'
+                    .'|([^/]++)(?'
+                        .'|/edit(*:339)'
+                        .'|(*:347)'
+                    .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:364)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:393)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -80,10 +84,14 @@ return [
         230 => [[['_route' => 'article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         246 => [[['_route' => 'article_interact', '_controller' => 'App\\Controller\\ArticleController::interact'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         267 => [[['_route' => 'article_vote', '_controller' => 'App\\Controller\\VoteController::vote'], ['id', 'type'], ['POST' => 0], null, false, true, null]],
-        276 => [[['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        311 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        319 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        364 => [
+        276 => [
+            [['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null],
+            [['_route' => 'article_show_one', '_controller' => 'App\\Controller\\ArticleController::showArticleOne'], ['id'], ['GET' => 0], null, false, true, null],
+        ],
+        315 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
+        339 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        347 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        393 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

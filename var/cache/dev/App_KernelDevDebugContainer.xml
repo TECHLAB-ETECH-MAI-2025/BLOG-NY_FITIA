@@ -555,7 +555,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.qt3jHw0"/>
+      <argument type="service" id=".service_locator.DngMqzi"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3701,7 +3701,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.qt3jHw0"/>
+      <argument type="service" id=".service_locator.DngMqzi"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8617,17 +8617,23 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.LXH8CDw" method="withContext"/>
     </service>
-    <service id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ArticleController::interact()"/>
-      <argument>App\Controller\ArticleController::interact()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.d6UE9.H" method="withContext"/>
-    </service>
     <service id=".service_locator.BCgH70e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
       </argument>
+    </service>
+    <service id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::showArticleOne()"/>
+      <argument>App\Controller\ArticleController::showArticleOne()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BCgH70e" method="withContext"/>
+    </service>
+    <service id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::interact()"/>
+      <argument>App\Controller\ArticleController::interact()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.d6UE9.H" method="withContext"/>
     </service>
     <service id=".service_locator.BCgH70e.App\Controller\ArticleController::search()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::search()"/>
@@ -8659,6 +8665,18 @@
       <argument>App\Controller\CategoryController::show()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.MKaR5.9" method="withContext"/>
+    </service>
+    <service id=".service_locator.MTCWnA5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController::showCategory()"/>
+      <argument>App\Controller\CategoryController::showCategory()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.MTCWnA5" method="withContext"/>
     </service>
     <service id=".service_locator.gADJ5td" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8755,6 +8773,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Lr3jbjP" method="withContext"/>
     </service>
+    <service id=".service_locator.Lr3jbjP.App\Controller\SearchController::searchLive()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SearchController::searchLive()"/>
+      <argument>App\Controller\SearchController::searchLive()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.Lr3jbjP" method="withContext"/>
+    </service>
     <service id=".service_locator.3QECKYg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8780,7 +8804,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.qt3jHw0" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.DngMqzi" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8792,10 +8816,12 @@
         <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
         <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
         <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController::showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController::interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController::search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
         <argument key="App\Controller\CategoryController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
         <argument key="App\Controller\CategoryController::show" type="service_closure" id=".service_locator.MKaR5.9.App\Controller\CategoryController::show()"/>
+        <argument key="App\Controller\CategoryController::showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController::edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
@@ -8804,6 +8830,7 @@
         <argument key="App\Controller\ResetPasswordController::reset" type="service_closure" id=".service_locator.FAUiyCT.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\ResetPasswordController::testMail" type="service_closure" id=".service_locator.HKv6Vyy.App\Controller\ResetPasswordController::testMail()"/>
         <argument key="App\Controller\SearchController::search" type="service_closure" id=".service_locator.Lr3jbjP.App\Controller\SearchController::search()"/>
+        <argument key="App\Controller\SearchController::searchLive" type="service_closure" id=".service_locator.Lr3jbjP.App\Controller\SearchController::searchLive()"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\VoteController::vote" type="service_closure" id=".service_locator.e51BVih.App\Controller\VoteController::vote()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8813,10 +8840,12 @@
         <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
         <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
         <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController:showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController:interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController:search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
         <argument key="App\Controller\CategoryController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
         <argument key="App\Controller\CategoryController:show" type="service_closure" id=".service_locator.MKaR5.9.App\Controller\CategoryController::show()"/>
+        <argument key="App\Controller\CategoryController:showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController:edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
@@ -8825,6 +8854,7 @@
         <argument key="App\Controller\ResetPasswordController:reset" type="service_closure" id=".service_locator.FAUiyCT.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\ResetPasswordController:testMail" type="service_closure" id=".service_locator.HKv6Vyy.App\Controller\ResetPasswordController::testMail()"/>
         <argument key="App\Controller\SearchController:search" type="service_closure" id=".service_locator.Lr3jbjP.App\Controller\SearchController::search()"/>
+        <argument key="App\Controller\SearchController:searchLive" type="service_closure" id=".service_locator.Lr3jbjP.App\Controller\SearchController::searchLive()"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\VoteController:vote" type="service_closure" id=".service_locator.e51BVih.App\Controller\VoteController::vote()"/>
       </argument>
@@ -11090,7 +11120,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.qt3jHw0"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.DngMqzi"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11141,6 +11171,7 @@
     <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
     <service id=".service_locator.Zmxy2_4" alias=".service_locator.MKaR5.9"/>
+    <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
     <service id=".service_locator.AJ56rbI" alias=".service_locator.gADJ5td"/>
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>

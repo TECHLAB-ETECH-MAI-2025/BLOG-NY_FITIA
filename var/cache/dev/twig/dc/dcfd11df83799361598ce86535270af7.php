@@ -128,37 +128,75 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
         // line 48
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_search");
         yield "\" method=\"get\" onsubmit=\"return validateSearch()\">
-           <div class=\"input-group\">
-                <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
-                    placeholder=\"Rechercher...\" value=\"";
+    <div class=\"input-group position-relative\">
+        <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
+            placeholder=\"Rechercher...\" value=\"";
         // line 51
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 51, $this->source); })()), "request", [], "any", false, false, false, 51), "query", [], "any", false, false, false, 51), "get", ["q"], "method", false, false, false, 51), "html", null, true);
-        yield "\" required>
-                <button type=\"submit\" class=\"btn btn-outline-secondary\">
-                    <i class=\"bi bi-search\"></i>
-                </button>
-            </div>
-        </form>
-        <script>
-            function validateSearch() {
-                const query = document.getElementById('searchInput').value.trim();
-                if (query === '') {
-                    alert('Veuillez saisir un terme de recherche.');
-                    return false; // Bloque l'envoi du formulaire
-                }
-                return true;
-            }
-        </script>
+        yield "\" required autocomplete=\"off\">
+        <button type=\"submit\" class=\"btn btn-outline-secondary\">
+            <i class=\"bi bi-search\"></i>
+        </button>
+
+        ";
+        // line 57
+        yield "        <div id=\"searchResultats\" class=\"dropdown-menu show w-100 mt-1 p-2 shadow-sm\"
+             style=\"display: none; max-height: 300px; overflow-y: auto;\">
+            <!-- Résultats en direct s’affichent ici -->
+        </div>
+    </div>
+</form>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const resultsDiv = document.getElementById('searchResultats');
+    let timeout;
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.trim();
+
+        if (query.length < 2) {
+            resultsDiv.style.display = 'none';
+            resultsDiv.innerHTML = '';
+            return;
+        }
+
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fetch('";
+        // line 80
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_search_live");
+        yield "?q=' + encodeURIComponent(query))
+                .then(response => response.text())
+                .then(html => {
+                    resultsDiv.innerHTML = html;
+                    resultsDiv.style.display = 'block';
+                })
+                .catch(() => {
+                    resultsDiv.innerHTML = '<div class=\"text-danger\">Erreur de chargement</div>';
+                    resultsDiv.style.display = 'block';
+                });
+        }, 300);
+    });
+
+    // Cacher suggestions quand on clique en dehors
+    document.addEventListener('click', function (e) {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+</script>
+
     </ul>
 
     <!-- Bouton Déconnexion en bas -->
     ";
-        // line 70
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 70, $this->source); })()), "user", [], "any", false, false, false, 70)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 71
+        // line 104
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 104, $this->source); })()), "user", [], "any", false, false, false, 104)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 105
             yield "    <div class=\"mt-auto pt-3 border-top\">
         <a href=\"";
-            // line 72
+            // line 106
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"btn btn-outline-danger btn-sm w-10 d-inline-flex align-items-center\">
             <i class=\"bi bi-box-arrow-right me-2\"></i> Logout
@@ -166,7 +204,7 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
     </div>
     ";
         }
-        // line 77
+        // line 111
         yield "</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -198,7 +236,7 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  170 => 77,  162 => 72,  159 => 71,  157 => 70,  135 => 51,  129 => 48,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
+        return array (  208 => 111,  200 => 106,  197 => 105,  195 => 104,  168 => 80,  143 => 57,  135 => 51,  129 => 48,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -251,24 +289,58 @@ class __TwigTemplate_7b61b3a8ecc019223f959638ddc13fcb extends Template
         </li>
 
         <form action=\"{{ path('app_search') }}\" method=\"get\" onsubmit=\"return validateSearch()\">
-           <div class=\"input-group\">
-                <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
-                    placeholder=\"Rechercher...\" value=\"{{ app.request.query.get('q') }}\" required>
-                <button type=\"submit\" class=\"btn btn-outline-secondary\">
-                    <i class=\"bi bi-search\"></i>
-                </button>
-            </div>
-        </form>
-        <script>
-            function validateSearch() {
-                const query = document.getElementById('searchInput').value.trim();
-                if (query === '') {
-                    alert('Veuillez saisir un terme de recherche.');
-                    return false; // Bloque l'envoi du formulaire
-                }
-                return true;
-            }
-        </script>
+    <div class=\"input-group position-relative\">
+        <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
+            placeholder=\"Rechercher...\" value=\"{{ app.request.query.get('q') }}\" required autocomplete=\"off\">
+        <button type=\"submit\" class=\"btn btn-outline-secondary\">
+            <i class=\"bi bi-search\"></i>
+        </button>
+
+        {# Conteneur pour les suggestions #}
+        <div id=\"searchResultats\" class=\"dropdown-menu show w-100 mt-1 p-2 shadow-sm\"
+             style=\"display: none; max-height: 300px; overflow-y: auto;\">
+            <!-- Résultats en direct s’affichent ici -->
+        </div>
+    </div>
+</form>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const resultsDiv = document.getElementById('searchResultats');
+    let timeout;
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.trim();
+
+        if (query.length < 2) {
+            resultsDiv.style.display = 'none';
+            resultsDiv.innerHTML = '';
+            return;
+        }
+
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fetch('{{ path('app_search_live') }}?q=' + encodeURIComponent(query))
+                .then(response => response.text())
+                .then(html => {
+                    resultsDiv.innerHTML = html;
+                    resultsDiv.style.display = 'block';
+                })
+                .catch(() => {
+                    resultsDiv.innerHTML = '<div class=\"text-danger\">Erreur de chargement</div>';
+                    resultsDiv.style.display = 'block';
+                });
+        }, 300);
+    });
+
+    // Cacher suggestions quand on clique en dehors
+    document.addEventListener('click', function (e) {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+</script>
+
     </ul>
 
     <!-- Bouton Déconnexion en bas -->

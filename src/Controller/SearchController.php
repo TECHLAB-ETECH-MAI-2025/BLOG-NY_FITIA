@@ -12,14 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
-    public function search(
-        Request $request,
-        ArticleRepository $articleRepository,
-        CategoryRepository $categoryRepository
-    ): Response {
+    public function search( Request $request, ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
+    {
         $query = $request->query->get('q', '');
 
-        // Recherche dans les articles et catégories
         $articles = $articleRepository->search($query);
         $categories = $categoryRepository->search($query);
 
@@ -29,4 +25,20 @@ class SearchController extends AbstractController
             'categories' => $categories,
         ]);
     }
+
+    #[Route('/search/live', name: 'app_search_live')]
+    public function searchLive(Request $request, ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
+    {
+        $query = $request->query->get('q', '');
+
+        $articles = $articleRepository->search($query);
+        $categories = $categoryRepository->search($query);
+
+        return $this->render('search/_resultat.html.twig', [
+            'query' => $query,
+            'articles' => $articles,
+            'categories' => $categories,
+        ]);
+    }
+
 }

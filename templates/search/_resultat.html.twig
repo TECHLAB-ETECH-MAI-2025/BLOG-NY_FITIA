@@ -1,0 +1,21 @@
+{% if articles is not empty %}
+    <h6 class="dropdown-header text-primary">Articles</h6>
+    {% for article in articles %}
+        <a href="{{ path('article_show_one', {id: article.id}) }}" class="dropdown-item">
+            {{ article.title }}
+        </a>
+    {% endfor %}
+{% endif %}
+
+{% if categories is not empty %}
+    <h6 class="dropdown-header text-success mt-2">Catégories</h6>
+    {% for category in categories %}
+        <a href="{{ path('category_show_one', {id: category.id}) }}" class="dropdown-item">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+{% endif %}
+
+{% if articles is empty and categories is empty %}
+    <span class="dropdown-item text-muted">Aucun résultat</span>
+{% endif %}

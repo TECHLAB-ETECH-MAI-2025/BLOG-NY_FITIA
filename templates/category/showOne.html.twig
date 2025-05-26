@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+    <h1>Catégorie : {{ category.name }}</h1>
+
+    {# Tu peux aussi afficher les articles de cette catégorie ici si tu veux #}
+    {% if category.articles is defined %}
+        <h3>Articles dans cette catégorie :</h3>
+        <ul>
+            {% for article in category.articles %}
+                <li>{{ article.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

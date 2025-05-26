@@ -115,6 +115,21 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[Route('/article/{id}', name: 'article_show_one', methods: ['GET'])]
+    public function showArticleOne(int $id, ArticleRepository $articleRepository) : Response
+    {
+        $article = $articleRepository->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException('Article non trouve');
+        }
+
+        return $this->render('article/showOne.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+
     #[Route('/article/{id}/interact', name: 'article_interact', methods: ['GET', 'POST'])]
     public function interact(Article $article, Request $request, EntityManagerInterface $entityManager): Response
     {
