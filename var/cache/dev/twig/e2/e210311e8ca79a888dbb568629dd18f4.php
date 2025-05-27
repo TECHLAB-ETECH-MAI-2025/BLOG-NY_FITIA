@@ -160,6 +160,6 @@ class __TwigTemplate_6bb9667fcc603e2fb250be14855390b0 extends Template
         <button class=\"btn btn-primary\">Reset password</button>
     {{ form_end(resetForm) }}
 {% endblock %}
-", "reset_password/reset.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/reset_password/reset.html.twig");
+", "reset_password/reset.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/reset_password/reset.html.twig");
     }
 }

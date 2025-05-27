@@ -171,6 +171,6 @@ class __TwigTemplate_e5791e9aa76ab5c12a3628e3d6156091 extends Template
     </ul>
 </nav>
 {% endif %}
-", "@KnpPaginator/Pagination/templates/bundles/KnpPaginatorBundle/Pagination/bootstrap_v5_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/bundles/KnpPaginatorBundle/Pagination/templates/bundles/KnpPaginatorBundle/Pagination/bootstrap_v5_pagination.html.twig");
+", "@KnpPaginator/Pagination/templates/bundles/KnpPaginatorBundle/Pagination/bootstrap_v5_pagination.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/bundles/KnpPaginatorBundle/Pagination/templates/bundles/KnpPaginatorBundle/Pagination/bootstrap_v5_pagination.html.twig");
     }
 }

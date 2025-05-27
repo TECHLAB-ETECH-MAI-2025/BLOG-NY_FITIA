@@ -365,6 +365,6 @@ class __TwigTemplate_5bbc4a8acca2477e2e0020aff21c98eb extends Template
         </div>
     </form>
 </div>
-", "@WebProfiler/Profiler/search.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/search.html.twig");
+", "@WebProfiler/Profiler/search.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/search.html.twig");
     }
 }

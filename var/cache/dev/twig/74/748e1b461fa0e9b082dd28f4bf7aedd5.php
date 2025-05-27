@@ -93,6 +93,6 @@ class __TwigTemplate_687186eac15f1703b38de4bb8acc05aa extends Template
         return new Source("{{ form_start(commentForm) }}
     {{ form_widget(commentForm) }}
     <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
-{{ form_end(commentForm) }}", "article/_comment_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/_comment_form.html.twig");
+{{ form_end(commentForm) }}", "article/_comment_form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/_comment_form.html.twig");
     }
 }

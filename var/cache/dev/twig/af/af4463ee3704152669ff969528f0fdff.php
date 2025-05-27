@@ -2219,6 +2219,6 @@ class __TwigTemplate_b69669f123e83e0f934d1c9d3c6b8f87 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/form.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/symfony/web-profiler-bundle/Resources/views/Collector/form.html.twig");
+", "@WebProfiler/Collector/form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/web-profiler-bundle/Resources/views/Collector/form.html.twig");
     }
 }

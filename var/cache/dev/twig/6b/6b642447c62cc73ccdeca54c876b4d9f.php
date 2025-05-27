@@ -123,6 +123,6 @@ class __TwigTemplate_1e82225b02f0cfb10b2a058f0e9b34da extends Template
             </div>
         </div>
     </div>
-</div>", "article/_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/_form.html.twig");
+</div>", "article/_form.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/_form.html.twig");
     }
 }

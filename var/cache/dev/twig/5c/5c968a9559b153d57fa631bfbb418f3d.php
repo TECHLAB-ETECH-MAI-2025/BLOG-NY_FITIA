@@ -225,6 +225,6 @@ array_key_exists("query", $context)) {
     {% elseif query is defined %}
         <p>Aucun résultat trouvé pour \"{{ query }}\"</p>
     {% endif %}
-{% endblock %}", "article/search.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/search.html.twig");
+{% endblock %}", "article/search.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/search.html.twig");
     }
 }

@@ -775,6 +775,6 @@ class __TwigTemplate_801836bb11413f60fb457fa9f7528ee1 extends Template
             {{ knp_pagination_render(articles, 'pagination/bootstrap_v5.html.twig') }}
         </div>
     </div>
-{% endblock %}", "article/index.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/index.html.twig");
+{% endblock %}", "article/index.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/index.html.twig");
     }
 }

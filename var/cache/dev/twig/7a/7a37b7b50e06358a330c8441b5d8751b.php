@@ -107,6 +107,6 @@ class __TwigTemplate_3d39e3c0ebe7cdbaaac4ecc9048fe37b extends Template
              
         <h4>{{ user.username }}</h4>
     </div>
-</div>", "user_profile/_avatar_card.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/user_profile/_avatar_card.html.twig");
+</div>", "user_profile/_avatar_card.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/user_profile/_avatar_card.html.twig");
     }
 }

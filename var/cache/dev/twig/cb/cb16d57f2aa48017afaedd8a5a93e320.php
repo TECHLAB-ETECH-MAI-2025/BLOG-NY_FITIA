@@ -288,6 +288,6 @@ class __TwigTemplate_e2d826c7e8ada73f7db7065e9ae58083 extends Template
         </div>
     {% endif %}
 </div>
-{% endblock %}", "search/index.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/search/index.html.twig");
+{% endblock %}", "search/index.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/search/index.html.twig");
     }
 }

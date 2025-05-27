@@ -109,6 +109,6 @@ class __TwigTemplate_82091a1c6345fb38603ceb931006b13f extends Template
 <p>
     Cheers!
 </p>
-", "registration/confirmation_email.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/registration/confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/registration/confirmation_email.html.twig");
     }
 }

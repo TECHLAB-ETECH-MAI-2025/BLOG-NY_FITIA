@@ -322,6 +322,6 @@ class __TwigTemplate_f5fff9b2d25631ceeedd8c2b32251409 extends Template
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}
-", "registration/register.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/registration/register.html.twig");
+", "registration/register.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/registration/register.html.twig");
     }
 }

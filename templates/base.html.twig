@@ -17,8 +17,21 @@
                     border-right: 1px solid #dee2e6;
                     display: flex;
                     flex-direction: column;
-                    align-items: center; /* Centre horizontalement */
-                    text-align: center; /* Centre le texte */
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .sidebar2 {
+                    max-height: 50vh;
+                    background: rgb(16, 44, 71);
+                    padding-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center
+                    border: 20px solid rgb(16, 44, 71);
+                    border-radius: 15px 0px 0px 15px;
+                    color: white;
                 }
 
                 .main-content {
@@ -78,7 +91,13 @@
 
                 .shadow-blue {
                      box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
-                }       
+                } 
+
+                .editFond {
+                    background-color: rgba(16, 44, 71);
+                    color: white;
+                }
+
             </style>
         {% endblock %}
 
@@ -96,9 +115,12 @@
                     <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                         {{ include('includes/_menu.html.twig') }}
                     </div>
-                    <main class="col-md-9 col-lg-10 main-content">
+                    <main class="col-md-8 col-lg-9 main-content">
                         {{ block('body') }}
                     </main>
+                    <div class="col-md-1 col-lg-1 d-md-block sidebar2 collapse">
+                        {{ include('includes/_menuChat.html.twig') }}
+                    </div>
                 </div>
             </div>
         {% else %}

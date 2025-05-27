@@ -186,6 +186,6 @@ class __TwigTemplate_e7b09ace1a78ae34efb08e7d98ec8e57 extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }

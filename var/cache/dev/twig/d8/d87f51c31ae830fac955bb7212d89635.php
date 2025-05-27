@@ -989,6 +989,6 @@ class __TwigTemplate_c1abcadff73f02a58a93966e0659290b extends Template
         </td>
     </tr>
 {% endmacro %}
-", "@DoctrineMigrations/Collector/migrations.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/doctrine/doctrine-migrations-bundle/templates/Collector/migrations.html.twig");
+", "@DoctrineMigrations/Collector/migrations.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/doctrine/doctrine-migrations-bundle/templates/Collector/migrations.html.twig");
     }
 }

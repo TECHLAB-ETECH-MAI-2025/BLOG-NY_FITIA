@@ -286,6 +286,6 @@ class __TwigTemplate_3ef700a99d2b8de9bbd56c8e8372bcaf extends Template
         </div>
     </div>
 {% endblock %}
-", "article/show.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/show.html.twig");
+", "article/show.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/show.html.twig");
     }
 }
