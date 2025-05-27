@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Service\ConversationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/conversations')]
+#[Route('/api/conversations')]
 class ConversationController extends AbstractController
 { 
     public function __construct(private ConversationService $conversationService)
@@ -21,11 +21,11 @@ class ConversationController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function listConversation(): JsonResponse
     {
-        $user = $get->getUser();
-        $conversation = $this->conversationService->getUserConversations($user);
+        $user = $this->getUser(); // Correction: $this->getUser() au lieu de $get->getUser()
+        $conversations = $this->conversationService->getUserConversations($user);
         
         return $this->json([
-            'conversations' =>$conversation,
+            'conversations' => $conversations, // Correction: espace après ':' et variable $conversations
         ]);
     }
 
@@ -36,8 +36,7 @@ class ConversationController extends AbstractController
         $currentUser = $this->getUser();
         $otherUser = $this->getDoctrine()->getRepository(User::class)->find($userId);
 
-        if (!$otherUser)
-        {
+        if (!$otherUser) {
             throw $this->createNotFoundException('Utilisateur non trouvé !');
         }
         

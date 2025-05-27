@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Conversation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,5 +32,17 @@ class ConversationRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findWithParticipants(int $conversationId): ?Conversation
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.user1', 'u1')
+            ->leftJoin('c.user2', 'u2')
+            ->addSelect('u1', 'u2')
+            ->where('c.id = :id')
+            ->setParameter('id', $conversationId)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

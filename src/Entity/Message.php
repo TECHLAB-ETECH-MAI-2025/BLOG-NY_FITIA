@@ -78,4 +78,18 @@ class Message
         $this->sentAt = $sentAt; 
         return $this; 
     }
+
+    public function findWithParticipants(int $id): ?Conversation
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.user1', 'u1')
+            ->addSelect('u1')
+            ->leftJoin('c.user2', 'u2')
+            ->addSelect('u2')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }
