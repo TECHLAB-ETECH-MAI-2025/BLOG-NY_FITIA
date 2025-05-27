@@ -2987,3 +2987,7 @@ da8346,127.0.0.1,GET,http://localhost:8000/mon-profil,1748329219,79365e,500,requ
 46a926,127.0.0.1,GET,http://localhost:8000/home,1748329286,,200,request
 b6738e,127.0.0.1,GET,http://localhost:8000/home,1748329329,,200,request
 >>>>>>> 839e19e9 (separation style)
+261bb4,127.0.0.1,GET,http://localhost:8000/home,1748330789,,200,request
+3ef6ec,127.0.0.1,GET,http://localhost:8000/search/live?q=te,1748330807,,200,request
+3bbe7f,127.0.0.1,GET,http://localhost:8000/search/live?q=tes,1748330808,,200,request
+bc07bd,127.0.0.1,GET,http://localhost:8000/search/live?q=test,1748330809,,200,request
