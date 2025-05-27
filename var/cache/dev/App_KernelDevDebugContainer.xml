@@ -29,6 +29,7 @@
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
       <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
+      <parameter key="MercureBundle">Symfony\Bundle\MercureBundle\MercureBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -94,6 +95,10 @@
       <parameter key="SymfonyCastsResetPasswordBundle" type="collection">
         <parameter key="path">/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfonycasts/reset-password-bundle/src</parameter>
         <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
+      </parameter>
+      <parameter key="MercureBundle" type="collection">
+        <parameter key="path">/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/mercure-bundle/src</parameter>
+        <parameter key="namespace">Symfony\Bundle\MercureBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -286,6 +291,10 @@
     <parameter key="knp_paginator.page_limit">null</parameter>
     <parameter key="knp_paginator.page_name">page</parameter>
     <parameter key="knp_paginator.remove_first_page_param">false</parameter>
+    <parameter key="mercure.hubs" type="collection">
+      <parameter key="default">http://localhost:3000/.well-known/mercure</parameter>
+    </parameter>
+    <parameter key="mercure.default_hub">http://localhost:3000/.well-known/mercure</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -374,6 +383,10 @@
       <parameter key="serializer.data_collector" type="collection">
         <parameter>serializer</parameter>
         <parameter>@WebProfiler/Collector/serializer.html.twig</parameter>
+      </parameter>
+      <parameter key="data_collector.mercure" type="collection">
+        <parameter>mercure</parameter>
+        <parameter>@Mercure/Collector/mercure.html.twig</parameter>
       </parameter>
       <parameter key="data_collector.config" type="collection">
         <parameter>config</parameter>
@@ -1259,6 +1272,12 @@
           <argument key="Symfony\Component\Notifier\Message\DesktopMessage" type="collection">
             <argument type="collection">
               <argument>texter.messenger.desktop_handler</argument>
+              <argument type="collection"/>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Mercure\Update" type="collection">
+            <argument type="collection">
+              <argument>mercure.hub.default.message_handler</argument>
               <argument type="collection"/>
             </argument>
           </argument>
@@ -2648,6 +2667,7 @@
           <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/monolog-bundle/translations</argument>
           <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/maker-bundle/translations</argument>
           <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+          <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/mercure-bundle/src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2671,6 +2691,7 @@
             <argument>vendor/symfony/monolog-bundle/translations</argument>
             <argument>vendor/symfony/maker-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+            <argument>vendor/symfony/mercure-bundle/src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -3662,6 +3683,14 @@
           <argument>pagination</argument>
         </argument>
         <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
@@ -5103,6 +5132,9 @@
         <argument type="service" id="serializer.data_collector"/>
       </call>
       <call method="add">
+        <argument type="service" id="data_collector.mercure"/>
+      </call>
+      <call method="add">
         <argument type="service" id="data_collector.config"/>
       </call>
     </service>
@@ -6269,6 +6301,9 @@
         <argument type="service" id="knp_paginator.twig.extension.pagination"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="Symfony\Component\Mercure\Twig\MercureExtension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
       </call>
       <call method="addGlobal">
@@ -6406,6 +6441,14 @@
       <call method="addPath">
         <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/knplabs/knp-paginator-bundle/templates</argument>
         <argument>!KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/mercure-bundle/src/Resources/views</argument>
+        <argument>Mercure</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/vendor/symfony/mercure-bundle/src/Resources/views</argument>
+        <argument>!Mercure</argument>
       </call>
       <call method="addPath">
         <argument>/home/nyfitia/Documents/Fitia/etech/projet/blog/templates</argument>
@@ -6692,7 +6735,7 @@
     </service>
     <service id="turbo.twig.runtime" class="Symfony\UX\Turbo\Twig\TurboRuntime">
       <tag name="twig.runtime"/>
-      <argument type="service" id=".service_locator.GIuJv7e"/>
+      <argument type="service" id=".service_locator.JJhWhUD"/>
       <argument>default</argument>
     </service>
     <service id="turbo.doctrine.event_listener" class="Symfony\UX\Turbo\Doctrine\BroadcastListener">
@@ -7929,6 +7972,77 @@
       <argument>3600</argument>
       <argument>3600</argument>
     </service>
+    <service id="mercure.hub.default.jwt.factory" class="Symfony\Component\Mercure\Jwt\LcobucciFactory">
+      <tag name="mercure.jwt.factory"/>
+      <argument>keymercure</argument>
+      <argument>hmac.sha256</argument>
+      <argument>null</argument>
+      <argument></argument>
+    </service>
+    <service id="mercure.hub.default.jwt.provider" class="Symfony\Component\Mercure\Jwt\FactoryTokenProvider">
+      <tag name="mercure.jwt.factory"/>
+      <argument type="service" id="mercure.hub.default.jwt.factory"/>
+      <argument type="collection"/>
+      <argument type="collection"/>
+    </service>
+    <service id="mercure.hub.default.message_handler" class="Symfony\Component\Mercure\Messenger\UpdateHandler">
+      <tag name="messenger.message_handler"/>
+      <argument type="service" id="mercure.hub.default.traceable"/>
+    </service>
+    <service id="mercure.hub.default.publisher.traceable" class="Symfony\Component\Mercure\Debug\TraceablePublisher">
+      <tag name="mercure.publisher"/>
+      <tag name="container.decorator" id="mercure.hub.default.publisher" inner="mercure.hub.default.publisher.traceable.inner"/>
+      <argument type="service" id="mercure.hub.default.publisher.traceable.inner"/>
+      <argument type="service" id="debug.stopwatch"/>
+      <deprecated package="symfony/mercure-bundle" version="0.2">The "%service_id%" service is deprecated. Use "mercure.hub.default.traceable" instead.</deprecated>
+    </service>
+    <service id="mercure.hub.default.traceable" class="Symfony\Component\Mercure\Debug\TraceableHub">
+      <tag name="mercure.hub"/>
+      <tag name="container.decorator" id="mercure.hub.default" inner="mercure.hub.default.traceable.inner"/>
+      <argument type="service" id="mercure.hub.default.traceable.inner"/>
+      <argument type="service" id="debug.stopwatch"/>
+    </service>
+    <service id="turbo.mercure.default.renderer" class="Symfony\UX\Turbo\Bridge\Mercure\TurboStreamListenRenderer">
+      <tag name="turbo.renderer.stream_listen" transport="default"/>
+      <argument type="service" id="mercure.hub.default.traceable"/>
+      <argument type="service" id="stimulus.helper"/>
+      <argument type="service" id="turbo.id_accessor"/>
+      <argument type="service" id="twig"/>
+    </service>
+    <service id="turbo.mercure.default.broadcaster" class="Symfony\UX\Turbo\Bridge\Mercure\Broadcaster">
+      <tag name="turbo.broadcaster"/>
+      <argument>default</argument>
+      <argument type="service" id="mercure.hub.default.traceable"/>
+    </service>
+    <service id="data_collector.mercure" class="Symfony\Bundle\MercureBundle\DataCollector\MercureDataCollector">
+      <tag name="data_collector" template="@Mercure/Collector/mercure.html.twig" id="mercure"/>
+      <argument type="iterator">
+        <argument key="default" type="service" id="mercure.hub.default.traceable"/>
+      </argument>
+    </service>
+    <service id="Symfony\Component\Mercure\HubRegistry" class="Symfony\Component\Mercure\HubRegistry">
+      <argument type="service" id="mercure.hub.default.traceable"/>
+      <argument type="collection">
+        <argument key="default" type="service" id="mercure.hub.default.traceable"/>
+      </argument>
+    </service>
+    <service id="Symfony\Component\Mercure\Authorization" class="Symfony\Component\Mercure\Authorization">
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+      <argument>null</argument>
+    </service>
+    <service id="Symfony\Component\Mercure\Discovery" class="Symfony\Component\Mercure\Discovery">
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+    </service>
+    <service id="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber" class="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber">
+      <tag name="kernel.event_subscriber" priority="-10"/>
+      <tag name="container.hot_path"/>
+    </service>
+    <service id="Symfony\Component\Mercure\Twig\MercureExtension" class="Symfony\Component\Mercure\Twig\MercureExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+      <argument type="service" id="Symfony\Component\Mercure\Authorization"/>
+      <argument type="service" id="request_stack"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -9131,6 +9245,10 @@
       <argument type="service" id="texter.messenger.desktop_handler"/>
       <argument type="collection"/>
     </service>
+    <service id=".messenger.handler_descriptor.Upry6Iy" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
+      <argument type="service" id="mercure.hub.default.message_handler"/>
+      <argument type="collection"/>
+    </service>
     <service id="messenger.bus.default.messenger.handlers_locator" class="Symfony\Component\Messenger\Handler\HandlersLocator">
       <argument type="collection">
         <argument key="Symfony\Component\Process\Messenger\RunProcessMessage" type="iterator">
@@ -9159,6 +9277,9 @@
         </argument>
         <argument key="Symfony\Component\Notifier\Message\DesktopMessage" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.Dkv9sRY"/>
+        </argument>
+        <argument key="Symfony\Component\Mercure\Update" type="iterator">
+          <argument type="service" id=".messenger.handler_descriptor.Upry6Iy"/>
         </argument>
       </argument>
     </service>
@@ -9629,6 +9750,12 @@
         <argument key="desktop" type="service_closure" id="notifier.channel.desktop"/>
       </argument>
     </service>
+    <service id=".service_locator.JJhWhUD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="default" type="service_closure" id="turbo.mercure.default.renderer"/>
+      </argument>
+    </service>
     <service id=".service_locator.mDV6p8L" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9896,6 +10023,19 @@
     </service>
     <service id="debug.security.firewall.authenticator.main.inner" class="Symfony\Component\Security\Http\Firewall\AuthenticatorManagerListener">
       <argument type="service" id="security.authenticator.manager.main"/>
+    </service>
+    <service id="mercure.hub.default.publisher.traceable.inner" class="Symfony\Component\Mercure\Publisher">
+      <argument>http://localhost:3000/.well-known/mercure</argument>
+      <argument type="service" id="mercure.hub.default.jwt.provider"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <deprecated package="symfony/mercure-bundle" version="0.2">The "%service_id%" service is deprecated. You should stop using it, as it will be removed in the future, use "mercure.hub.default" instead.</deprecated>
+    </service>
+    <service id="mercure.hub.default.traceable.inner" class="Symfony\Component\Mercure\Hub">
+      <argument>http://localhost:3000/.well-known/mercure</argument>
+      <argument type="service" id="mercure.hub.default.jwt.provider"/>
+      <argument type="service" id="mercure.hub.default.jwt.factory"/>
+      <argument>null</argument>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
     </service>
     <service id="debug.security.event_dispatcher.main.inner" class="Symfony\Component\EventDispatcher\EventDispatcher"/>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
@@ -11118,6 +11258,19 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $default" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $defaultFactory" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $defaultTokenFactory" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $default" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $defaultProvider" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $defaultTokenProvider" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\HubInterface $defaultHub" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\HubInterface $default" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface $defaultPublisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface $default" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\HubInterface" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\Publisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface" alias="mercure.hub.default.publisher.traceable"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.DngMqzi"/>
@@ -11141,6 +11294,7 @@
     <service id="Psr\Log\LoggerInterface $debugLogger" alias="monolog.logger.debug"/>
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
+    <service id="turbo.mercure.stimulus_helper" alias="stimulus.helper"/>
     <service id=".service_locator.xqODiDp" alias="messenger.receiver_locator"/>
     <service id=".service_locator.kVuTj7R" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.hUPzsWO" alias=".service_locator.ea.H0ae"/>
@@ -11161,6 +11315,8 @@
     <service id="turbo.broadcaster.imux" alias="turbo.broadcaster.action_renderer"/>
     <service id="security.access.decision_manager" alias="debug.security.access.decision_manager"/>
     <service id="security.firewall.authenticator.main" alias="debug.security.firewall.authenticator.main"/>
+    <service id="mercure.hub.default.publisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="mercure.hub.default" alias="mercure.hub.default.traceable"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>

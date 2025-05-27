@@ -160,6 +160,6 @@ class __TwigTemplate_2136607d923328fba86cee9a2436725a extends Template
 {% if articles is empty and categories is empty %}
     <span class=\"dropdown-item text-muted\">Aucun résultat</span>
 {% endif %}
-", "search/_resultat.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/search/_resultat.html.twig");
+", "search/_resultat.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/search/_resultat.html.twig");
     }
 }

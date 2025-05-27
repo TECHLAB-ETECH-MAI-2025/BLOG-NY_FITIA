@@ -84,6 +84,7 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\Messenger\\Bridge\\Doctrine\\' => 44,
             'Symfony\\Component\\Messenger\\' => 28,
+            'Symfony\\Component\\Mercure\\' => 26,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\Intl\\' => 23,
             'Symfony\\Component\\HttpKernel\\' => 29,
@@ -110,6 +111,7 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Bundle\\TwigBundle\\' => 26,
             'Symfony\\Bundle\\SecurityBundle\\' => 30,
             'Symfony\\Bundle\\MonologBundle\\' => 29,
+            'Symfony\\Bundle\\MercureBundle\\' => 29,
             'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
             'Symfony\\Bundle\\DebugBundle\\' => 27,
@@ -135,6 +137,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             'Monolog\\' => 8,
             'Masterminds\\' => 12,
+        ),
+        'L' => 
+        array (
+            'Lcobucci\\JWT\\' => 13,
         ),
         'K' => 
         array (
@@ -355,6 +361,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/symfony/messenger',
         ),
+        'Symfony\\Component\\Mercure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mercure/src',
+        ),
         'Symfony\\Component\\Mailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/mailer',
@@ -459,6 +469,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/symfony/monolog-bundle',
         ),
+        'Symfony\\Bundle\\MercureBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mercure-bundle/src',
+        ),
         'Symfony\\Bundle\\MakerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
@@ -534,6 +548,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
         ),
         'Knp\\Component\\' => 
         array (

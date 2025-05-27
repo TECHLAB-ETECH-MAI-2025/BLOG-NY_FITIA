@@ -1,0 +1,8 @@
+# config/packages/mercure.yaml
+mercure:
+    hubs:
+        default:
+            url: 'http://localhost:3000/.well-known/mercure'
+            jwt:
+                secret: 'keymercure'
+                algorithm: 'hmac.sha256'

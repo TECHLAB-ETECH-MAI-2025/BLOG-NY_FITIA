@@ -153,6 +153,6 @@ class __TwigTemplate_bae997473fe83a0bdb70847474eab03c extends Template
     <p>{{ article.description }}</p>
     <small>Publié le {{ article.createdAt|date('d/m/Y') }}</small>
 {% endblock %}
-", "article/showOne.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/article/showOne.html.twig");
+", "article/showOne.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/article/showOne.html.twig");
     }
 }
