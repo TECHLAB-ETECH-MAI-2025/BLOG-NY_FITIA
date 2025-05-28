@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
+#[Route('/api')]
 class ArticleController extends AbstractController
 {
     #[Route('/article/new', name: 'article_new')]

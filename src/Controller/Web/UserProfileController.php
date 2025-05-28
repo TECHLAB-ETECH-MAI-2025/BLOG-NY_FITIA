@@ -15,6 +15,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[IsGranted('ROLE_USER')]
+#[Route('/api')]
 final class UserProfileController extends AbstractController
 {
     public function __construct(

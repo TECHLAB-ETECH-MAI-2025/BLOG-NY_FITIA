@@ -21,11 +21,11 @@ class ConversationController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function listConversation(): JsonResponse
     {
-        $user = $this->getUser(); // Correction: $this->getUser() au lieu de $get->getUser()
+        $user = $this->getUser();
         $conversations = $this->conversationService->getUserConversations($user);
         
         return $this->json([
-            'conversations' => $conversations, // Correction: espace après ':' et variable $conversations
+            'conversations' => $conversations,
         ]);
     }
 

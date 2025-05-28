@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
-#[Route('/category')]
+#[Route('/api/category')]
 final class CategoryController extends AbstractController
 {
     #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]

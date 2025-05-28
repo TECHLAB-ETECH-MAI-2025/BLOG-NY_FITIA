@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[Route('/api')]
 final class VoteController extends AbstractController
 {
     #[Route('/article/{id}/vote/{type}', name: 'article_vote', methods: ['POST'])]

@@ -1,8 +1,12 @@
-# config/routes.yaml
-controllers:
-    resource: '../src/Controller/'
+controllers_web:
+    resource: '../src/Controller/Web/'
     type: attribute
-    prefix: /api  
+
+controllers_api:
+    resource: '../src/Controller/Api/'
+    type: attribute
+    prefix: /api
+
 api_login_check:
-    path: /api/login_check
+    path: /api/login
     methods: POST
