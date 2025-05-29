@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,10 +9,23 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/api/login', name: 'app_login', methods: ['POST'])]
+    private $requestStack;
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+
+    #[Route('/', name: 'app_login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): JsonResponse
     {
-        // Récupère l'erreur de connexion s'il y en a une
+
+        $request = $this->requestStack->getCurrentRequest();
+        if ($request->isMethod('GET')) {
+            return $this->render('security/login.html.twig', [
+                'error' => $authenticationUtils->getLastAuthenticationError()
+            ]);
+        }
+
         $error = $authenticationUtils->getLastAuthenticationError();
         
         if ($error) {

@@ -1,6 +1,6 @@
 <?php
 // src/Controller/ArticleController.php
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use App\Entity\Article;
 use App\Entity\Comment;

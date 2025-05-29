@@ -1,5 +1,5 @@
 <?php
-    namespace App\Controller;
+    namespace App\Controller\Web;
 
     use App\Form\SearchType;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,4 +13,4 @@
                 'method' => 'GET'
             ]);
         }
-    }
+}
