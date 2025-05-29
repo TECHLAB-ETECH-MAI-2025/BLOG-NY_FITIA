@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerFExPNUm\App_KernelDevDebugContainer([
     'container.build_hash' => 'FExPNUm',
-    'container.build_id' => '07ea8553',
-    'container.build_time' => 1748526388,
+    'container.build_id' => 'b60e3e10',
+    'container.build_time' => 1748531326,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerFExPNUm');

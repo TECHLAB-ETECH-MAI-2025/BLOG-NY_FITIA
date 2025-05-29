@@ -3005,3 +3005,6 @@ fd86db,::1,GET,http://localhost:8000/search/live?q=tes,1748522131,,200,request
 c25b64,::1,GET,http://localhost:8000/search/live?q=tes,1748522133,,200,request
 b2c472,::1,GET,http://localhost:8000/search/live?q=te,1748522133,,200,request
 ede8af,::1,GET,http://localhost:8000/home,1748526388,,200,request
+24b58d,::1,GET,http://localhost:8000/,1748536851,,200,request
+0592ba,::1,GET,http://localhost:8000/logout,1748536854,,302,request
+be9b80,::1,GET,http://localhost:8000/,1748536854,,200,request
