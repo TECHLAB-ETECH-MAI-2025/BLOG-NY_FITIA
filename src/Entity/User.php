@@ -60,10 +60,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
+    private Collection $sentMessages;
+
+
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
+    private Collection $receivedMessages;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->votes = new ArrayCollection();
+        $this->sentMessages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -237,6 +252,64 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getSentMessages(): Collection
+    {
+        return $this->sentMessages;
+    }
+
+    public function addSentMessage(Message $message): static
+    {
+        if (!$this->sentMessages->contains($message)) {
+            $this->sentMessages->add($message);
+            $message->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentMessage(Message $message): static
+    {
+        if ($this->sentMessages->removeElement($message)) {
+            if ($message->getSender() === $this) {
+                $message->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+ 
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getReceivedMessages(): Collection
+    {
+        return $this->receivedMessages;
+    }
+
+    public function addReceivedMessage(Message $message): static
+    {
+        if (!$this->receivedMessages->contains($message)) {
+            $this->receivedMessages->add($message);
+            $message->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedMessage(Message $message): static
+    {
+        if ($this->receivedMessages->removeElement($message)) {
+            if ($message->getRecipient() === $this) {
+                $message->setRecipient(null);
+            }
+        }
 
         return $this;
     }
