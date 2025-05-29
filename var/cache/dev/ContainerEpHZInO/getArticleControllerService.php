@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/getArticleControllerService.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/getArticleControllerService.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,7 +23,7 @@ class getArticleControllerService extends App_KernelDevDebugContainer
 
         $container->services['App\\Controller\\ArticleController'] = $instance = new \App\Controller\ArticleController();
 
-        $instance->setContainer(($container->privates['.service_locator.8HehBAH'] ?? $container->load('get_ServiceLocator_8HehBAHService'))->withContext('App\\Controller\\ArticleController', $container));
+        $instance->setContainer(($container->privates['.service_locator.UjaHQ8c'] ?? $container->load('get_ServiceLocator_UjaHQ8cService'))->withContext('App\\Controller\\ArticleController', $container));
 
         return $instance;
     }

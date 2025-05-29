@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/getResetPasswordControllerService.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/getResetPasswordControllerService.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -32,7 +28,7 @@ class getResetPasswordControllerService extends App_KernelDevDebugContainer
 
         $container->services['App\\Controller\\ResetPasswordController'] = $instance = new \App\Controller\ResetPasswordController(new \SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper(new \SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator($container->getEnv('APP_SECRET'), new \SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordRandomGenerator()), ($container->privates['symfonycasts.reset_password.cleaner'] ?? $container->load('getSymfonycasts_ResetPassword_CleanerService')), ($container->privates['App\\Repository\\ResetPasswordRequestRepository'] ?? $container->load('getResetPasswordRequestRepositoryService')), 3600, 3600), ($container->services['doctrine.orm.default_entity_manager'] ?? self::getDoctrine_Orm_DefaultEntityManagerService($container)));
 
-        $instance->setContainer(($container->privates['.service_locator.8HehBAH'] ?? $container->load('get_ServiceLocator_8HehBAHService'))->withContext('App\\Controller\\ResetPasswordController', $container));
+        $instance->setContainer(($container->privates['.service_locator.UjaHQ8c'] ?? $container->load('get_ServiceLocator_UjaHQ8cService'))->withContext('App\\Controller\\ResetPasswordController', $container));
 
         return $instance;
     }

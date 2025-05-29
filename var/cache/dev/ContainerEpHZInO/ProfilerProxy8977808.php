@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/ProfilerProxy8977808.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/ProfilerProxy8977808.php
 
 class ProfilerProxy8977808 extends \Symfony\Component\HttpKernel\Profiler\Profiler implements \Symfony\Component\VarExporter\LazyObjectInterface
 {

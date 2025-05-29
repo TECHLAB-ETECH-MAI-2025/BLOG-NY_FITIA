@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/get_ServiceLocator_L_C9cDrService.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/get_ServiceLocator_L_C9cDrService.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;

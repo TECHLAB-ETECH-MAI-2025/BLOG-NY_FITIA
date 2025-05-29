@@ -117,7 +117,7 @@ class __TwigTemplate_47de86e994db446d914a0eefa894b092 extends Template
 </style>
 
 <div class=\"login-container\">
-    <h1 class=\"text-center mb-4\">Sing In</h1>
+    <h1 class=\"text-center mb-4\">Sign In</h1>
 
     ";
         // line 28
@@ -173,11 +173,11 @@ class __TwigTemplate_47de86e994db446d914a0eefa894b092 extends Template
         yield "\" class=\"text-white-50\">Forgot password ?</a>
         </div>
 
-        <button class=\"btn btn-primary w-100\" type=\"submit\">Sing In</button></hr>
+        <button class=\"btn btn-primary w-100\" type=\"submit\">Sign In</button></hr>
         Don't have an account ? <a href=\"";
         // line 57
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
-        yield "\" class=\"text-white-50\">Sing Up</a>
+        yield "\" class=\"text-white-50\">Sign Up</a>
     </form>
 </div>
 ";
@@ -241,7 +241,7 @@ class __TwigTemplate_47de86e994db446d914a0eefa894b092 extends Template
 </style>
 
 <div class=\"login-container\">
-    <h1 class=\"text-center mb-4\">Sing In</h1>
+    <h1 class=\"text-center mb-4\">Sign In</h1>
 
     {% if error %}
         <div class=\"alert alert-danger\">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -271,11 +271,11 @@ class __TwigTemplate_47de86e994db446d914a0eefa894b092 extends Template
             <a href=\"{{ path('app_forgot_password_request') }}\" class=\"text-white-50\">Forgot password ?</a>
         </div>
 
-        <button class=\"btn btn-primary w-100\" type=\"submit\">Sing In</button></hr>
-        Don't have an account ? <a href=\"{{ path('app_register') }}\" class=\"text-white-50\">Sing Up</a>
+        <button class=\"btn btn-primary w-100\" type=\"submit\">Sign In</button></hr>
+        Don't have an account ? <a href=\"{{ path('app_register') }}\" class=\"text-white-50\">Sign Up</a>
     </form>
 </div>
 {% endblock %}
-", "security/login.html.twig", "/home/nyfitia/Documents/Fitia/etech/projet/blog/templates/security/login.html.twig");
+", "security/login.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/security/login.html.twig");
     }
 }

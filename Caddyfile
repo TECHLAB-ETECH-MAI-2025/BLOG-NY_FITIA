@@ -1,0 +1,17 @@
+# Créer un Caddyfile minimal
+cat > Caddyfile << 'EOF'
+{
+    auto_https off
+}
+
+:80 {
+    mercure {
+        publisher_jwt HS256 "!ChangeThisMercureHubJWTSecretKey!"
+        subscriber_jwt HS256 "!ChangeThisMercureHubJWTSecretKey!"
+        anonymous
+        cors_origins *
+    }
+    
+    respond / "Mercure Hub is running on port 80" 200
+}
+EOF

@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/getRegistrationControllerService.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/getRegistrationControllerService.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,7 +30,7 @@ class getRegistrationControllerService extends App_KernelDevDebugContainer
 
         $container->services['App\\Controller\\RegistrationController'] = $instance = new \App\Controller\RegistrationController(new \App\Security\EmailVerifier(new \SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper(($container->services['router'] ?? self::getRouterService($container)), (new \SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory($container->getEnv('APP_SECRET'), 'signature'))->createUriSigner(), new \SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility(), new \SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator($container->getEnv('APP_SECRET')), 3600), ($container->privates['mailer.mailer'] ?? $container->load('getMailer_MailerService')), ($container->services['doctrine.orm.default_entity_manager'] ?? self::getDoctrine_Orm_DefaultEntityManagerService($container))));
 
-        $instance->setContainer(($container->privates['.service_locator.8HehBAH'] ?? $container->load('get_ServiceLocator_8HehBAHService'))->withContext('App\\Controller\\RegistrationController', $container));
+        $instance->setContainer(($container->privates['.service_locator.UjaHQ8c'] ?? $container->load('get_ServiceLocator_UjaHQ8cService'))->withContext('App\\Controller\\RegistrationController', $container));
 
         return $instance;
     }

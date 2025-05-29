@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/getUserProfileControllerService.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/getUserProfileControllerService.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,7 +25,7 @@ class getUserProfileControllerService extends App_KernelDevDebugContainer
 
         $container->services['App\\Controller\\UserProfileController'] = $instance = new \App\Controller\UserProfileController(($container->services['doctrine.orm.default_entity_manager'] ?? self::getDoctrine_Orm_DefaultEntityManagerService($container)), ($container->privates['slugger'] ??= new \Symfony\Component\String\Slugger\AsciiSlugger('en')), (\dirname(__DIR__, 4).'/public/uploads/avatars'));
 
-        $instance->setContainer(($container->privates['.service_locator.8HehBAH'] ?? $container->load('get_ServiceLocator_8HehBAHService'))->withContext('App\\Controller\\UserProfileController', $container));
+        $instance->setContainer(($container->privates['.service_locator.UjaHQ8c'] ?? $container->load('get_ServiceLocator_UjaHQ8cService'))->withContext('App\\Controller\\UserProfileController', $container));
 
         return $instance;
     }

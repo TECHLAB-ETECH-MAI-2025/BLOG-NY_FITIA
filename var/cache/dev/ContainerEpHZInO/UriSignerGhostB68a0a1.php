@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<<< HEAD:var/cache/dev/ContainerEpHZInO/UriSignerGhostB68a0a1.php
 namespace ContainerEpHZInO;
-========
-namespace ContainerOkx0b5j;
->>>>>>>> 839e19e9 (separation style):var/cache/dev/ContainerOkx0b5j/UriSignerGhostB68a0a1.php
 include_once \dirname(__DIR__, 4).'/vendor/symfony/http-foundation/UriSigner.php';
 
 class UriSignerGhostB68a0a1 extends \Symfony\Component\HttpFoundation\UriSigner implements \Symfony\Component\VarExporter\LazyObjectInterface

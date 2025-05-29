@@ -2991,3 +2991,17 @@ b6738e,127.0.0.1,GET,http://localhost:8000/home,1748329329,,200,request
 3ef6ec,127.0.0.1,GET,http://localhost:8000/search/live?q=te,1748330807,,200,request
 3bbe7f,127.0.0.1,GET,http://localhost:8000/search/live?q=tes,1748330808,,200,request
 bc07bd,127.0.0.1,GET,http://localhost:8000/search/live?q=test,1748330809,,200,request
+135304,::1,GET,http://localhost:8000/,1748521884,,200,request
+a594ca,::1,GET,http://localhost:8000/logout,1748521887,,302,request
+b63de9,::1,GET,http://localhost:8000/,1748521887,,200,request
+43ff47,::1,GET,http://localhost:8000/,1748521932,,200,request
+ad18b7,::1,GET,http://localhost:8000/,1748521945,,200,request
+646ac0,::1,GET,http://localhost:8000/,1748522010,,200,request
+92f848,::1,GET,http://localhost:8000/,1748522102,,200,request
+258e9b,::1,POST,http://localhost:8000/,1748522109,,302,request
+105334,::1,GET,http://localhost:8000/home,1748522109,,200,request
+fd86db,::1,GET,http://localhost:8000/search/live?q=tes,1748522131,,200,request
+2cb8fe,::1,GET,http://localhost:8000/search/live?q=test,1748522132,,200,request
+c25b64,::1,GET,http://localhost:8000/search/live?q=tes,1748522133,,200,request
+b2c472,::1,GET,http://localhost:8000/search/live?q=te,1748522133,,200,request
+ede8af,::1,GET,http://localhost:8000/home,1748526388,,200,request

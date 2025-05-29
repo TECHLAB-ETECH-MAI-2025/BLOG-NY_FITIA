@@ -1,2 +1,36 @@
+# Symfony directories
+/var/
+/vendor/
+/public/build/
+/node_modules/
 
+# Symfony environment files
+.env.local
+.env.*.local
+.env.test
+.env.test.local
 
+# Composer
+/composer.phar
+
+# Cache, logs, etc.
+*.log
+*.cache
+
+# IDEs and editors
+/.idea/
+/.vscode/
+/*.swp
+*.swo
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# Coverage
+/coverage/
