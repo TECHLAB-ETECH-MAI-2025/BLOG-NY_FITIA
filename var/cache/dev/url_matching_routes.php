@@ -20,6 +20,8 @@ return [
         '/article' => [[['_route' => 'article_show', '_controller' => 'App\\Controller\\ArticleController::show'], null, ['GET' => 0], null, false, false, null]],
         '/category/new' => [[['_route' => 'category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/category' => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], null, ['GET' => 0], null, false, false, null]],
+        '/chat' => [[['_route' => 'app_chat', '_controller' => 'App\\Controller\\MessageController::index'], null, null, null, false, false, null]],
+        '/chat/send' => [[['_route' => 'message_send', '_controller' => 'App\\Controller\\MessageController::send'], null, ['POST' => 0], null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
@@ -62,14 +64,19 @@ return [
                     .')'
                     .'|(*:276)'
                 .')'
-                .'|/category/(?'
-                    .'|category/([^/]++)(*:315)'
-                    .'|([^/]++)(?'
-                        .'|/edit(*:339)'
-                        .'|(*:347)'
+                .'|/c(?'
+                    .'|ategory/(?'
+                        .'|category/([^/]++)(*:318)'
+                        .'|([^/]++)(?'
+                            .'|/edit(*:342)'
+                            .'|(*:350)'
+                        .')'
+                    .')'
+                    .'|hat/([^/]++)(?'
+                        .'|(*:375)'
                     .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:393)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:421)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -88,10 +95,14 @@ return [
             [['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [['_route' => 'article_show_one', '_controller' => 'App\\Controller\\ArticleController::showArticleOne'], ['id'], ['GET' => 0], null, false, true, null],
         ],
-        315 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
-        339 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        347 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        393 => [
+        318 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
+        342 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        350 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        375 => [
+            [['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null],
+            [['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null],
+        ],
+        421 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

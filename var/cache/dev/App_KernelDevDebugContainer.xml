@@ -425,6 +425,13 @@
         <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\CategoryController"/>
       </call>
     </service>
+    <service id="App\Controller\MessageController" class="App\Controller\MessageController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\MessageController"/>
+      </call>
+    </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -572,7 +579,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.DngMqzi"/>
+      <argument type="service" id=".service_locator.ZAkQeTM"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3734,7 +3741,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.DngMqzi"/>
+      <argument type="service" id=".service_locator.ZAkQeTM"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8058,6 +8065,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\MessageController" class="App\Controller\MessageController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MessageController" class="App\Controller\MessageController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\MessageController" class="App\Controller\MessageController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8819,6 +8829,63 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.gADJ5td" method="withContext"/>
     </service>
+    <service id=".errored.PUq1o1T" class="App\Controller\Request">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\MessageController::send()&quot;: the $request argument is type-hinted with the non-existent class or interface: &quot;App\Controller\Request&quot;. Did you forget to add a use statement?"/>
+    </service>
+    <service id=".errored.HP8lxuE" class="Symfony\Component\Security\Core\Security">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\MessageController::send()&quot;: the $security argument is type-hinted with the non-existent class or interface: &quot;Symfony\Component\Security\Core\Security&quot;."/>
+    </service>
+    <service id=".service_locator.RaCBDXm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="request" type="service_closure" id=".errored.PUq1o1T"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="security" type="service_closure" id=".errored.HP8lxuE"/>
+      </argument>
+    </service>
+    <service id=".service_locator.RaCBDXm.App\Controller\MessageController::send()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MessageController::send()"/>
+      <argument>App\Controller\MessageController::send()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.RaCBDXm" method="withContext"/>
+    </service>
+    <service id=".errored.GDlQj9S" class="Symfony\Component\Security\Core\Security">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\MessageController::chatWithUser()&quot;: the $security argument is type-hinted with the non-existent class or interface: &quot;Symfony\Component\Security\Core\Security&quot;."/>
+    </service>
+    <service id=".service_locator.mL3V2st" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="messageRepo" type="service_closure" id="App\Repository\MessageRepository"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="security" type="service_closure" id=".errored.GDlQj9S"/>
+      </argument>
+    </service>
+    <service id=".service_locator.mL3V2st.App\Controller\MessageController::chatWithUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MessageController::chatWithUser()"/>
+      <argument>App\Controller\MessageController::chatWithUser()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mL3V2st" method="withContext"/>
+    </service>
+    <service id=".errored.pEk5AlV" class="App\Controller\User">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\MessageController::show()&quot;: the $receiver argument is type-hinted with the non-existent class or interface: &quot;App\Controller\User&quot;. Did you forget to add a use statement?"/>
+    </service>
+    <service id=".errored.w_MVfxU" class="Symfony\Component\Security\Core\Security">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\MessageController::show()&quot;: the $security argument is type-hinted with the non-existent class or interface: &quot;Symfony\Component\Security\Core\Security&quot;."/>
+    </service>
+    <service id=".service_locator.3nRvdX6" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="receiver" type="service_closure" id=".errored.pEk5AlV"/>
+        <argument key="messageRepo" type="service_closure" id="App\Repository\MessageRepository"/>
+        <argument key="security" type="service_closure" id=".errored.w_MVfxU"/>
+      </argument>
+    </service>
+    <service id=".service_locator.3nRvdX6.App\Controller\MessageController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MessageController::show()"/>
+      <argument>App\Controller\MessageController::show()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3nRvdX6" method="withContext"/>
+    </service>
     <service id=".service_locator.tEL1pRK" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8926,7 +8993,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.DngMqzi" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ZAkQeTM" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8946,6 +9013,9 @@
         <argument key="App\Controller\CategoryController::showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController::edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
+        <argument key="App\Controller\MessageController::send" type="service_closure" id=".service_locator.RaCBDXm.App\Controller\MessageController::send()"/>
+        <argument key="App\Controller\MessageController::chatWithUser" type="service_closure" id=".service_locator.mL3V2st.App\Controller\MessageController::chatWithUser()"/>
+        <argument key="App\Controller\MessageController::show" type="service_closure" id=".service_locator.3nRvdX6.App\Controller\MessageController::show()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
@@ -8970,6 +9040,9 @@
         <argument key="App\Controller\CategoryController:showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController:edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
+        <argument key="App\Controller\MessageController:send" type="service_closure" id=".service_locator.RaCBDXm.App\Controller\MessageController::send()"/>
+        <argument key="App\Controller\MessageController:chatWithUser" type="service_closure" id=".service_locator.mL3V2st.App\Controller\MessageController::chatWithUser()"/>
+        <argument key="App\Controller\MessageController:show" type="service_closure" id=".service_locator.3nRvdX6.App\Controller\MessageController::show()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
@@ -9589,6 +9662,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.UjaHQ8c" method="withContext"/>
     </service>
+    <service id=".service_locator.UjaHQ8c.App\Controller\MessageController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MessageController"/>
+      <argument>App\Controller\MessageController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
+    </service>
     <service id=".service_locator.UjaHQ8c.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
       <argument>App\Controller\RegistrationController</argument>
@@ -9825,6 +9904,7 @@
           <argument>App\Controller\ArticleController</argument>
           <argument>App\Controller\BaseController</argument>
           <argument>App\Controller\CategoryController</argument>
+          <argument>App\Controller\MessageController</argument>
           <argument>App\Controller\RegistrationController</argument>
           <argument>App\Controller\ResetPasswordController</argument>
           <argument>App\Controller\SearchController</argument>
@@ -11282,7 +11362,7 @@
     <service id="Symfony\Component\Mercure\PublisherInterface" alias="mercure.hub.default.publisher.traceable"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.DngMqzi"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ZAkQeTM"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11338,6 +11418,9 @@
     <service id=".service_locator.Zmxy2_4" alias=".service_locator.MKaR5.9"/>
     <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
     <service id=".service_locator.AJ56rbI" alias=".service_locator.gADJ5td"/>
+    <service id=".service_locator.Z5svNpT" alias=".service_locator.RaCBDXm"/>
+    <service id=".service_locator.Y7SpKy8" alias=".service_locator.mL3V2st"/>
+    <service id=".service_locator.4UK1vQk" alias=".service_locator.3nRvdX6"/>
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.GGNRYUI" alias=".service_locator.PtEirWk"/>

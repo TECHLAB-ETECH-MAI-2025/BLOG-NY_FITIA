@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discussion avec {{ recipient.firstName }}{% endblock %}
+
+{% block body %}
+<h2>Discussion avec {{ recipient.firstName }} {{ recipient.lastName }}</h2>
+
+<div id="chat-messages" style="border: 1px solid #ccc; height: 400px; overflow-y: scroll; padding: 10px;">
+    {% for message in messages %}
+        <div style="margin-bottom: 10px;">
+            <strong>
+                {% if message.sender.id == app.user.id %}
+                    Moi
+                {% else %}
+                    {{ message.sender.firstName }}
+                {% endif %}
+            </strong> :
+            {{ message.content|nl2br }}
+            <br>
+            <small>{{ message.createdAt|date('d/m/Y H:i') }}</small>
+            {% if not message.isRead and message.recipient.id == app.user.id %}
+                <em style="color: red;">(Non lu)</em>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>Aucun message pour l'instant.</p>
+    {% endfor %}
+</div>
+
+<form action="{{ path('message_send', {'recipientId': recipient.id}) }}" method="post" style="margin-top: 20px;">
+    <textarea name="content" rows="3" required placeholder="Écris ton message ici..." style="width: 100%;"></textarea>
+    <button type="submit" style="margin-top: 10px;">Envoyer</button>
+</form>
+
+{% endblock %}
