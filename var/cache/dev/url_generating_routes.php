@@ -31,7 +31,7 @@ return [
     'category_edit' => [['id'], ['_controller' => 'App\\Controller\\CategoryController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/category']], [], [], []],
     'category_delete' => [['id'], ['_controller' => 'App\\Controller\\CategoryController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/category']], [], [], []],
     'app_chat' => [[], ['_controller' => 'App\\Controller\\MessageController::index'], [], [['text', '/chat']], [], [], []],
-    'message_send' => [[], ['_controller' => 'App\\Controller\\MessageController::send'], [], [['text', '/chat/send']], [], [], []],
+    'chat_send' => [[], ['_controller' => 'App\\Controller\\MessageController::send'], [], [['text', '/chat/send']], [], [], []],
     'chat_with_user' => [['id'], ['_controller' => 'App\\Controller\\MessageController::chatWithUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/chat']], [], [], []],
     'chat_show' => [['id'], ['_controller' => 'App\\Controller\\MessageController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/chat']], [], [], []],
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],

@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?\DateTimeInterface $lastActivityAt = null;
+
     /**
      * @var Collection<int, Vote>
      */
@@ -312,5 +315,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getLastActivityAt(): ?\DateTimeInterface
+    {
+        return $this->lastActivityAt;
+    }
+
+    public function setLastActivityAt(?\DateTimeInterface $lastActivityAt): self
+    {
+        $this->lastActivityAt = $lastActivityAt;
+        return $this;
+    }
+
+    public function isActiveNow(): bool
+    {
+        return $this->lastActivityAt && $this->lastActivityAt > new \DateTime('-5 minutes');
+    }
+
+    public function getStatus(): string
+    {
+        return $this->lastActivityAt && $this->lastActivityAt > new \DateTime('-5 minutes') 
+            ? 'online' 
+            : 'offline';
     }
 }

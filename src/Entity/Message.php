@@ -26,7 +26,7 @@ class Message
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $recipient = null;
+    private ?User $receiver = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isRead = false;
@@ -75,14 +75,14 @@ class Message
         return $this;
     }
 
-    public function getRecipient(): ?User
+    public function getReceiver(): ?User
     {
-        return $this->recipient;
+        return $this->receiver;
     }
 
-    public function setRecipient(?User $recipient): static
+    public function setReceiver(?User $receiver): static
     {
-        $this->recipient = $recipient;
+        $this->receiver = $receiver;
         return $this;
     }
 

@@ -1,0 +1,256 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversation avec {{ otherUser.email }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .chat-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .messages-container {
+            height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message.sent {
+            align-items: flex-end;
+        }
+        
+        .message.received {
+            align-items: flex-start;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .sent .message-content {
+            background-color: rgb(16, 44, 71);
+            color: white;
+        }
+        
+        .received .message-content {
+            background-color: #e9ecef;
+        }
+        
+        .message-info {
+            font-size: 0.8em;
+            margin-top: 5px;
+            color: #6c757d;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        #message-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        
+        #send-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .btn-close {
+            background-color:rgb(255, 255, 255);
+        }
+
+        .chat-header {
+            background-color: rgb(16, 44, 71);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="chat-container">
+        <div class="chat-header d-flex align-items-center justify-content-between p-3 border-bottom position-relative">
+            <div class="d-flex align-items-center">
+                <div class=" avatar-container me-3 position-relative">
+                    {% if otherUser.avatar %}
+                        <img src="{{ asset('uploads/avatars/' ~ otherUser.avatar) }}" 
+                            alt="{{ otherUser.firstName }} {{ otherUser.lastName }}"
+                            class="avatar-image rounded-circle"
+                            width="48"
+                            height="48">
+                    {% else %}
+                        <div class="avatar-initials d-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
+                            style="width: 48px; height: 48px;">
+                            {{ otherUser.firstName|first|upper }}{{ otherUser.lastName|first|upper }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="user-info">
+                    <h4 class="mb-0 fw-bold">{{ otherUser.firstName }} {{ otherUser.lastName }}</h4>
+                    <div class="user-status text-muted small">
+                        {% if otherUser.isActiveNow() %}
+                            <span class="text-success">🟢 En ligne</span>
+                        {% else %}
+                            <span class="text-muted">🔴 Hors ligne</span>
+                            {% if otherUser.lastActivityAt %}
+                                <span class="ms-1">• Dernière activité : {{ otherUser.lastActivityAt|date('H:i') }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <a href="{{ path('app_chat') }}" class="btn-close" aria-label="Fermer la conversation"></a>
+        </div>
+        <div class="messages-container" id="messages">
+            {% for message in messages %}
+                <div class="message {% if message.sender == app.user %}sent{% else %}received{% endif %}">
+                    <div class="message-content">
+                        {{ message.content }}
+                        <div class="message-info">
+                            {{ message.createdAt|date('H:i') }}
+                            {% if message.sender == app.user %}
+                                {% if message.isRead %}
+                                    ✓✓
+                                {% else %}
+                                    ✓
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="typing-indicator" id="typing-indicator"></div>
+        
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Écrivez votre message...">
+            <button id="send-button">Envoyer</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messagesContainer = document.getElementById('messages');
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const currentUser = {{ app.user.id|json_encode|raw }};
+            const otherUser = {{ otherUser.id|json_encode|raw }};
+            
+            // Scroll vers le bas initial
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Connexion Mercure pour les nouveaux messages
+            const mercureUrl = new URL('{{ mercure_publish_url }}');
+            mercureUrl.searchParams.append('topic', `/user/${currentUser}/messages`);
+            mercureUrl.searchParams.append('topic', `/user/${otherUser}/messages`);
+            
+            const eventSource = new EventSource(mercureUrl);
+            
+            eventSource.onmessage = event => {
+                const data = JSON.parse(event.data);
+                
+                if (data.sender === otherUser || data.sender === currentUser) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${data.sender === currentUser ? 'sent' : 'received'}`;
+                    messageDiv.innerHTML = `
+                        <div class="message-content">
+                            ${data.content}
+                            <div class="message-info">
+                                ${new Date(data.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                ${data.sender === currentUser ? (data.isRead ? '✓✓' : '✓') : ''}
+                            </div>
+                        </div>
+                    `;
+                    
+                    messagesContainer.appendChild(messageDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            };
+            
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const content = messageInput.value.trim();
+                
+                if (content) {
+                    fetch('{{ path("chat_send") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({
+                            content: content,
+                            receiver: otherUser
+                        })
+                    }).then(response => {
+                        if (response.ok) {
+                            messageInput.value = '';
+                        }
+                    });
+                }
+            }
+            
+            const statusEventSource = new EventSource(`{{ mercure_publish_url }}?topic=/user/${otherUser}/status`);
+            
+            statusEventSource.onmessage = event => {
+                const data = JSON.parse(event.data);
+                const statusElement = document.getElementById('user-status');
+                
+                if (data.status === 'online') {
+                    statusElement.innerHTML = '<span class="text-success">🟢 En ligne</span>';
+                } else {
+                    const lastSeen = data.lastActivity ? new Date(data.lastActivity).toLocaleString() : '';
+                    statusElement.innerHTML = `
+                        <span class="text-muted">🔴 Hors ligne</span>
+                        <small>Dernière activité: ${lastSeen}</small>
+                    `;
+                }
+            };
+        });
+    </script>
+{% endblock %}

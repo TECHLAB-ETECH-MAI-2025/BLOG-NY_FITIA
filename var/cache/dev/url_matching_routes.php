@@ -21,7 +21,7 @@ return [
         '/category/new' => [[['_route' => 'category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/category' => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], null, ['GET' => 0], null, false, false, null]],
         '/chat' => [[['_route' => 'app_chat', '_controller' => 'App\\Controller\\MessageController::index'], null, null, null, false, false, null]],
-        '/chat/send' => [[['_route' => 'message_send', '_controller' => 'App\\Controller\\MessageController::send'], null, ['POST' => 0], null, false, false, null]],
+        '/chat/send' => [[['_route' => 'chat_send', '_controller' => 'App\\Controller\\MessageController::send'], null, ['POST' => 0], null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
