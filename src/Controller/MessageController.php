@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\MessageRepository;
 use App\Entity\User;
+use App\Entity\Message;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security; 
@@ -11,6 +12,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mercure\HubInterface;
 
@@ -34,12 +36,21 @@ final class MessageController extends AbstractController
     #[Route('/chat/send', name: 'chat_send', methods: ['POST'])]
     public function send(Request $request, EntityManagerInterface $em, Security $security): Response
     {
-        $receiverId = $request->request->get('receiver_id');
         $content = $request->request->get('content');
+        if (!$content) 
+        {
+            throw new \InvalidArgumentException('Le message est vide.');
+        }
+        $receiverId = $request->request->get('receiver_id');
+        if (!$receiverId) 
+        {
+            throw $this->createNotFoundException('Receiver ID missing.');
+        }
         $sender = $security->getUser();
 
         $receiver = $em->getRepository(User::class)->find($receiverId);
-        if (!$receiver) {
+        if (!$receiver)
+        {
             throw $this->createNotFoundException('Receiver not found.');
         }
         $message = new Message();
@@ -56,8 +67,13 @@ final class MessageController extends AbstractController
     }
 
     #[Route('/chat/{id}', name: 'chat_with_user')]
-    public function chatWithUser(User $otherUser, MessageRepository $messageRepo, EntityManagerInterface $em, Security $security, HubInterface $hub ): Response
-    {
+    public function chatWithUser(
+        User $otherUser,
+        MessageRepository $messageRepo,
+        EntityManagerInterface $em,
+        Security $security,
+        HubInterface $hub
+    ): Response {
         $currentUser = $security->getUser();
         
         if (!$currentUser instanceof User) {
@@ -73,7 +89,7 @@ final class MessageController extends AbstractController
             ->getResult();
 
         foreach ($messages as $message) {
-            if ($message->getRecipient() === $currentUser && !$message->isRead()) {
+            if ($message->getReceiver() === $currentUser && !$message->isRead()) {
                 $message->setIsRead(true);
             }
         }
@@ -84,9 +100,33 @@ final class MessageController extends AbstractController
             'otherUser' => $otherUser,
             'currentUser' => $currentUser,
             'mercure_publish_url' => $hub->getPublicUrl(),
-            'mercure_topic' => '/chat/'.$currentUser->getId(),
+            'mercure_topic' => '/user/'.$currentUser->getId().'/messages', // Assure-toi que ça correspond à ta JS
         ]);
     }
+
+
+    #[Route('/chat/mark-read', name: 'chat_mark_read', methods: ['POST'])]
+    public function markRead(Request $request, EntityManagerInterface $em, Security $security): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $fromUserId = $data['fromUser'] ?? null;
+
+        if (!$fromUserId) {
+            return new JsonResponse(['error' => 'Invalid data'], 400);
+        }
+
+        $currentUser = $security->getUser();
+        $messages = $em->getRepository(Message::class)->findUnreadFromSender($fromUserId, $currentUser->getId());
+
+        foreach ($messages as $message) {
+            $message->setIsRead(true);
+        }
+
+        $em->flush();
+
+        return new JsonResponse(['success' => true]);
+    }
+
 
     #[Route('/chat/{id}', name: 'chat_show')]
     public function show(User $receiver, MessageRepository $messageRepo, Security $security): Response

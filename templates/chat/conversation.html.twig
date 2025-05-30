@@ -155,13 +155,14 @@
                 </div>
             {% endfor %}
         </div>
-        
         <div class="typing-indicator" id="typing-indicator"></div>
-        
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Écrivez votre message...">
-            <button id="send-button">Envoyer</button>
-        </div>
+        <form method="post" action="{{ path('chat_send') }}">
+            <div class="chat-input">
+                <input type="hidden" name="receiver_id" value="{{ otherUser.id }}">
+                <input type="text" id="message-input" name="content" placeholder="Écrivez votre message...">
+                <button type="submit" class="btn btn-primary"> <i class="bi bi-send"></i></button>
+            </div>
+        </form>
     </div>
 {% endblock %}
 

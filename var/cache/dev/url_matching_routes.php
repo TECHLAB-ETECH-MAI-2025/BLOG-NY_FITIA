@@ -72,11 +72,13 @@ return [
                             .'|(*:350)'
                         .')'
                     .')'
-                    .'|hat/([^/]++)(?'
-                        .'|(*:375)'
+                    .'|hat/(?'
+                        .'|([^/]++)(*:375)'
+                        .'|mark\\-read(*:393)'
+                        .'|([^/]++)(*:409)'
                     .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:421)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:455)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -98,11 +100,10 @@ return [
         318 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
         342 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         350 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        375 => [
-            [['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null],
-            [['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null],
-        ],
-        421 => [
+        375 => [[['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null]],
+        393 => [[['_route' => 'chat_mark_read', '_controller' => 'App\\Controller\\MessageController::markRead'], [], ['POST' => 0], null, false, false, null]],
+        409 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
+        455 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
