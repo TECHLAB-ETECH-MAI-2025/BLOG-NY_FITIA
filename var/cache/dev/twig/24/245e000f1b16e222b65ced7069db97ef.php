@@ -46,7 +46,10 @@ class __TwigTemplate_05a02de598b9ddedc8b45b0b9ef56b3f extends Template
 
         // line 1
         yield "<div class=\"sidebar-sticky pt-3\">
-    <a class=\"dropdown-item\" href=\"#\">
+    <a class=\"dropdown-item\" href=\"";
+        // line 2
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_chat");
+        yield "\">
         <i class=\"bi bi-chat-dots-fill text-primary\" style=\"font-size: 2rem;\"></i>
     </a>
 </div>";
@@ -70,15 +73,23 @@ class __TwigTemplate_05a02de598b9ddedc8b45b0b9ef56b3f extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo(): array
     {
-        return array (  48 => 1,);
+        return array (  51 => 2,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<div class=\"sidebar-sticky pt-3\">
-    <a class=\"dropdown-item\" href=\"#\">
+    <a class=\"dropdown-item\" href=\"{{ path('app_chat') }}\">
         <i class=\"bi bi-chat-dots-fill text-primary\" style=\"font-size: 2rem;\"></i>
     </a>
 </div>", "includes/_menuChat.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/includes/_menuChat.html.twig");

@@ -15,12 +15,8 @@ final class VoteController extends AbstractController
 {
     #[Route('/article/{id}/vote/{type}', name: 'article_vote', methods: ['POST'])]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function vote(
-        Article $article,
-        string $type,
-        EntityManagerInterface $em,
-        Request $request
-    ): JsonResponse {
+    public function vote(Article $article, string $type,EntityManagerInterface $em, Request $request ): JsonResponse
+    {
         $user = $this->getUser();
         
         if (!$user) {

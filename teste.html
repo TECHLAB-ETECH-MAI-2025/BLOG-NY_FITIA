@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test abonnement Mercure</title>
+</head>
+<body>
+  <h1>Test abonnement Mercure</h1>
+
+  <div id="mercure-messages">Aucun message reçu pour le moment.</div>
+
+  <script>
+    const url = new URL('https://localhost:32865/.well-known/mercure');
+    url.searchParams.append('topic', 'http://example.com/books/1');
+
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = event => {
+      console.log("Message reçu:", event.data);
+
+      const div = document.getElementById('mercure-messages');
+      div.textContent += '\n' + event.data;
+    };
+
+    eventSource.onerror = error => {
+      console.error("Erreur EventSource :", error);
+      const div = document.getElementById('mercure-messages');
+      div.textContent = "Erreur de connexion au hub Mercure.";
+    };
+  </script>
+</body>
+</html>

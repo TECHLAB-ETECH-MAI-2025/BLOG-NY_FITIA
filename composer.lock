@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15f79c6458b2e5550b205c23b4b319ad",
+    "content-hash": "53f3f2cb0ccd595bb1a99021dce20fb8",
     "packages": [
         {
             "name": "composer/semver",
@@ -6130,16 +6130,16 @@
         },
         {
             "name": "symfony/security-bundle",
-            "version": "v7.2.3",
+            "version": "v7.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-bundle.git",
-                "reference": "721de227035c6e4c322fb7dd4839586d58bc0cf5"
+                "reference": "5431c40e72186d10f6951461048515966e55aa67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/721de227035c6e4c322fb7dd4839586d58bc0cf5",
-                "reference": "721de227035c6e4c322fb7dd4839586d58bc0cf5",
+                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/5431c40e72186d10f6951461048515966e55aa67",
+                "reference": "5431c40e72186d10f6951461048515966e55aa67",
                 "shasum": ""
             },
             "require": {
@@ -6216,7 +6216,7 @@
             "description": "Provides a tight integration of the Security component into the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/security-bundle/tree/v7.2.3"
+                "source": "https://github.com/symfony/security-bundle/tree/v7.2.7"
             },
             "funding": [
                 {
@@ -6232,20 +6232,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-07T09:39:55+00:00"
+            "time": "2025-05-15T09:03:48+00:00"
         },
         {
             "name": "symfony/security-core",
-            "version": "v7.2.6",
+            "version": "v7.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-core.git",
-                "reference": "340e120d26b3bf5eee5cea0782aebaa2f36b6722"
+                "reference": "0e2c660ea3edb351e86123718e84e74294e6848f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-core/zipball/340e120d26b3bf5eee5cea0782aebaa2f36b6722",
-                "reference": "340e120d26b3bf5eee5cea0782aebaa2f36b6722",
+                "url": "https://api.github.com/repos/symfony/security-core/zipball/0e2c660ea3edb351e86123718e84e74294e6848f",
+                "reference": "0e2c660ea3edb351e86123718e84e74294e6848f",
                 "shasum": ""
             },
             "require": {
@@ -6303,7 +6303,7 @@
             "description": "Symfony Security Component - Core Library",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/security-core/tree/v7.2.6"
+                "source": "https://github.com/symfony/security-core/tree/v7.2.7"
             },
             "funding": [
                 {
@@ -6319,7 +6319,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-17T08:47:02+00:00"
+            "time": "2025-05-21T07:26:01+00:00"
         },
         {
             "name": "symfony/security-csrf",

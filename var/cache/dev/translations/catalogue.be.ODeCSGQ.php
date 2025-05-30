@@ -176,7 +176,7 @@ $catalogue = new MessageCatalogue('be', array (
     'Too many failed login attempts, please try again later.' => 'Зашмат няўдалых спроб уваходу, калі ласка, паспрабуйце пазней.',
     'Invalid or expired login link.' => 'Спасылка для ўваходу несапраўдная або пратэрмінаваная.',
     'Too many failed login attempts, please try again in %minutes% minute.' => 'Занадта шмат няўдалых спроб уваходу ў сістэму, паспрабуйце спробу праз %minutes% хвіліну.',
-    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Занадта шмат няўдалых спробаў уваходу, калі ласка, паспрабуйце зноў праз %minutes% хвіліну.|Занадта шмат няўдалых спробаў уваходу, калі ласка, паспрабуйце зноў праз %minutes% хвіліны.|Занадта шмат няўдалых спробаў уваходу, калі ласка, паспрабуйце зноў праз %minutes% хвілін.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Занадта вялікая колькасць няўдалых спробаў уваходу. Калі ласка, паспрабуйце зноў праз %minutes% хвіліну.|Занадта вялікая колькасць няўдалых спробаў уваходу. Калі ласка, паспрабуйце зноў праз %minutes% хвіліны.|Занадта вялікая колькасць няўдалых спробаў уваходу. Калі ласка, паспрабуйце зноў праз %minutes% хвілін.',
   ),
 ));
 

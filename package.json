@@ -32,5 +32,8 @@
         "url": "https://github.com/TECHLAB-ETECH-MAI-2025/BLOG-NY_FITIA/issues"
     },
     "homepage": "https://github.com/TECHLAB-ETECH-MAI-2025/BLOG-NY_FITIA#readme",
-    "description": ""
+    "description": "",
+    "dependencies": {
+        "jsonwebtoken": "^9.0.2"
+    }
 }

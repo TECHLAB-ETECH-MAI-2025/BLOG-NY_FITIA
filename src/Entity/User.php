@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?\DateTimeInterface $lastActivityAt = null;
+
     /**
      * @var Collection<int, Vote>
      */
@@ -60,10 +63,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
+    private Collection $sentMessages;
+
+
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
+    private Collection $receivedMessages;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->votes = new ArrayCollection();
+        $this->sentMessages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,5 +257,86 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getSentMessages(): Collection
+    {
+        return $this->sentMessages;
+    }
+
+    public function addSentMessage(Message $message): static
+    {
+        if (!$this->sentMessages->contains($message)) {
+            $this->sentMessages->add($message);
+            $message->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentMessage(Message $message): static
+    {
+        if ($this->sentMessages->removeElement($message)) {
+            if ($message->getSender() === $this) {
+                $message->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+ 
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getReceivedMessages(): Collection
+    {
+        return $this->receivedMessages;
+    }
+
+    public function addReceivedMessage(Message $message): static
+    {
+        if (!$this->receivedMessages->contains($message)) {
+            $this->receivedMessages->add($message);
+            $message->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedMessage(Message $message): static
+    {
+        if ($this->receivedMessages->removeElement($message)) {
+            if ($message->getRecipient() === $this) {
+                $message->setRecipient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLastActivityAt(): ?\DateTimeInterface
+    {
+        return $this->lastActivityAt;
+    }
+
+    public function setLastActivityAt(?\DateTimeInterface $lastActivityAt): self
+    {
+        $this->lastActivityAt = $lastActivityAt;
+        return $this;
+    }
+
+    public function isActiveNow(): bool
+    {
+        return $this->lastActivityAt && $this->lastActivityAt > new \DateTime('-5 minutes');
+    }
+
+    public function getStatus(): string
+    {
+        return $this->lastActivityAt && $this->lastActivityAt > new \DateTime('-5 minutes') 
+            ? 'online' 
+            : 'offline';
     }
 }
