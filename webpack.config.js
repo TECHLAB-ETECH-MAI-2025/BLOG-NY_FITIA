@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -21,7 +22,17 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addStyleEntry('base', './assets/styles/app.css')
+    .addStyleEntry('index1', './assets/styles/indexArticle.css')
+    .addStyleEntry('index2', './assets/styles/indexConversation.css')
+    .addStyleEntry('register', './assets/styles/register.css')
+    .addStyleEntry('conversation', './assets/styles/conversation.css')
+    .addStyleEntry('login', './assets/styles/login.css')
+    .addStyleEntry('newArticle', './assets/styles/newArticle.css')
 
+    .enablePostCssLoader()
+    .enableSourceMaps(!Encore.isProduction())
+    .enableVersioning(Encore.isProduction())
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -56,6 +67,9 @@ Encore
         config.corejs = '3.38';
     })
 
+    .addAliases({
+        '@symfony/stimulus-bridge/controllers.json': path.resolve(__dirname, 'assets/controllers/controllers.json')
+    })
     // enables Sass/SCSS support
     //.enableSassLoader()
 

@@ -65,37 +65,37 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         ";
         // line 11
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 103
+        // line 14
         yield "
         ";
-        // line 104
+        // line 15
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 108
+        // line 19
         yield "    </head>
     <body>
         ";
-        // line 110
-        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 110, $this->source); })()), "request", [], "any", false, false, false, 110), "get", ["_route"], "method", false, false, false, 110), ["app_login", "app_register", "app_forgot_password_request", "app_check_email"])) {
-            // line 111
+        // line 21
+        if (!CoreExtension::inFilter(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 21, $this->source); })()), "request", [], "any", false, false, false, 21), "get", ["_route"], "method", false, false, false, 21), ["app_login", "app_register", "app_forgot_password_request", "app_check_email"])) {
+            // line 22
             yield "            <!-- Structure avec menu -->
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <!-- Sidebar Menu -->
                     <div class=\"col-md-3 col-lg-2 d-md-block sidebar collapse\">
                         ";
-            // line 116
+            // line 27
             yield Twig\Extension\CoreExtension::include($this->env, $context, "includes/_menu.html.twig");
             yield "
                     </div>
                     <main class=\"col-md-8 col-lg-9 main-content\">
                         ";
-            // line 119
+            // line 30
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
                     </main>
                     <div class=\"col-md-1 col-lg-1 d-md-block sidebar2 collapse\">
                         ";
-            // line 122
+            // line 33
             yield Twig\Extension\CoreExtension::include($this->env, $context, "includes/_menuChat.html.twig");
             yield "
                     </div>
@@ -103,17 +103,17 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
             </div>
         ";
         } else {
-            // line 127
+            // line 38
             yield "            <!-- Pages sans menu -->
             <div class=\"auth-container\">
                 ";
-            // line 129
+            // line 40
             yield from             $this->unwrap()->yieldBlock("body", $context, $blocks);
             yield "
             </div>
         ";
         }
-        // line 132
+        // line 43
         yield "    </body>
 
 </html>";
@@ -163,96 +163,9 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 12
-        yield "            <style>
-                .sidebar {
-                    min-height: 100vh;
-                    background:rgb(16, 44, 71);
-                    padding-top: 20px;
-                    border-right: 1px solid #dee2e6;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .sidebar2 {
-                    max-height: 50vh;
-                    background: rgb(16, 44, 71);
-                    padding-top: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center
-                    border: 20px solid rgb(16, 44, 71);
-                    border-radius: 15px 0px 0px 15px;
-                    color: white;
-                }
-
-                .main-content {
-                    padding: 20px;
-                }
-                .tit {
-                    background-color: #002366;
-                    color: white;
-                    padding: 24px 0;
-                    font-family: 'Georgia', serif;
-                    font-size: 2.6rem;
-                    text-transform: uppercase;
-                    letter-spacing: 2px;
-                    margin-bottom: 0;
-                }
-                .nav-link {
-                    padding: 10px 15px;
-                    margin-bottom: 5px;
-                    border-radius: 4px;
-                    color: white;
-                }
-                .nav-link:hover {
-                    background-color: rgba(0,0,0,0.05);
-                }
-                .nav-link.active {
-                    background-color: #0d6efd;
-                    color: white !important;
-                }
-
-                .sidebar-sticky .rounded-circle {
-                    object-fit: cover;
-                    border: 3px solid var(--bs-primary);
-                }
-
-                .sidebar-sticky .dropdown-menu {
-                    margin-top: 10px;
-                    border: none;
-                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-                }
-
-                .sidebar-sticky .border-top {
-                    border-color: rgba(255, 255, 255, 0.1) !important;
-                    padding-top: 1rem;
-                }
-
-                .pagination {
-                    margin: 20px 0;
-                }
-                .page-item.active .page-link {
-                    background-color: #0d6efd;
-                    border-color: #0d6efd;
-                }
-                .page-link {
-                    color: #0d6efd;
-                    padding: 0.375rem 0.75rem;
-                }
-
-                .shadow-blue {
-                     box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
-                } 
-
-                .editFond {
-                    background-color: rgba(16, 44, 71);
-                    color: white;
-                }
-
-            </style>
+        yield "            <link rel=\"stylesheet\" href=\"";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/base.css"), "html", null, true);
+        yield "\">
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -263,7 +176,7 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         yield from [];
     }
 
-    // line 104
+    // line 15
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -276,12 +189,12 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 105
+        // line 16
         yield "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
             ";
-        // line 106
+        // line 17
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 107
+        // line 18
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -292,7 +205,7 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         yield from [];
     }
 
-    // line 106
+    // line 17
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -336,7 +249,7 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  296 => 106,  285 => 107,  283 => 106,  280 => 105,  267 => 104,  166 => 12,  153 => 11,  130 => 5,  117 => 132,  111 => 129,  107 => 127,  99 => 122,  93 => 119,  87 => 116,  80 => 111,  78 => 110,  74 => 108,  72 => 104,  69 => 103,  67 => 11,  58 => 5,  52 => 1,);
+        return array (  209 => 17,  198 => 18,  196 => 17,  193 => 16,  180 => 15,  166 => 12,  153 => 11,  130 => 5,  117 => 43,  111 => 40,  107 => 38,  99 => 33,  93 => 30,  87 => 27,  80 => 22,  78 => 21,  74 => 19,  72 => 15,  69 => 14,  67 => 11,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -352,96 +265,7 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         <link href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css\" rel=\"stylesheet\">
 
         {% block stylesheets %}
-            <style>
-                .sidebar {
-                    min-height: 100vh;
-                    background:rgb(16, 44, 71);
-                    padding-top: 20px;
-                    border-right: 1px solid #dee2e6;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .sidebar2 {
-                    max-height: 50vh;
-                    background: rgb(16, 44, 71);
-                    padding-top: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center
-                    border: 20px solid rgb(16, 44, 71);
-                    border-radius: 15px 0px 0px 15px;
-                    color: white;
-                }
-
-                .main-content {
-                    padding: 20px;
-                }
-                .tit {
-                    background-color: #002366;
-                    color: white;
-                    padding: 24px 0;
-                    font-family: 'Georgia', serif;
-                    font-size: 2.6rem;
-                    text-transform: uppercase;
-                    letter-spacing: 2px;
-                    margin-bottom: 0;
-                }
-                .nav-link {
-                    padding: 10px 15px;
-                    margin-bottom: 5px;
-                    border-radius: 4px;
-                    color: white;
-                }
-                .nav-link:hover {
-                    background-color: rgba(0,0,0,0.05);
-                }
-                .nav-link.active {
-                    background-color: #0d6efd;
-                    color: white !important;
-                }
-
-                .sidebar-sticky .rounded-circle {
-                    object-fit: cover;
-                    border: 3px solid var(--bs-primary);
-                }
-
-                .sidebar-sticky .dropdown-menu {
-                    margin-top: 10px;
-                    border: none;
-                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-                }
-
-                .sidebar-sticky .border-top {
-                    border-color: rgba(255, 255, 255, 0.1) !important;
-                    padding-top: 1rem;
-                }
-
-                .pagination {
-                    margin: 20px 0;
-                }
-                .page-item.active .page-link {
-                    background-color: #0d6efd;
-                    border-color: #0d6efd;
-                }
-                .page-link {
-                    color: #0d6efd;
-                    padding: 0.375rem 0.75rem;
-                }
-
-                .shadow-blue {
-                     box-shadow: 0 8px 15px rgba(16, 44, 71, 0.5);
-                } 
-
-                .editFond {
-                    background-color: rgba(16, 44, 71);
-                    color: white;
-                }
-
-            </style>
+            <link rel=\"stylesheet\" href=\"{{ asset('build/base.css') }}\">
         {% endblock %}
 
         {% block javascripts %}

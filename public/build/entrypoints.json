@@ -3,11 +3,64 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-883246.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-d5ffb6.js",
         "/build/app.js"
+      ]
+    },
+    "base": {
+      "js": [
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/base.css"
+      ]
+    },
+    "index1": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/index1.css"
+      ]
+    },
+    "index2": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/index2.css"
+      ]
+    },
+    "register": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/register.css"
+      ]
+    },
+    "conversation": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/conversation.css"
+      ]
+    },
+    "login": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/login.css"
+      ]
+    },
+    "newArticle": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/newArticle.css"
       ]
     }
   }
