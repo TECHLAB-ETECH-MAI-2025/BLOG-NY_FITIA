@@ -4,8 +4,6 @@
 
 {% block body %}
     <h1>Catégorie : {{ category.name }}</h1>
-
-    {# Tu peux aussi afficher les articles de cette catégorie ici si tu veux #}
     {% if category.articles is defined %}
         <h3>Articles dans cette catégorie :</h3>
         <ul>
