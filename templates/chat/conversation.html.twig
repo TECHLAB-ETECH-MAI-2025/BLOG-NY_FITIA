@@ -1,3 +1,4 @@
+{# templates/chat/conversation.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Conversation avec {{ otherUser.email }}{% endblock %}
@@ -5,118 +6,240 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('build/conversation.css') }}">
+    <style>
+      /* Quelques styles en ligne pour la démo, à extraire ensuite dans conversation.css si tu préfères */
+      #messages {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: #f8f9fa;
+      }
+      .message {
+        margin-bottom: 0.75rem;
+        max-width: 75%;
+        word-wrap: break-word;
+      }
+      .message.sent {
+        margin-left: auto;
+        background: #d1e7dd;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem 0.75rem 0 0.75rem;
+      }
+      .message.received {
+        margin-right: auto;
+        background: #ffffff;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem 0.75rem 0.75rem 0;
+      }
+      .message-info {
+        font-size: 0.75rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+        text-align: right;
+      }
+      /* Header */
+      .chat-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+      }
+      .chat-header .avatar-image,
+      .chat-header .avatar-initials {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .chat-header .avatar-initials {
+        font-size: 1.25rem;
+      }
+      .chat-header .user-info h4 {
+        margin-bottom: 0;
+        font-weight: 600;
+      }
+      .chat-header .user-status {
+        font-size: 0.875rem;
+      }
+      /* Formulaire */
+      #send-message-form .form-group {
+        display: flex;
+      }
+      #send-message-form textarea {
+        flex-grow: 1;
+        resize: none;
+      }
+      #send-message-form button {
+        width: 48px;
+        margin-left: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
 {% endblock %}
 
 {% block body %}
-<h2>Conversation avec {{ otherUser.email }}</h2>
+    <div class="chat-container container py-3" style="max-width: 600px;">
 
-<div id="messages" style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
-    {% for message in messages %}
-        <div id="msg-{{ message.id }}" class="message {% if message.sender.id == currentUser.id %}sent{% else %}received{% endif %}">
-            <div class="message-content">
-                {{ message.content|e }}
-                <div class="message-info small text-muted">
-                    {{ message.createdAt|date('H:i') }}
-                    {% if message.sender.id == currentUser.id %}
-                        {{ message.isRead ? ' ✓✓' : ' ✓' }}
+        {# --- Header (avatar + nom + statut) --- #}
+        <div class="chat-header">
+            <div class="d-flex align-items-center">
+                <div class="avatar-container me-3">
+                    {% if otherUser.avatar %}
+                        <img src="{{ asset('uploads/avatars/' ~ otherUser.avatar) }}"
+                             alt="{{ otherUser.firstName }} {{ otherUser.lastName }}"
+                             class="avatar-image">
+                    {% else %}
+                        <div class="avatar-initials d-flex align-items-center justify-content-center bg-primary text-white fw-bold">
+                            {{ otherUser.firstName|first|upper }}{{ otherUser.lastName|first|upper }}
+                        </div>
                     {% endif %}
                 </div>
+                <div class="user-info">
+                    <h4>{{ otherUser.firstName }} {{ otherUser.lastName }}</h4>
+                    <div class="user-status text-muted">
+                        {% if otherUser.isActiveNow() %}
+                            <span class="text-success">🟢 En ligne</span>
+                        {% else %}
+                            <span class="text-muted">🔴 Hors ligne</span>
+                            {% if otherUser.lastActivityAt %}
+                                <small class="ms-1 text-muted">Dernière activité : {{ otherUser.lastActivityAt|date('H:i') }}</small>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
+            <a href="{{ path('app_chat') }}" class="btn-close" aria-label="Fermer la conversation"></a>
         </div>
-    {% else %}
-        <p>Aucun message pour le moment.</p>
-    {% endfor %}
-</div>
 
-<form id="send-message-form">
-    <input type="hidden" name="receiver_id" value="{{ otherUser.id }}">
-    <textarea id="message-input" name="content" required placeholder="Tapez votre message..." rows="3" style="width: 100%;"></textarea>
-    <button type="submit">Envoyer</button>
-</form>
+        {# --- Zone des messages --- #}
+        <div id="messages">
+            {% for message in messages %}
+                <div id="msg-{{ message.id }}"
+                     class="message {% if message.sender.id == currentUser.id %}sent{% else %}received{% endif %}">
+                    <div>{{ message.content|e }}</div>
+                    <div class="message-info">
+                        {{ message.createdAt|date('H:i') }}
+                        {% if message.sender.id == currentUser.id %}
+                            {{ message.isRead ? '✓✓' : '✓' }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center fst-italic text-muted">Aucun message pour le moment.</p>
+            {% endfor %}
+        </div>
+
+        {# --- Formulaire d'envoi --- #}
+        <form id="send-message-form" class="mt-3">
+            <input type="hidden" name="receiver_id" value="{{ otherUser.id }}">
+            <div class="form-group mb-2">
+                <textarea id="message-input"
+                          name="content"
+                          required
+                          placeholder="Tapez votre message..."
+                          rows="1"
+                          class="form-control shadow-sm"></textarea>
+                <button id="send-button" type="submit" class="btn btn-primary shadow-sm">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </form>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const messagesContainer = document.getElementById('messages');
-            const messageInput = document.getElementById('message-input');
-            const sendButton = document.getElementById('send-button');
-            const currentUser = {{ app.user.id|json_encode|raw }};
-            const otherUser = {{ otherUser.id|json_encode|raw }};
-            
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messagesContainer = document.getElementById('messages');
+        const messageInput      = document.getElementById('message-input');
+        const sendButton        = document.getElementById('send-button');
+        const sendForm          = document.getElementById('send-message-form');
+        const currentUserId     = Number({{ currentUser.id|json_encode|raw }});
+        const otherUserId       = Number({{ otherUser.id|json_encode|raw }});
+
+        /**
+         * Ajoute un nouveau message dans le DOM (évite les doublons grâce à l'ID)
+         */
+        function addMessage(message) {
+            if (document.getElementById('msg-' + message.id)) {
+                return; // déjà présent
+            }
+
+            const div = document.createElement('div');
+            div.id = 'msg-' + message.id;
+            div.className = 'message ' + (Number(message.sender) === currentUserId ? 'sent' : 'received');
+            div.innerHTML = `
+                <div>${message.content}</div>
+                <div class="message-info">
+                    ${new Date(message.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                    ${Number(message.sender) === currentUserId ? (message.isRead ? '✓✓' : '✓') : ''}
+                </div>
+            `;
+            messagesContainer.appendChild(div);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            const mercureUrl = new URL('{{ mercure_publish_url }}');
-            mercureUrl.searchParams.append('topic', `/user/${currentUser}/messages`);
-            mercureUrl.searchParams.append('topic', `/user/${otherUser}/messages`);
-            
-            const eventSource = new EventSource(mercureUrl);
-            
-            eventSource.onmessage = event => {
-                const data = JSON.parse(event.data);
-                
-                if (data.sender === otherUser || data.sender === currentUser) {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `message ${data.sender === currentUser ? 'sent' : 'received'}`;
-                    messageDiv.innerHTML = `
-                        <div class="message-content">
-                            ${data.content}
-                            <div class="message-info">
-                                ${new Date(data.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                                ${data.sender === currentUser ? (data.isRead ? '✓✓' : '✓') : ''}
-                            </div>
-                        </div>
-                    `;
-                    
-                    messagesContainer.appendChild(messageDiv);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        /**
+         * Récupère les messages via AJAX (polling)
+         */
+        function fetchMessages() {
+            fetch('{{ path('chat_get_messages', {'id': otherUser.id}) }}')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(msg => addMessage(msg));
+                })
+                .catch(err => {
+                    console.error('Erreur lors de la récupération des messages :', err);
+                });
+        }
+
+        /**
+         * Soumet le message via AJAX
+         */
+        sendForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            sendButton.disabled = true;
+            const formData = new FormData(sendForm);
+
+            fetch('{{ path('chat_send') }}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
-            };
-            
-            sendButton.addEventListener('click', sendMessage);
-            messageInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    addMessage(data);
+                    messageInput.value = '';
+                    messageInput.focus();
                 }
+                sendButton.disabled = false;
+            })
+            .catch(err => {
+                alert('Erreur lors de l’envoi du message.');
+                console.error(err);
+                sendButton.disabled = false;
             });
-    }
-
-    sendForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const submitButton = sendForm.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-
-        const formData = new FormData(sendForm);
-
-        fetch('{{ path('chat_send') }}', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                addMessage(data);
-                messageInput.value = '';
-            }
-            submitButton.disabled = false;
-        })
-        .catch(() => {
-            alert('Erreur lors de l\'envoi du message.');
-            submitButton.disabled = false;
         });
+
+        // Chargement initial des messages + scroll en bas
+        fetchMessages();
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Polling : récupération toutes les 5 secondes
+        setInterval(fetchMessages, 5000);
     });
-
-    // Chargement initial
-    fetchMessages();
-
-    // Actualisation toutes les 5 secondes
-    setInterval(fetchMessages, 5000);
-});
-</script>
+    </script>
 {% endblock %}
