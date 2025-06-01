@@ -2,38 +2,12 @@
 
 {% block title %}Register{% endblock %}
 
-{% block body %}
-<style>
-    body {
-        background-color: rgb(236, 236, 236);
-        color: white;
-    }
-    .register-container {
-        max-width: 500px;
-        margin: 60px auto;
-        padding: 30px;
-        background-color: rgb(16, 44, 71);
-        border-radius: 10px;
-        backdrop-filter: blur(5px);
-    }
-    label {
-        font-weight: 500;
-    }
-    .form-control, .btn {
-        border-radius: 8px;
-    }
-    .btn {
-        background-color: #198754;
-        color: white;
-    }
-    .btn:hover {
-        background-color: #157347;
-    }
-    a {
-        color:rgb(161, 148, 148);
-    }
-</style>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/register.css') }}">
+{% endblock %}
 
+{% block body %}
 <div class="register-container">
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>

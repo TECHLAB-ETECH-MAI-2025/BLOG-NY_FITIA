@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Conversation{% endblock %}
+{% block title %}Conversation avec {{ otherUser.email }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/conversation.css') }}">
+{% endblock %}
 
 {% block body %}
 <h2>Conversation avec {{ otherUser.email }}</h2>
@@ -31,56 +36,48 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const messagesContainer = document.getElementById('messages');
-    const messageInput = document.getElementById('message-input');
-    const sendForm = document.getElementById('send-message-form');
-    const currentUserId = Number({{ currentUser.id|json_encode|raw }});
-    const otherUserId = Number({{ otherUser.id|json_encode|raw }});
-    let lastMessageId = 0;
-
-    function addMessage(message) {
-        if (document.getElementById('msg-' + message.id)) {
-            return; // message déjà affiché
-        }
-
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${Number(message.sender) === currentUserId ? 'sent' : 'received'}`;
-        messageDiv.id = 'msg-' + message.id;
-        messageDiv.innerHTML = `
-            <div class="message-content">
-                ${escapeHtml(message.content)}
-                <div class="message-info small text-muted">
-                    ${new Date(message.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    ${Number(message.sender) === currentUserId ? (message.isRead ? ' ✓✓' : ' ✓') : ''}
-                </div>
-            </div>
-        `;
-        messagesContainer.appendChild(messageDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        if (message.id > lastMessageId) {
-            lastMessageId = message.id;
-        }
-    }
-
-    // Fonction d'échappement simple pour éviter l'injection HTML
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    function fetchMessages() {
-        fetch('{{ path('chat_get_messages', {'id': otherUser.id}) }}')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(msg => addMessage(msg));
-            })
-            .catch(err => {
-                console.error('Erreur lors de la récupération des messages', err);
+    {{ parent() }}
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messagesContainer = document.getElementById('messages');
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const currentUser = {{ app.user.id|json_encode|raw }};
+            const otherUser = {{ otherUser.id|json_encode|raw }};
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            const mercureUrl = new URL('{{ mercure_publish_url }}');
+            mercureUrl.searchParams.append('topic', `/user/${currentUser}/messages`);
+            mercureUrl.searchParams.append('topic', `/user/${otherUser}/messages`);
+            
+            const eventSource = new EventSource(mercureUrl);
+            
+            eventSource.onmessage = event => {
+                const data = JSON.parse(event.data);
+                
+                if (data.sender === otherUser || data.sender === currentUser) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${data.sender === currentUser ? 'sent' : 'received'}`;
+                    messageDiv.innerHTML = `
+                        <div class="message-content">
+                            ${data.content}
+                            <div class="message-info">
+                                ${new Date(data.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                ${data.sender === currentUser ? (data.isRead ? '✓✓' : '✓') : ''}
+                            </div>
+                        </div>
+                    `;
+                    
+                    messagesContainer.appendChild(messageDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            };
+            
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
             });
     }
 

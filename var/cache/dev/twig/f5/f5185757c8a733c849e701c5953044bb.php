@@ -101,41 +101,10 @@ class __TwigTemplate_fea79f06ba4efacd73ccfc7b58d388f6 extends Template
         yield "    ";
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
-    <style>
-        body {
-            background-color:rgb(255, 255, 255);
-            color: #f8f9fa;
-        }
-
-        h1 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-weight: 600;
-            color:#002366;
-        }
-
-        .container {
-            background-color:rgb(255, 255, 255);
-            border-radius: 12px;
-        }
-
-        label {
-            color:rgb(3, 1, 15);
-        }
-
-        input, textarea, select {
-            background-color: #1e1e2f;
-            color: #ffffff;
-            border: 1px solid #444;
-        }
-
-        .btn-secondary i {
-            margin-right: 5px;
-        }
-
-        .btn-primary, .btn-secondary {
-            border-radius: 6px;
-        }
-    </style>
+    <link rel=\"stylesheet\" href=\"";
+        // line 9
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/newArticle.css"), "html", null, true);
+        yield "\">
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -146,7 +115,7 @@ class __TwigTemplate_fea79f06ba4efacd73ccfc7b58d388f6 extends Template
         yield from [];
     }
 
-    // line 46
+    // line 12
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -159,18 +128,18 @@ class __TwigTemplate_fea79f06ba4efacd73ccfc7b58d388f6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 47
+        // line 13
         yield "    <div class=\"container mt-5\">
         <h1 class=\"text-center mb-4\">Add a new article</h1>
 
         ";
-        // line 50
+        // line 16
         yield Twig\Extension\CoreExtension::include($this->env, $context, "article/_form.html.twig", ["button_label" => "Add"]);
         yield "
 
         <div class=\"text-center mt-3\">
             <a href=\"";
-        // line 53
+        // line 19
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show");
         yield "\" class=\"btn btn-secondary\">
                 <i class=\"bi bi-arrow-left\"></i> Cancel
@@ -208,7 +177,7 @@ class __TwigTemplate_fea79f06ba4efacd73ccfc7b58d388f6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  174 => 53,  168 => 50,  163 => 47,  150 => 46,  101 => 8,  88 => 7,  65 => 4,  42 => 2,);
+        return array (  143 => 19,  137 => 16,  132 => 13,  119 => 12,  106 => 9,  101 => 8,  88 => 7,  65 => 4,  42 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -221,41 +190,7 @@ class __TwigTemplate_fea79f06ba4efacd73ccfc7b58d388f6 extends Template
 
 {% block stylesheets %}
     {{ parent() }}
-    <style>
-        body {
-            background-color:rgb(255, 255, 255);
-            color: #f8f9fa;
-        }
-
-        h1 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-weight: 600;
-            color:#002366;
-        }
-
-        .container {
-            background-color:rgb(255, 255, 255);
-            border-radius: 12px;
-        }
-
-        label {
-            color:rgb(3, 1, 15);
-        }
-
-        input, textarea, select {
-            background-color: #1e1e2f;
-            color: #ffffff;
-            border: 1px solid #444;
-        }
-
-        .btn-secondary i {
-            margin-right: 5px;
-        }
-
-        .btn-primary, .btn-secondary {
-            border-radius: 6px;
-        }
-    </style>
+    <link rel=\"stylesheet\" href=\"{{ asset('build/newArticle.css') }}\">
 {% endblock %}
 
 {% block body %}
