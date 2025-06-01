@@ -8,68 +8,31 @@
 {% endblock %}
 
 {% block body %}
-    <div class="chat-container">
-        <div class="chat-header d-flex align-items-center justify-content-between p-3 border-bottom position-relative">
-            <div class="d-flex align-items-center">
-                <div class=" avatar-container me-3 position-relative">
-                    {% if otherUser.avatar %}
-                        <img src="{{ asset('uploads/avatars/' ~ otherUser.avatar) }}" 
-                            alt="{{ otherUser.firstName }} {{ otherUser.lastName }}"
-                            class="avatar-image rounded-circle"
-                            width="48"
-                            height="48">
-                    {% else %}
-                        <div class="avatar-initials d-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
-                            style="width: 48px; height: 48px;">
-                            {{ otherUser.firstName|first|upper }}{{ otherUser.lastName|first|upper }}
-                        </div>
+<h2>Conversation avec {{ otherUser.email }}</h2>
+
+<div id="messages" style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+    {% for message in messages %}
+        <div id="msg-{{ message.id }}" class="message {% if message.sender.id == currentUser.id %}sent{% else %}received{% endif %}">
+            <div class="message-content">
+                {{ message.content|e }}
+                <div class="message-info small text-muted">
+                    {{ message.createdAt|date('H:i') }}
+                    {% if message.sender.id == currentUser.id %}
+                        {{ message.isRead ? ' ✓✓' : ' ✓' }}
                     {% endif %}
                 </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Aucun message pour le moment.</p>
+    {% endfor %}
+</div>
 
-                <div class="user-info">
-                    <h4 class="mb-0 fw-bold">{{ otherUser.firstName }} {{ otherUser.lastName }}</h4>
-                    <div class="user-status text-muted small">
-                        {% if otherUser.isActiveNow() %}
-                            <span class="text-success">🟢 En ligne</span>
-                        {% else %}
-                            <span class="text-muted">🔴 Hors ligne</span>
-                            {% if otherUser.lastActivityAt %}
-                                <span class="ms-1">• Dernière activité : {{ otherUser.lastActivityAt|date('H:i') }}</span>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <a href="{{ path('app_chat') }}" class="btn-close" aria-label="Fermer la conversation"></a>
-        </div>
-        <div class="messages-container" id="messages">
-            {% for message in messages %}
-                <div class="message {% if message.sender == app.user %}sent{% else %}received{% endif %}">
-                    <div class="message-content">
-                        {{ message.content }}
-                        <div class="message-info">
-                            {{ message.createdAt|date('H:i') }}
-                            {% if message.sender == app.user %}
-                                {% if message.isRead %}
-                                    ✓✓
-                                {% else %}
-                                    ✓
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="typing-indicator" id="typing-indicator"></div>
-        <form method="post" action="{{ path('chat_send') }}">
-            <div class="chat-input">
-                <input type="hidden" name="receiver_id" value="{{ otherUser.id }}">
-                <input type="text" id="message-input" name="content" placeholder="Écrivez votre message...">
-                <button type="submit" class="btn btn-primary"> <i class="bi bi-send"></i></button>
-            </div>
-        </form>
-    </div>
+<form id="send-message-form">
+    <input type="hidden" name="receiver_id" value="{{ otherUser.id }}">
+    <textarea id="message-input" name="content" required placeholder="Tapez votre message..." rows="3" style="width: 100%;"></textarea>
+    <button type="submit">Envoyer</button>
+</form>
 {% endblock %}
 
 {% block javascripts %}
@@ -116,45 +79,44 @@
                     sendMessage();
                 }
             });
-            
-            function sendMessage() {
-                const content = messageInput.value.trim();
-                
-                if (content) {
-                    fetch('{{ path("chat_send") }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        },
-                        body: JSON.stringify({
-                            content: content,
-                            receiver: otherUser
-                        })
-                    }).then(response => {
-                        if (response.ok) {
-                            messageInput.value = '';
-                        }
-                    });
-                }
+    }
+
+    sendForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitButton = sendForm.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+
+        const formData = new FormData(sendForm);
+
+        fetch('{{ path('chat_send') }}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
             }
-            
-            const statusEventSource = new EventSource(`{{ mercure_publish_url }}?topic=/user/${otherUser}/status`);
-            
-            statusEventSource.onmessage = event => {
-                const data = JSON.parse(event.data);
-                const statusElement = document.getElementById('user-status');
-                
-                if (data.status === 'online') {
-                    statusElement.innerHTML = '<span class="text-success">🟢 En ligne</span>';
-                } else {
-                    const lastSeen = data.lastActivity ? new Date(data.lastActivity).toLocaleString() : '';
-                    statusElement.innerHTML = `
-                        <span class="text-muted">🔴 Hors ligne</span>
-                        <small>Dernière activité: ${lastSeen}</small>
-                    `;
-                }
-            };
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                addMessage(data);
+                messageInput.value = '';
+            }
+            submitButton.disabled = false;
+        })
+        .catch(() => {
+            alert('Erreur lors de l\'envoi du message.');
+            submitButton.disabled = false;
         });
-    </script>
+    });
+
+    // Chargement initial
+    fetchMessages();
+
+    // Actualisation toutes les 5 secondes
+    setInterval(fetchMessages, 5000);
+});
+</script>
 {% endblock %}
