@@ -12,8 +12,7 @@
         <div class="welcome-header">
             <h1>Messagerie</h1>
         </div>
-        <h2 class="h4 mb-4">Discuter avec un utilisateur</h2>
-        
+        <h2 class="h4 mb-4">Discuter avec un utilisateur</h2
         <div class="user-list">
             {% for user in users %}
                 {% if user != app.user %}
@@ -21,9 +20,7 @@
                         <div class="user-card">
                             <div class="user-avatar">
                                 {% if user.avatar %}
-                                    <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" 
-                                        alt="{{ user.firstName }} {{ user.lastName }}"
-                                        class="avatar-image">
+                                    <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" alt="{{ user.firstName }} {{ user.lastName }}" class="avatar-image">
                                 {% else %}
                                     <span class="avatar-initials">
                                         {{ user.firstName|first|upper }}{{ user.lastName|first|upper }}
@@ -31,14 +28,10 @@
                                 {% endif %}
                                 <span class="status-indicator {% if user.isActiveNow() %}online{% else %}offline{% endif %}"></span>
                             </div>
-                            
                             <div class="user-info">
                                 <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
                                 <div class="user-email">{{ user.email }}</div>
-                                <div class="user-status" 
-                                    id="user-status-{{ user.id }}"
-                                    data-user-id="{{ user.id }}"
-                                    data-controller="user-status">
+                                <div class="user-status" id="user-status-{{ user.id }}" data-user-id="{{ user.id }}" data-controller="user-status">
                                     <span class="status-text">
                                         {% if user.isActiveNow() %}
                                             <span class="text-success">En ligne</span>

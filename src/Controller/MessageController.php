@@ -67,13 +67,8 @@ final class MessageController extends AbstractController
     }
 
     #[Route('/chat/{id}', name: 'chat_with_user')]
-    public function chatWithUser(
-        User $otherUser,
-        MessageRepository $messageRepo,
-        EntityManagerInterface $em,
-        Security $security,
-        HubInterface $hub
-    ): Response {
+    public function chatWithUser(User $otherUser, MessageRepository $messageRepo, EntityManagerInterface $em, Security $security, HubInterface $hub): Response
+    {
         $currentUser = $security->getUser();
         
         if (!$currentUser instanceof User) {
@@ -104,7 +99,6 @@ final class MessageController extends AbstractController
         ]);
     }
 
-
     #[Route('/chat/mark-read', name: 'chat_mark_read', methods: ['POST'])]
     public function markRead(Request $request, EntityManagerInterface $em, Security $security): JsonResponse
     {
@@ -127,7 +121,6 @@ final class MessageController extends AbstractController
         return new JsonResponse(['success' => true]);
     }
 
-
     #[Route('/chat/{id}', name: 'chat_show')]
     public function show(User $receiver, MessageRepository $messageRepo, Security $security): Response
     {
@@ -144,5 +137,4 @@ final class MessageController extends AbstractController
             'messages' => $messages,
         ]);
     }
-
 }
