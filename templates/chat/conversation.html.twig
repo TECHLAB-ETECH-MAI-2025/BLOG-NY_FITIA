@@ -74,7 +74,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const messagesContainer = document.getElementById('messages');
             const messageInput = document.getElementById('message-input');
@@ -82,10 +82,7 @@
             const currentUser = {{ app.user.id|json_encode|raw }};
             const otherUser = {{ otherUser.id|json_encode|raw }};
             
-            // Scroll vers le bas initial
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            // Connexion Mercure pour les nouveaux messages
             const mercureUrl = new URL('{{ mercure_publish_url }}');
             mercureUrl.searchParams.append('topic', `/user/${currentUser}/messages`);
             mercureUrl.searchParams.append('topic', `/user/${otherUser}/messages`);

@@ -1,5 +1,6 @@
 {
   "build/app.js": "/build/app.js",
+  "build/vote.js": "/build/vote.js",
   "build/base.css": "/build/base.css",
   "build/index1.css": "/build/index1.css",
   "build/index2.css": "/build/index2.css",
@@ -8,5 +9,6 @@
   "build/login.css": "/build/login.css",
   "build/newArticle.css": "/build/newArticle.css",
   "build/runtime.js": "/build/runtime.js",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-d5ffb6.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-d5ffb6.js"
+  "build/vendors-node_modules_core-js_internals_delete-property-or-throw_js-node_modules_core-js_modul-d4434b.js": "/build/vendors-node_modules_core-js_internals_delete-property-or-throw_js-node_modules_core-js_modul-d4434b.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-553957.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-553957.js"
 }

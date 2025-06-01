@@ -22,6 +22,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('vote', './assets/script/vote.js')
+
     .addStyleEntry('base', './assets/styles/app.css')
     .addStyleEntry('index1', './assets/styles/indexArticle.css')
     .addStyleEntry('index2', './assets/styles/indexConversation.css')

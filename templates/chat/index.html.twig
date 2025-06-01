@@ -66,7 +66,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {# Ajoutez Font Awesome si ce n'est pas déjà dans votre base.html.twig #}
+    {# Ajoutez Font Awesome si ce n'est pas déjà dans votre base.html.twig
     <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
     <script>
         const url = new URL('http://localhost/.well-known/mercure');
@@ -84,6 +84,6 @@
                     : '<span class="text-muted">Hors ligne</span><br><small class="last-seen">Dernière activité: ' + data.lastActivityAt + '</small>';
             }
         };
-    </script>
+    </script> #}
 
     {% endblock %}
