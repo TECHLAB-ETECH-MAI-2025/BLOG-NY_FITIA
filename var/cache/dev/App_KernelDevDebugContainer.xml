@@ -405,6 +405,13 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\AfficheJson" class="App\Controller\AfficheJson" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.UjaHQ8c.App\Controller\AfficheJson"/>
+      </call>
+    </service>
     <service id="App\Controller\ArticleController" class="App\Controller\ArticleController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -8073,6 +8080,9 @@
       <argument type="service" id="Symfony\Component\Mercure\Authorization"/>
       <argument type="service" id="request_stack"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AfficheJson" class="App\Controller\AfficheJson" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AfficheJson" class="App\Controller\AfficheJson" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AfficheJson" class="App\Controller\AfficheJson" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -9685,6 +9695,12 @@
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.UjaHQ8c.App\Controller\AfficheJson" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\AfficheJson"/>
+      <argument>App\Controller\AfficheJson</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.UjaHQ8c" method="withContext"/>
+    </service>
     <service id=".service_locator.UjaHQ8c.App\Controller\ArticleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController"/>
       <argument>App\Controller\ArticleController</argument>
@@ -9942,6 +9958,7 @@
       <call method="allowControllers">
         <argument type="collection">
           <argument>App\Kernel</argument>
+          <argument>App\Controller\AfficheJson</argument>
           <argument>App\Controller\ArticleController</argument>
           <argument>App\Controller\BaseController</argument>
           <argument>App\Controller\CategoryController</argument>

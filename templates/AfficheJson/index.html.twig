@@ -1,0 +1,7 @@
+{# templates/json/index.html.twig #}
+<h1>Données JSON depuis API</h1>
+<ul>
+  {% for key, value in data %}
+    <li><strong>{{ key }}</strong> : {{ value }}</li>
+  {% endfor %}
+</ul>

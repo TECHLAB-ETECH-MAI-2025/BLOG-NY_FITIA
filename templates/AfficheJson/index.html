@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Affichage des posts</title>
+        </head>
+    <body>
+        <h1>Liste des posts</h1>
+        <div id="resultat">Chargement...</div>
+        <script>
+            fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                if (!response.ok) throw new Error('Erreur de réseau');
+                return response.json();
+            })
+            .then(data => {
+                let html = '<ul>';
+                data.forEach(post => {
+                html += `<li><strong>${post.title}</strong><br>${post.body}</li>`;
+                });
+                html += '</ul>';
+                document.getElementById('resultat').innerHTML = html;
+            })
+            .catch(error => {
+                document.getElementById('resultat').innerHTML = 'Erreur : ' + error;
+            });
+        </script>
+    </body>
+</html>
