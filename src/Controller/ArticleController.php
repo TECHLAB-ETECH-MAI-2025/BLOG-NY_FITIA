@@ -1,5 +1,4 @@
 <?php
-// src/Controller/ArticleController.php
 namespace App\Controller;
 
 use App\Entity\Article;
@@ -11,13 +10,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 class ArticleController extends AbstractController
 {
     #[Route('/article/new', name: 'article_new')]
-    public function new(ArticleRepository $articleRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -41,17 +41,16 @@ class ArticleController extends AbstractController
             $categoryExists = ($article->getCategory() !== null && $article->getCategory()->getId() !== null);
         } catch (\Doctrine\ORM\EntityNotFoundException $e) {
             $categoryExists = false;
-            $article->setCategory(null); // Nettoie la référence
+            $article->setCategory(null);
             $entityManager->persist($article);
             $entityManager->flush();
         }
-
         $form = $this->createForm(ArticleType::class, $article, [
             'empty_category' => $categoryExists ? null : '-- Catégorie supprimée --'
         ]);
 
         if (!$categoryExists) {
-            $form->get('category')->setData(null); // Réinitialise le champ
+            $form->get('category')->setData(null); 
         }
     
         $form->handleRequest($request);
@@ -61,7 +60,6 @@ class ArticleController extends AbstractController
 
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('article/edit.html.twig', [
             'article' => $article,
             'form' => $form,
@@ -71,7 +69,6 @@ class ArticleController extends AbstractController
     #[Route('/article/{id}', name: 'article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
@@ -79,54 +76,58 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('article_show', ['id' => $article->getId()], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/home', name: 'home')]
-    public function index(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
+    #[Route('/home', name: 'home', methods: ['GET'])]
+    public function index(ArticleRepository $articleRepository): JsonResponse
     {
-        $query = $articleRepository->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->getQuery();
-
-        $articles = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            6
-        );
-
-        return $this->render('article/index.html.twig', [
-            'articles' => $articles,
-        ]);
+        $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
+        $arrayArticle = [];
+        
+        foreach ($articles as $article)
+        {
+            $arrayArticle[] = [
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'description' => $article->getDescription(),
+                'createdAt' => $article->getCreatedAt()->format('H:i:s')
+            ];
+        }
+        return new JsonResponse($arrayArticle);
     }
     
     #[Route('/article', name: 'article_show',  methods: ['GET'])]
-    public function show(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
+    public function show(ArticleRepository $articleRepository): JsonResponse
     {
-        $query = $articleRepository->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->getQuery();
+        $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
+        $arrayArticle = [];
 
-        $articles = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            6
-        );
-
-        return $this->render('article/show.html.twig', [
-            'articles' => $articles,
-        ]);
+        foreach ($articles as $article)
+        {
+            $arrayArticle[] = [
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'description' => $article->getDescription(),
+                'createdAt' => $article->getCreatedAt()->format('H:i:s')
+            ];
+        }
+        return new JsonResponse($arrayArticle);
     }
 
     #[Route('/article/{id}', name: 'article_show_one', methods: ['GET'])]
-    public function showArticleOne(int $id, ArticleRepository $articleRepository) : Response
+    public function showArticleOne(int $id, ArticleRepository $articleRepository) : JsonResponse
     {
         $article = $articleRepository->find($id);
-
-        if (!$article) {
-            throw $this->createNotFoundException('Article non trouve');
+        if (!$article)
+        {
+            return new JsonResponse(['error' => 'Article non trouve'], JsonResponse::HTTP_NOT_FOUND);
         }
-
-        return $this->render('article/showOne.html.twig', [
-            'article' => $article,
-        ]);
+        $arrayArticle = [];
+        $arrayArticle[] = [
+            'id' => $article->getId(),
+            'title' => $article->getTitle(),
+            'description' => $article->getDescription(),
+            'createdAt' => $article->getCreatedAt()->format('H:i:s')
+        ];
+        return new JsonResponse($arrayArticle);
     }
 
 

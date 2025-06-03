@@ -588,7 +588,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Sw_e.aB"/>
+      <argument type="service" id=".service_locator.qlBXJja"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3758,7 +3758,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Sw_e.aB"/>
+      <argument type="service" id=".service_locator.qlBXJja"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8713,18 +8713,17 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.zHyJIs5" method="withContext"/>
     </service>
-    <service id=".service_locator.upWZmvx" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.egipcEH" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.upWZmvx.App\Controller\ArticleController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.egipcEH.App\Controller\ArticleController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::new()"/>
       <argument>App\Controller\ArticleController::new()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.upWZmvx" method="withContext"/>
+      <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
     <service id=".service_locator.d6UE9.H" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8745,30 +8744,23 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.d6UE9.H" method="withContext"/>
     </service>
-    <service id=".service_locator.LXH8CDw" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
-        <argument key="paginator" type="service_closure" id="knp_paginator"/>
-      </argument>
-    </service>
-    <service id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ArticleController::index()"/>
-      <argument>App\Controller\ArticleController::index()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.LXH8CDw" method="withContext"/>
-    </service>
-    <service id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ArticleController::show()"/>
-      <argument>App\Controller\ArticleController::show()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.LXH8CDw" method="withContext"/>
-    </service>
     <service id=".service_locator.BCgH70e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
       </argument>
+    </service>
+    <service id=".service_locator.BCgH70e.App\Controller\ArticleController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::index()"/>
+      <argument>App\Controller\ArticleController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BCgH70e" method="withContext"/>
+    </service>
+    <service id=".service_locator.BCgH70e.App\Controller\ArticleController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::show()"/>
+      <argument>App\Controller\ArticleController::show()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BCgH70e" method="withContext"/>
     </service>
     <service id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::showArticleOne()"/>
@@ -8788,36 +8780,23 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.BCgH70e" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.egipcEH.App\Controller\CategoryController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CategoryController::new()"/>
       <argument>App\Controller\CategoryController::new()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
-    <service id=".service_locator.MKaR5.9" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
-        <argument key="paginator" type="service_closure" id="knp_paginator"/>
-      </argument>
-    </service>
-    <service id=".service_locator.MKaR5.9.App\Controller\CategoryController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\CategoryController::show()"/>
-      <argument>App\Controller\CategoryController::show()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.MKaR5.9" method="withContext"/>
-    </service>
     <service id=".service_locator.MTCWnA5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
       </argument>
+    </service>
+    <service id=".service_locator.MTCWnA5.App\Controller\CategoryController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController::show()"/>
+      <argument>App\Controller\CategoryController::show()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.MTCWnA5" method="withContext"/>
     </service>
     <service id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CategoryController::showCategory()"/>
@@ -9028,23 +9007,23 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.Sw_e.aB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.qlBXJja" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.upWZmvx.App\Controller\ArticleController::new()"/>
+        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::new()"/>
         <argument key="App\Controller\ArticleController::edit" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::edit()"/>
         <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
-        <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
-        <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
+        <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController::showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController::interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController::search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
         <argument key="App\Controller\CategoryController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
-        <argument key="App\Controller\CategoryController::show" type="service_closure" id=".service_locator.MKaR5.9.App\Controller\CategoryController::show()"/>
+        <argument key="App\Controller\CategoryController::show" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::show()"/>
         <argument key="App\Controller\CategoryController::showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController::edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
@@ -9065,16 +9044,16 @@
         <argument key="App\Controller\VoteController::vote" type="service_closure" id=".service_locator.e51BVih.App\Controller\VoteController::vote()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.upWZmvx.App\Controller\ArticleController::new()"/>
+        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::new()"/>
         <argument key="App\Controller\ArticleController:edit" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::edit()"/>
         <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
-        <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
-        <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
+        <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController:showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController:interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController:search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
         <argument key="App\Controller\CategoryController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
-        <argument key="App\Controller\CategoryController:show" type="service_closure" id=".service_locator.MKaR5.9.App\Controller\CategoryController::show()"/>
+        <argument key="App\Controller\CategoryController:show" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::show()"/>
         <argument key="App\Controller\CategoryController:showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
         <argument key="App\Controller\CategoryController:edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
@@ -11412,7 +11391,7 @@
     <service id="Symfony\Component\Mercure\PublisherInterface" alias="mercure.hub.default.publisher.traceable"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Sw_e.aB"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.qlBXJja"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11460,12 +11439,9 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
-    <service id=".service_locator.a_hrqZD" alias=".service_locator.upWZmvx"/>
-    <service id=".service_locator.ZaihGhx" alias=".service_locator.d6UE9.H"/>
-    <service id=".service_locator.iGPZn12" alias=".service_locator.LXH8CDw"/>
-    <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
-    <service id=".service_locator.Zmxy2_4" alias=".service_locator.MKaR5.9"/>
+    <service id=".service_locator.ZaihGhx" alias=".service_locator.d6UE9.H"/>
+    <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
     <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
     <service id=".service_locator.AJ56rbI" alias=".service_locator.gADJ5td"/>
     <service id=".service_locator.V7DMyS1" alias=".service_locator.qdASCgT"/>

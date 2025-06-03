@@ -16,7 +16,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/article/new' => [[['_route' => 'article_new', '_controller' => 'App\\Controller\\ArticleController::new'], null, null, null, false, false, null]],
-        '/home' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ArticleController::index'], null, null, null, false, false, null]],
+        '/home' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ArticleController::index'], null, ['GET' => 0], null, false, false, null]],
         '/article' => [[['_route' => 'article_show', '_controller' => 'App\\Controller\\ArticleController::show'], null, ['GET' => 0], null, false, false, null]],
         '/category/new' => [[['_route' => 'category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/category' => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], null, ['GET' => 0], null, false, false, null]],
@@ -65,21 +65,19 @@ return [
                     .'|(*:276)'
                 .')'
                 .'|/c(?'
-                    .'|ategory/(?'
-                        .'|category/([^/]++)(*:318)'
-                        .'|([^/]++)(?'
-                            .'|/edit(*:342)'
-                            .'|(*:350)'
-                        .')'
+                    .'|ategory/([^/]++)(?'
+                        .'|(*:309)'
+                        .'|/edit(*:322)'
+                        .'|(*:330)'
                     .')'
                     .'|hat/(?'
-                        .'|messages/([^/]++)(*:384)'
-                        .'|([^/]++)(*:400)'
-                        .'|mark\\-read(*:418)'
-                        .'|([^/]++)(*:434)'
+                        .'|messages/([^/]++)(*:363)'
+                        .'|([^/]++)(*:379)'
+                        .'|mark\\-read(*:397)'
+                        .'|([^/]++)(*:413)'
                     .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:480)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:459)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -98,14 +96,14 @@ return [
             [['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [['_route' => 'article_show_one', '_controller' => 'App\\Controller\\ArticleController::showArticleOne'], ['id'], ['GET' => 0], null, false, true, null],
         ],
-        318 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
-        342 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        350 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        384 => [[['_route' => 'chat_get_messages', '_controller' => 'App\\Controller\\MessageController::getMessages'], ['id'], ['GET' => 0], null, false, true, null]],
-        400 => [[['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null]],
-        418 => [[['_route' => 'chat_mark_read', '_controller' => 'App\\Controller\\MessageController::markRead'], [], ['POST' => 0], null, false, false, null]],
-        434 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
-        480 => [
+        309 => [[['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null]],
+        322 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        330 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        363 => [[['_route' => 'chat_get_messages', '_controller' => 'App\\Controller\\MessageController::getMessages'], ['id'], ['GET' => 0], null, false, true, null]],
+        379 => [[['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null]],
+        397 => [[['_route' => 'chat_mark_read', '_controller' => 'App\\Controller\\MessageController::markRead'], [], ['POST' => 0], null, false, false, null]],
+        413 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
+        459 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

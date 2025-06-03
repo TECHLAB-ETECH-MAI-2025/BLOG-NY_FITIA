@@ -18,22 +18,15 @@ final class VoteController extends AbstractController
     public function vote(Article $article, string $type,EntityManagerInterface $em, Request $request ): JsonResponse
     {
         $user = $this->getUser();
-        
         if (!$user) {
-            return $this->json([
-                'status' => 'error',
-                'message' => 'Authentication required'
-            ], 401);
+            return $this->json(['status' => 'error', 'message' => 'Authentication required'], 401);
         }
-
         $value = ($type === 'like') ? 1 : -1;
         $voteRepository = $em->getRepository(Vote::class);
-
         $existingVote = $voteRepository->findOneBy([
             'user' => $user,
             'article' => $article
         ]);
-
         if ($existingVote) {
             if ($existingVote->getValue() === $value) {
                 $em->remove($existingVote);
@@ -52,7 +45,6 @@ final class VoteController extends AbstractController
         }
 
         $em->flush();
-
         return $this->json([
             'status' => 'success',
             'message' => $message,

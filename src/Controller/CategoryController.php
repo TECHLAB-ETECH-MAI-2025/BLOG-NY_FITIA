@@ -9,13 +9,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
-#[Route('/category')]
 final class CategoryController extends AbstractController
 {
-    #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]
+    #[Route('/category/new', name: 'category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
@@ -35,39 +35,38 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route(name: 'category_show', methods: ['GET'])]
-    public function show(CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request): Response
+    #[Route('/category' , name: 'category_show', methods: ['GET'])]
+    public function show(CategoryRepository $categoryRepository): JsonResponse
     {
-        $query = $categoryRepository->createQueryBuilder('c')
-            ->getQuery();
-
-        $categories = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            6
-        );
-
-        return $this->render('category/show.html.twig', [
-            'categories' => $categories,
-        ]);
+        $categories = $categoryRepository->findAll();
+        $arrayCategory = [];
+        foreach ($categories as $category)
+        {
+            $arrayCategory[] = [
+                'id' => $category->getId(),
+                'name' => $category->getName()
+            ];
+        }
+        return new JsonResponse($arrayCategory);
     }
 
     #[Route('/category/{id}', name: 'category_show_one', methods: ['GET'])]
     public function showCategory(int $id, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->find($id);
-
-        if (!$category) {
-            throw $this->createNotFoundException('Catégorie non trouvée');
+        if (!$category)
+        {
+            return new JsonResponse(['error' => "Catogory non trouve"], JsonResponse::HTTP_NOT_FOUND);
         }
-
-        return $this->render('category/showOne.html.twig', [
-            'category' => $category,
-        ]);
+        $arrayCategory[] = [
+            'id' => $category->getId(),
+            'name' => $category->getName()
+        ];
+        return new JsonResponse($arrayCategory);
     }
 
 
-    #[Route('/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
+    #[Route('/category/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoryForm::class, $category);
@@ -85,7 +84,7 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'category_delete', methods: ['POST'])]
+    #[Route('/category/{id}', name: 'category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->getPayload()->getString('_token'))) {
