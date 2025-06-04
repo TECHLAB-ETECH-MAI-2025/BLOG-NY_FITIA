@@ -757,6 +757,6 @@ class __TwigTemplate_193047d50b0b73e4572af90622f2d975 extends Template
         </div>
     </div>
 {% endmacro %}
-", "@WebProfiler/Collector/cache.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/symfony/web-profiler-bundle/Resources/views/Collector/cache.html.twig");
+", "@WebProfiler/Collector/cache.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/web-profiler-bundle/Resources/views/Collector/cache.html.twig");
     }
 }

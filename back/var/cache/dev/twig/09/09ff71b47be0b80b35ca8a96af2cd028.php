@@ -179,6 +179,6 @@ class __TwigTemplate_ae9afc37c57cb10239c313bc66e7fd80 extends Template
         </div>
     </div>
 {% endblock %}
-", "reset_password/check_email.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/reset_password/check_email.html.twig");
+", "reset_password/check_email.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/reset_password/check_email.html.twig");
     }
 }

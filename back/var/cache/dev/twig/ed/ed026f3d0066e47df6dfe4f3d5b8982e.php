@@ -99,6 +99,6 @@ class __TwigTemplate_4668b019c7cae1151b7386bf3ecfe555 extends Template
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-", "category/_form.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/category/_form.html.twig");
+", "category/_form.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/category/_form.html.twig");
     }
 }

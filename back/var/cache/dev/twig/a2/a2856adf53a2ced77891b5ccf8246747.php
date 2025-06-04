@@ -148,6 +148,6 @@ class __TwigTemplate_70334ba077ae3dd2b252946e44f4ba4f extends Template
 
     {{ include('category/_form.html.twig') }}
 {% endblock %}
-", "category/new.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/category/new.html.twig");
+", "category/new.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/category/new.html.twig");
     }
 }

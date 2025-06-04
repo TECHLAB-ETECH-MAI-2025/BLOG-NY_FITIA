@@ -345,6 +345,6 @@ class __TwigTemplate_d2291899d81dcb539ab433e7a79a3d37 extends Template
         </ul>
     </nav>
 {% endif %}
-", "@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/bundles/KnpPaginatorBundle/Pagination/twitter_bootstrap_v4_pagination.html.twig");
+", "@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/bundles/KnpPaginatorBundle/Pagination/twitter_bootstrap_v4_pagination.html.twig");
     }
 }

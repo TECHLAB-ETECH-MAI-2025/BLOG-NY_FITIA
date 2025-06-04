@@ -185,6 +185,6 @@ class __TwigTemplate_ee4dd1a3f7170c771af22b4cd1f5853c extends Template
         </li>
     </ul>
 </nav>
-{% endif %}", "pagination/bootstrap_v5.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/pagination/bootstrap_v5.html.twig");
+{% endif %}", "pagination/bootstrap_v5.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/pagination/bootstrap_v5.html.twig");
     }
 }

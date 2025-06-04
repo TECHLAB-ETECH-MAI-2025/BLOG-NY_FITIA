@@ -297,6 +297,6 @@ class __TwigTemplate_82d22e4caf97bb49a8041c6ee39489c7 extends Template
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}
-", "registration/register.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/registration/register.html.twig");
+", "registration/register.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/registration/register.html.twig");
     }
 }

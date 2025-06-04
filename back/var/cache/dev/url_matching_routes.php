@@ -29,7 +29,6 @@ return [
         '/reset-password/test-mail' => [[['_route' => 'app_resetpassword_testmail', '_controller' => 'App\\Controller\\ResetPasswordController::testMail'], null, null, null, false, false, null]],
         '/search' => [[['_route' => 'app_search', '_controller' => 'App\\Controller\\SearchController::search'], null, null, null, false, false, null]],
         '/search/live' => [[['_route' => 'app_search_live', '_controller' => 'App\\Controller\\SearchController::searchLive'], null, null, null, false, false, null]],
-        '/' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/mon-profil' => [[['_route' => 'app_user_profile', '_controller' => 'App\\Controller\\UserProfileController::index'], null, null, null, false, false, null]],
         '/mon-profil/modifier' => [[['_route' => 'app_user_profile_edit', '_controller' => 'App\\Controller\\UserProfileController::edit'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],

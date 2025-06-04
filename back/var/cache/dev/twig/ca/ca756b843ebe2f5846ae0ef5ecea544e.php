@@ -351,6 +351,6 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
         </a>
     </div>
     {% endif %}
-</div>", "includes/_menu.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/includes/_menu.html.twig");
+</div>", "includes/_menu.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/includes/_menu.html.twig");
     }
 }

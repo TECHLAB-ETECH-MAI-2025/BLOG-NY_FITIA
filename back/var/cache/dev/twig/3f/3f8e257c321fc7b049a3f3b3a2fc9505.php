@@ -327,6 +327,6 @@ class __TwigTemplate_1e29d742ff73d1a5306047c770e1256e extends Template
         {{- form_rest(form) -}}
     </table>
 {%- endblock form_widget_compound -%}
-", "form_table_layout.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/symfony/twig-bridge/Resources/views/Form/form_table_layout.html.twig");
+", "form_table_layout.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/twig-bridge/Resources/views/Form/form_table_layout.html.twig");
     }
 }

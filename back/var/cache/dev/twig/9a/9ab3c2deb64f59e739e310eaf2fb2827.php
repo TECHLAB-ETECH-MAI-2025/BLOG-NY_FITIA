@@ -160,6 +160,6 @@ class __TwigTemplate_14d084a2bac92e4b8cc488a016305596 extends Template
 {% if articles is empty and categories is empty %}
     <span class=\"dropdown-item text-muted\">Aucun résultat</span>
 {% endif %}
-", "search/_resultat.html.twig", "/home/eny-fiti/Documents/etech/blog/templates/search/_resultat.html.twig");
+", "search/_resultat.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/search/_resultat.html.twig");
     }
 }

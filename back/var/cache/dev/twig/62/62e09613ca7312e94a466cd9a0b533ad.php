@@ -170,6 +170,6 @@ class __TwigTemplate_125583550b67eb4f40145466082369ed extends Template
     </div>
 
 </form>
-", "@KnpPaginator/Pagination/twitter_bootstrap_v4_filtration.html.twig", "/home/eny-fiti/Documents/etech/blog/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_filtration.html.twig");
+", "@KnpPaginator/Pagination/twitter_bootstrap_v4_filtration.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_filtration.html.twig");
     }
 }
