@@ -6902,7 +6902,7 @@
     <service id="security.firewall.map" class="Symfony\Bundle\SecurityBundle\Security\FirewallMap">
       <argument type="service" id=".service_locator.RLlgfwT"/>
       <argument type="iterator">
-        <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher._7JLSkp"/>
+        <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher.gcxynGs"/>
         <argument key="security.firewall.map.context.api" type="service" id=".security.request_matcher.NaFk5J1"/>
       </argument>
     </service>
@@ -7393,7 +7393,7 @@
     <service id="security.firewall.map.config.login" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>login</argument>
       <argument>security.user_checker</argument>
-      <argument>.security.request_matcher._7JLSkp</argument>
+      <argument>.security.request_matcher.gcxynGs</argument>
       <argument>true</argument>
       <argument>true</argument>
       <argument>security.user.provider.concrete.app_user_provider</argument>
@@ -7407,12 +7407,12 @@
       <argument>null</argument>
       <argument>null</argument>
     </service>
-    <service id=".security.request_matcher..tvo6Vp" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
-      <argument>^/api/login</argument>
+    <service id=".security.request_matcher.wAZgplc" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/api/login$</argument>
     </service>
-    <service id=".security.request_matcher._7JLSkp" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+    <service id=".security.request_matcher.gcxynGs" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
-        <argument type="service" id=".security.request_matcher..tvo6Vp"/>
+        <argument type="service" id=".security.request_matcher.wAZgplc"/>
       </argument>
     </service>
     <service id="security.user_checker.chain.login" class="Symfony\Component\Security\Core\User\ChainUserChecker">
@@ -7601,6 +7601,9 @@
         <argument key="security.firewall.map.context.login" type="service_closure" id="security.firewall.map.context.login"/>
         <argument key="security.firewall.map.context.api" type="service_closure" id="security.firewall.map.context.api"/>
       </argument>
+    </service>
+    <service id=".security.request_matcher..tvo6Vp" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/api/login</argument>
     </service>
     <service id=".security.request_matcher.S.FPR_b" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">

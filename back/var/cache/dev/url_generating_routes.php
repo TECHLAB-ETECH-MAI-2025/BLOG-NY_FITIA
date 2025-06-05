@@ -50,6 +50,7 @@ return [
     'app_user_avatar_upload' => [[], ['_controller' => 'App\\Controller\\UserProfileController::uploadAvatar'], [], [['text', '/mon-profil/avatar']], [], [], []],
     'app_user_avatar_delete' => [[], ['_controller' => 'App\\Controller\\UserProfileController::deleteAvatar'], [], [['text', '/mon-profil/supprimer-avatar']], [], [], []],
     'article_vote' => [['id', 'type'], ['_controller' => 'App\\Controller\\VoteController::vote'], [], [['variable', '/', '[^/]++', 'type', true], ['text', '/vote'], ['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],
+    'api_login' => [[], ['_controller' => 'lexik_jwt_authentication.controllers.authentication:login'], [], [['text', '/api/login']], [], [], []],
     'App\Controller\ArticleController::new' => [[], ['_controller' => 'App\\Controller\\ArticleController::new'], [], [['text', '/article/new']], [], [], []],
     'App\Controller\ArticleController::edit' => [['id'], ['_controller' => 'App\\Controller\\ArticleController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],
     'App\Controller\ArticleController::delete' => [['id'], ['_controller' => 'App\\Controller\\ArticleController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/article']], [], [], []],

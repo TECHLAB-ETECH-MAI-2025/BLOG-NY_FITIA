@@ -44,7 +44,7 @@ final class CategoryController extends AbstractController
         {
             $arrayCategory[] = [
                 'id' => $category->getId(),
-                'name' => $category->getName()
+                'name' => $category->getName(),
             ];
         }
         return new JsonResponse($arrayCategory);
