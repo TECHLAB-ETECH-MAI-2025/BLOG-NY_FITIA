@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Connexion from "./components/security/Connexion";
+import Login from "./components/security/Login";
 import Layout from "./components/fixe/Layout";
 import Accueil from "./pages/Accueil";
 import Category from "./pages/CategorieShow";
@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Connexion />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route path="accueil" element={<Accueil />} />
           <Route path="article" element={<Article />} />
