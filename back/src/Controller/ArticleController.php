@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class ArticleController extends AbstractController
 {
     #[Route('/article/new', name: 'article_create', methods: ['POST'])]
-    public function New(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    public function New(Request $request, EntityManagerInterface $entityManager, CategoryRepository $catRepo): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['title']) || !isset($data['description'])) {
@@ -26,13 +27,18 @@ class ArticleController extends AbstractController
         $article = new Article();
         $article->setTitle($data['title']);
         $article->setDescription($data['description']);
+        $category = $catRepo->find($data['category_id']);
+        if (!$category) {
+            return new JsonResponse(['error' => 'Catégorie non trouvée'], 404);
+        }
+        $article->setCategory($category);
         $entityManager->persist($article);
         $entityManager->flush();
         return new JsonResponse(['message' => 'Article créé avec succès'], Response::HTTP_CREATED);
     }
 
     #[Route('/article/{id}', name: 'article_update', methods: ['PUT'])]
-    public function update(Request $request, Article $article, EntityManagerInterface $entityManager): JsonResponse
+    public function update(Request $request, Article $article, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!$data) {
@@ -44,12 +50,26 @@ class ArticleController extends AbstractController
         if (isset($data['description'])) {
             $article->setDescription($data['description']);
         }
+        if (array_key_exists('categoryId', $data)) {
+            if ($data['categoryId'] === null) {
+                $article->setCategory(null);
+            } else {
+                $category = $categoryRepository->find($data['categoryId']);
+                if (!$category) {
+                    return $this->json(['error' => 'Catégorie introuvable'], 404);
+                }
+                $article->setCategory($category);
+            }
+        }
         $entityManager->flush();
-
         return $this->json([
             'id' => $article->getId(),
             'title' => $article->getTitle(),
             'description' => $article->getDescription(),
+            'category' => $article->getCategory() ? [
+                'id' => $article->getCategory()->getId(),
+                'name' => $article->getCategory()->getName()
+            ] : null
         ]);
     }
 
@@ -61,19 +81,52 @@ class ArticleController extends AbstractController
         return new JsonResponse(['status' => 'Article deleted'], 200);
     }
 
-    #[Route('/home', name: 'home', methods: ['GET'])]
+    #[Route('/home', name: 'home',  methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): JsonResponse
     {
         $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
+        $user = $this->getUser();
         $arrayArticle = [];
-        
         foreach ($articles as $article)
         {
+            $category = $article->getCategory();
+            if ($category === null) {
+                $categoryData = null;
+            } 
+            else {
+                try {
+                    $categoryData = [
+                        'id' => $category->getId(),
+                        'name' => $category->getName()
+                    ];
+                } 
+                catch (\Throwable $e) {
+                    $categoryData = null;
+                }
+            }
+            $likes = 0;
+            $dislikes = 0;
+            $userVote = 0;
+            foreach ($article->getVotes() as $vote) {
+                if ($vote->getValue() === 1) {
+                    $likes++;
+                }
+                else {
+                    $dislikes++;
+                }
+                if ($user && $vote->getUser() === $user) {
+                    $userVote = $vote->getValue() ? 1 : -1;
+                }
+            }
             $arrayArticle[] = [
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'description' => $article->getDescription(),
-                'createdAt' => $article->getCreatedAt()->format('H:i:s')
+                'createdAt' => $article->getCreatedAt()->format('H:i:s'),
+                'category' => $categoryData,
+                'likes' => $likes,
+                'dislikes' => $dislikes,
+                'userVote' => $userVote,
             ];
         }
         return new JsonResponse($arrayArticle);
@@ -84,14 +137,29 @@ class ArticleController extends AbstractController
     {
         $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
         $arrayArticle = [];
-
         foreach ($articles as $article)
         {
+            $category = $article->getCategory();
+            if ($category === null) {
+                $categoryData = null;
+            } 
+            else {
+                try {
+                    $categoryData = [
+                        'id' => $category->getId(),
+                        'name' => $category->getName()
+                    ];
+                } 
+                catch (\Throwable $e) {
+                    $categoryData = null;
+                }
+            }
             $arrayArticle[] = [
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'description' => $article->getDescription(),
-                'createdAt' => $article->getCreatedAt()->format('H:i:s')
+                'createdAt' => $article->getCreatedAt()->format('H:i:s'),
+                'category' => $categoryData
             ];
         }
         return new JsonResponse($arrayArticle);
@@ -105,11 +173,16 @@ class ArticleController extends AbstractController
         {
             return new JsonResponse(['error' => 'Article non trouve'], JsonResponse::HTTP_NOT_FOUND);
         }
+        $category = $article->getCategory();
         $ArticleData = [
             'id' => $article->getId(),
             'title' => $article->getTitle(),
             'description' => $article->getDescription(),
-            'createdAt' => $article->getCreatedAt()->format('H:i:s')
+            'createdAt' => $article->getCreatedAt()->format('H:i:s'),
+            'category' => $category ? [
+                'id' => $category->getId(),
+                'name' => $category->getName()
+            ] : null
         ];
         return new JsonResponse($ArticleData);
     }

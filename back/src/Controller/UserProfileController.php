@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -23,13 +24,17 @@ final class UserProfileController extends AbstractController
         private readonly string $avatarsDirectory
     ) {}
 
-    #[Route('/mon-profil', name: 'app_user_profile')]
-    public function index(): Response
+    #[Route('/api/profil', name: 'app_user_profile', methods: ['GET'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function index(): JsonResponse
     {
         $user = $this->getUser();
-        
-        return $this->render('user_profile/index.html.twig', [
-            'user' => $user,
+        return $this->json([
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+            'avatar' => $user->getAvatar(),
         ]);
     }
 
@@ -75,15 +80,12 @@ final class UserProfileController extends AbstractController
                         $this->avatarsDirectory,
                         $newFilename
                     );
-                    
-                    // Supprime l'ancien avatar s'il existe
                     if ($user->getAvatar()) {
                         $oldAvatar = $this->avatarsDirectory.'/'.$user->getAvatar();
                         if (file_exists($oldAvatar)) {
                             unlink($oldAvatar);
                         }
-                    }
-                    
+                    } 
                     $user->setAvatar($newFilename);
                     $this->entityManager->flush();
                     

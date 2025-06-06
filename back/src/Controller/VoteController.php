@@ -31,7 +31,8 @@ final class VoteController extends AbstractController
             if ($existingVote->getValue() === $value) {
                 $em->remove($existingVote);
                 $message = 'Vote retiré';
-            } else {
+            } 
+            else {
                 $existingVote->setValue($value);
                 $message = 'Vote modifié';
             }

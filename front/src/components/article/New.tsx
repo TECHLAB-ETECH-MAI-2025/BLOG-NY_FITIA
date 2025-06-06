@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddArticle: React.FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [categoryId, setCategoryId] = useState<number | null>(null);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
+    const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://localhost:8000/category")
+      .then(res => res.json())
+      .then(data => setCategories(data))
+      .catch(err => setError("Erreur de chargement des catégories"));
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +25,8 @@ const AddArticle: React.FC = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title,
-        description
+        description,
+        category_id: categoryId,
       }),
     })
       .then(res => {
@@ -58,13 +68,19 @@ const AddArticle: React.FC = () => {
             required
           />
         </div>
+        <div>
+          <label className="block mb-1 font-semibold">Catégorie :</label>
+          <select value={categoryId || ""} onChange={e => setCategoryId(parseInt(e.target.value))}  required className="w-full border px-3 py-2 rounded" >
+            <option value="">-- Choisir une catégorie --</option>
+            {categories.map(cat => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
         {error && <p className="text-red-600">{error}</p>}
-        <button
-          type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Add
-        </button>
+        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" > Add </button>
       </form>
     </div>
   );

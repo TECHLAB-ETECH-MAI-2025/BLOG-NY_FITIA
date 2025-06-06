@@ -80,4 +80,17 @@ final class CategoryController extends AbstractController
         return new JsonResponse(['status' => 'Category deleted'], 200);
     }
 
+    #[Route('/category', name: 'get_category', methods: ['GET'])]
+    public function getCategories(CategoryRepository $repo): JsonResponse
+    {
+        $categories = $repo->findAll();
+        $data = array_map(function ($category) {
+            return [
+                'id' => $category->getId(),
+                'name' => $category->getName(),
+            ];
+        }, $categories);
+        return new JsonResponse($data);
+    }
+
 }

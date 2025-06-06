@@ -7,6 +7,7 @@ type Article = {
   id: number;
   title: string;
   description: string;
+  category: { id: number; name: string } | null;
   createdAt: string;
 };
 
@@ -40,7 +41,7 @@ const Article: React.FC = () => {
               <th className="py-2 px-4 text-left text-sm font-semibold">ID</th>
               <th className="py-2 px-4 text-left text-sm font-semibold">Titre</th>
               <th className="py-2 px-4 text-left text-sm font-semibold">Description</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Créé à</th>
+              <th className="py-2 px-4 text-left text-sm font-semibold">Category</th>
               <th className="py-2 px-4 text-left text-sm font-semibold">Modifier</th>
               <th className="py-2 px-4 text-left text-sm font-semibold">Supprimer</th>
             </tr>
@@ -51,7 +52,7 @@ const Article: React.FC = () => {
                 <td className="py-2 px-4 text-sm">{article.id}</td>
                 <td className="py-2 px-4 text-sm font-medium">{article.title}</td>
                 <td className="py-2 px-4 text-sm">{article.description}</td>
-                <td className="py-2 px-4 text-xs text-gray-500">{article.createdAt}</td>
+                <td className="py-2 px-4 text-xs text-gray-500">{article.category ? article.category.name : <span className="italic text-gray-400">Aucune</span>}</td>
                 <td className="py-2 px-4 text-sm font-medium">
                   <button onClick={() => onEdit(article.id)}>
                     <PencilIcon className="w-[2vh] h-[2vh] text-yellow-500 hover:text-yellow-700" />
