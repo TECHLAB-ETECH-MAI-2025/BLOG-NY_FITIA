@@ -15,24 +15,18 @@ use Knp\Component\Pager\PaginatorInterface;
 
 final class CategoryController extends AbstractController
 {
-    #[Route('/category/new', name: 'category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/category/new', name: 'category_create', methods: ['POST'])]
+    public function New(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
-        $category = new Category();
-        $form = $this->createForm(CategoryForm::class, $category);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($category);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+        $data = json_decode($request->getContent(), true);
+        if (!isset($data['name'])) {
+            return new JsonResponse(['error' => 'Le nom est requis'], Response::HTTP_BAD_REQUEST);
         }
-
-        return $this->render('category/new.html.twig', [
-            'category' => $category,
-            'form' => $form,
-        ]);
+        $category = new Category();
+        $category->setName($data['name']);
+        $entityManager->persist($category);
+        $entityManager->flush();
+        return new JsonResponse(['message' => 'Catégorie créée avec succès'], Response::HTTP_CREATED);
     }
 
     #[Route('/category' , name: 'category_show', methods: ['GET'])]
@@ -58,40 +52,32 @@ final class CategoryController extends AbstractController
         {
             return new JsonResponse(['error' => "Catogory non trouve"], JsonResponse::HTTP_NOT_FOUND);
         }
-        $arrayCategory[] = [
+        $categoryData = [
             'id' => $category->getId(),
-            'name' => $category->getName()
+            'Name' => $category->getName()
         ];
-        return new JsonResponse($arrayCategory);
+        return new JsonResponse($categoryData);
     }
 
-
-    #[Route('/category/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    #[Route('/category/{id}', name: 'category_update', methods: ['PUT'])]
+    public function update(Request $request, Category $category, EntityManagerInterface $em): JsonResponse
     {
-        $form = $this->createForm(CategoryForm::class, $category);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+        $data = json_decode($request->getContent(), true);
+        if (!isset($data['name'])) {
+            return new JsonResponse(['error' => 'Name is required'], 400);
         }
+        $category->setName($data['name']);
+        $em->flush();
 
-        return $this->render('category/edit.html.twig', [
-            'category' => $category,
-            'form' => $form,
-        ]);
+        return new JsonResponse(['status' => 'Category updated'], 200);
     }
 
-    #[Route('/category/{id}', name: 'category_delete', methods: ['POST'])]
-    public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    #[Route('/category/{id}', name: 'category_delete', methods: ['DELETE'])]
+    public function delete(Category $category, EntityManagerInterface $em): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($category);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+        $em->remove($category);
+        $em->flush();
+        return new JsonResponse(['status' => 'Category deleted'], 200);
     }
+
 }

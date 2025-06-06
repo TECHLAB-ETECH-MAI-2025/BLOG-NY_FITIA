@@ -19,7 +19,7 @@ const Accueil: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Articles depuis l'API</h1>
+      <h1 className="text-2xl font-bold mb-4">Accueil</h1>
       <ul className="space-y-2">
         {articles.map((article) => (
           <li

@@ -634,7 +634,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.g3ytpYt"/>
+      <argument type="service" id=".service_locator.I_WqDx4"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3815,7 +3815,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.g3ytpYt"/>
+      <argument type="service" id=".service_locator.I_WqDx4"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8888,9 +8888,9 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\ArticleController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ArticleController::new()"/>
-      <argument>App\Controller\ArticleController::new()</argument>
+    <service id=".service_locator.egipcEH.App\Controller\ArticleController::New()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::New()"/>
+      <argument>App\Controller\ArticleController::New()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
@@ -8901,17 +8901,24 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.d6UE9.H.App\Controller\ArticleController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ArticleController::edit()"/>
-      <argument>App\Controller\ArticleController::edit()</argument>
+    <service id=".service_locator.d6UE9.H.App\Controller\ArticleController::update()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController::update()"/>
+      <argument>App\Controller\ArticleController::update()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.d6UE9.H" method="withContext"/>
     </service>
-    <service id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.e51BVih" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="article" type="service_closure" id=".errored..service_locator.e51BVih.App\Entity\Article"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.e51BVih.App\Controller\ArticleController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::delete()"/>
       <argument>App\Controller\ArticleController::delete()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.d6UE9.H" method="withContext"/>
+      <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
     <service id=".service_locator.BCgH70e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8949,9 +8956,9 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.BCgH70e" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\CategoryController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\CategoryController::new()"/>
-      <argument>App\Controller\CategoryController::new()</argument>
+    <service id=".service_locator.egipcEH.App\Controller\CategoryController::New()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController::New()"/>
+      <argument>App\Controller\CategoryController::New()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
@@ -8973,24 +8980,24 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.MTCWnA5" method="withContext"/>
     </service>
-    <service id=".service_locator.gADJ5td" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2S0AJ0M" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="category" type="service_closure" id=".errored..service_locator.gADJ5td.App\Entity\Category"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="category" type="service_closure" id=".errored..service_locator.2S0AJ0M.App\Entity\Category"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\CategoryController::edit()"/>
-      <argument>App\Controller\CategoryController::edit()</argument>
+    <service id=".service_locator.2S0AJ0M.App\Controller\CategoryController::update()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController::update()"/>
+      <argument>App\Controller\CategoryController::update()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.gADJ5td" method="withContext"/>
+      <factory service=".service_locator.2S0AJ0M" method="withContext"/>
     </service>
-    <service id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2S0AJ0M.App\Controller\CategoryController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CategoryController::delete()"/>
       <argument>App\Controller\CategoryController::delete()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.gADJ5td" method="withContext"/>
+      <factory service=".service_locator.2S0AJ0M" method="withContext"/>
     </service>
     <service id=".service_locator.qdASCgT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9151,39 +9158,32 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Lr3jbjP" method="withContext"/>
     </service>
-    <service id=".service_locator.e51BVih" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="article" type="service_closure" id=".errored..service_locator.e51BVih.App\Entity\Article"/>
-        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.e51BVih.App\Controller\VoteController::vote()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\VoteController::vote()"/>
       <argument>App\Controller\VoteController::vote()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.g3ytpYt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.I_WqDx4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::new()"/>
-        <argument key="App\Controller\ArticleController::edit" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::edit()"/>
-        <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
+        <argument key="App\Controller\ArticleController::New" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::New()"/>
+        <argument key="App\Controller\ArticleController::update" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::update()"/>
+        <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.e51BVih.App\Controller\ArticleController::delete()"/>
         <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
         <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController::showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController::interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController::search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
-        <argument key="App\Controller\CategoryController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
+        <argument key="App\Controller\CategoryController::New" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::New()"/>
         <argument key="App\Controller\CategoryController::show" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::show()"/>
         <argument key="App\Controller\CategoryController::showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
-        <argument key="App\Controller\CategoryController::edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
-        <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
+        <argument key="App\Controller\CategoryController::update" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::update()"/>
+        <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\MessageController::index" type="service_closure" id=".service_locator.qdASCgT.App\Controller\MessageController::index()"/>
         <argument key="App\Controller\MessageController::send" type="service_closure" id=".service_locator.73Za615.App\Controller\MessageController::send()"/>
         <argument key="App\Controller\MessageController::getMessages" type="service_closure" id=".service_locator.3Tauuah.App\Controller\MessageController::getMessages()"/>
@@ -9200,19 +9200,19 @@
         <argument key="App\Controller\VoteController::vote" type="service_closure" id=".service_locator.e51BVih.App\Controller\VoteController::vote()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::new()"/>
-        <argument key="App\Controller\ArticleController:edit" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::edit()"/>
-        <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::delete()"/>
+        <argument key="App\Controller\ArticleController:New" type="service_closure" id=".service_locator.egipcEH.App\Controller\ArticleController::New()"/>
+        <argument key="App\Controller\ArticleController:update" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::update()"/>
+        <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.e51BVih.App\Controller\ArticleController::delete()"/>
         <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
         <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController:showArticleOne" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::showArticleOne()"/>
         <argument key="App\Controller\ArticleController:interact" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::interact()"/>
         <argument key="App\Controller\ArticleController:search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
-        <argument key="App\Controller\CategoryController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::new()"/>
+        <argument key="App\Controller\CategoryController:New" type="service_closure" id=".service_locator.egipcEH.App\Controller\CategoryController::New()"/>
         <argument key="App\Controller\CategoryController:show" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::show()"/>
         <argument key="App\Controller\CategoryController:showCategory" type="service_closure" id=".service_locator.MTCWnA5.App\Controller\CategoryController::showCategory()"/>
-        <argument key="App\Controller\CategoryController:edit" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::edit()"/>
-        <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.gADJ5td.App\Controller\CategoryController::delete()"/>
+        <argument key="App\Controller\CategoryController:update" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::update()"/>
+        <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\MessageController:index" type="service_closure" id=".service_locator.qdASCgT.App\Controller\MessageController::index()"/>
         <argument key="App\Controller\MessageController:send" type="service_closure" id=".service_locator.73Za615.App\Controller\MessageController::send()"/>
         <argument key="App\Controller\MessageController:getMessages" type="service_closure" id=".service_locator.3Tauuah.App\Controller\MessageController::getMessages()"/>
@@ -10324,8 +10324,11 @@
     <service id=".errored..service_locator.d6UE9.H.App\Entity\Article" class="App\Entity\Article">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.d6UE9.H&quot;: it needs an instance of &quot;App\Entity\Article&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.gADJ5td.App\Entity\Category" class="App\Entity\Category">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.gADJ5td&quot;: it needs an instance of &quot;App\Entity\Category&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    <service id=".errored..service_locator.e51BVih.App\Entity\Article" class="App\Entity\Article">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.e51BVih&quot;: it needs an instance of &quot;App\Entity\Article&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.2S0AJ0M.App\Entity\Category" class="App\Entity\Category">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.2S0AJ0M&quot;: it needs an instance of &quot;App\Entity\Category&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.3Tauuah.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.3Tauuah&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -10335,9 +10338,6 @@
     </service>
     <service id=".errored..service_locator.OHqHh3z.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.OHqHh3z&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
-    <service id=".errored..service_locator.e51BVih.App\Entity\Article" class="App\Entity\Article">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.e51BVih&quot;: it needs an instance of &quot;App\Entity\Article&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -11591,7 +11591,7 @@
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.g3ytpYt"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.I_WqDx4"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11643,9 +11643,10 @@
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
     <service id=".service_locator.ZaihGhx" alias=".service_locator.d6UE9.H"/>
+    <service id=".service_locator.xayLYFJ" alias=".service_locator.e51BVih"/>
     <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
     <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
-    <service id=".service_locator.AJ56rbI" alias=".service_locator.gADJ5td"/>
+    <service id=".service_locator.7_4YRbs" alias=".service_locator.2S0AJ0M"/>
     <service id=".service_locator.V7DMyS1" alias=".service_locator.qdASCgT"/>
     <service id=".service_locator.G0SvSN6" alias=".service_locator.73Za615"/>
     <service id=".service_locator.is.n9Ik" alias=".service_locator.3Tauuah"/>
@@ -11657,7 +11658,6 @@
     <service id=".service_locator.pXS8eDA" alias=".service_locator.FAUiyCT"/>
     <service id=".service_locator.iUxN36D" alias=".service_locator.HKv6Vyy"/>
     <service id=".service_locator.3M5f5oH" alias=".service_locator.Lr3jbjP"/>
-    <service id=".service_locator.xayLYFJ" alias=".service_locator.e51BVih"/>
     <service id=".service_locator.BxO4BPH" alias=".service_locator.rvwW9pW"/>
   </services>
 </container>

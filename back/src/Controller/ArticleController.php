@@ -16,64 +16,49 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/article/new', name: 'article_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/article/new', name: 'article_create', methods: ['POST'])]
+    public function New(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
+        $data = json_decode($request->getContent(), true);
+        if (!isset($data['title']) || !isset($data['description'])) {
+            return new JsonResponse(['error' => 'Champs requis manquants'], Response::HTTP_BAD_REQUEST);
+        }
         $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        $article->setTitle($data['title']);
+        $article->setDescription($data['description']);
+        $entityManager->persist($article);
+        $entityManager->flush();
+        return new JsonResponse(['message' => 'Article créé avec succès'], Response::HTTP_CREATED);
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($article);
-            $entityManager->flush();
-            return $this->redirectToRoute('home');
+    #[Route('/article/{id}', name: 'article_update', methods: ['PUT'])]
+    public function update(Request $request, Article $article, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        if (!$data) {
+            return $this->json(['error' => 'Invalid JSON'], 400);
         }
-        
-        return $this->render('article/new.html.twig', [
-            'form' => $form->createView(),
+        if (isset($data['title'])) {
+            $article->setTitle($data['title']);
+        }
+        if (isset($data['description'])) {
+            $article->setDescription($data['description']);
+        }
+        $entityManager->flush();
+
+        return $this->json([
+            'id' => $article->getId(),
+            'title' => $article->getTitle(),
+            'description' => $article->getDescription(),
         ]);
     }
 
-    #[Route('/article/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    #[Route('/article/{id}', name: 'article_delete', methods: ['DELETE'])]
+    public function delete(Article $article, EntityManagerInterface $em): JsonResponse
     {
-        try {
-            $categoryExists = ($article->getCategory() !== null && $article->getCategory()->getId() !== null);
-        } catch (\Doctrine\ORM\EntityNotFoundException $e) {
-            $categoryExists = false;
-            $article->setCategory(null);
-            $entityManager->persist($article);
-            $entityManager->flush();
-        }
-        $form = $this->createForm(ArticleType::class, $article, [
-            'empty_category' => $categoryExists ? null : '-- Catégorie supprimée --'
-        ]);
-
-        if (!$categoryExists) {
-            $form->get('category')->setData(null); 
-        }
-    
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->render('article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/article/{id}', name: 'article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('article_show', ['id' => $article->getId()], Response::HTTP_SEE_OTHER);
+        $em->remove($article);
+        $em->flush();
+        return new JsonResponse(['status' => 'Article deleted'], 200);
     }
 
     #[Route('/home', name: 'home', methods: ['GET'])]
@@ -120,14 +105,13 @@ class ArticleController extends AbstractController
         {
             return new JsonResponse(['error' => 'Article non trouve'], JsonResponse::HTTP_NOT_FOUND);
         }
-        $arrayArticle = [];
-        $arrayArticle[] = [
+        $ArticleData = [
             'id' => $article->getId(),
             'title' => $article->getTitle(),
             'description' => $article->getDescription(),
             'createdAt' => $article->getCreatedAt()->format('H:i:s')
         ];
-        return new JsonResponse($arrayArticle);
+        return new JsonResponse($ArticleData);
     }
 
 

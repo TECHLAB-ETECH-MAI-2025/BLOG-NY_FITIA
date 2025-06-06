@@ -2,8 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Connexion from "./components/security/Connexion";
 import Layout from "./components/fixe/Layout";
 import Accueil from "./pages/Accueil";
+import Category from "./pages/CategorieShow";
 import Article from "./pages/ArticleShow";
-import Categorie from "./pages/CategorieShow";
+import EditCategory from "./components/category/Edit";
+import EditArticle from "./components/article/Edit";
+import AddArticle from "./components/article/New";
+import AddCategory from "./components/category/New";
 
 function App() {
   return (
@@ -13,7 +17,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="accueil" element={<Accueil />} />
           <Route path="article" element={<Article />} />
-          <Route path="categorie" element={<Categorie />} />
+          <Route path="categorie" element={<Category />} />
+          <Route path="article/:id/edit" element={<EditArticle />} />
+          <Route path="categorie/:id/edit" element={<EditCategory />} />
+          <Route path="categorie/New" element={<AddCategory />} />
+          <Route path="article/New" element={<AddArticle />} />
           <Route index element={<Navigate to="/accueil" replace />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
@@ -21,5 +29,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
