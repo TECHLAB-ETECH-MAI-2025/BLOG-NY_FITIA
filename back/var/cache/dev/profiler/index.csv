@@ -1693,3 +1693,13 @@ cb8c89,127.0.0.1,GET,http://localhost:8000/home,1749213346,,200,request
 e5aa0e,127.0.0.1,GET,http://localhost:8000/api/profil,1749213346,,200,request
 9188a2,127.0.0.1,GET,http://localhost:8000/home,1749213346,,200,request
 b6b644,127.0.0.1,GET,http://localhost:8000/api/profil,1749213346,,200,request
+6b3427,::1,GET,http://localhost:8000/,1749309512,,404,request
+d40b5e,::1,GET,http://localhost:8000/,1749309512,,404,request
+057720,::1,GET,http://localhost:8000/article,1749309516,,200,request
+480a72,::1,GET,http://localhost:8000/,1749309519,,404,request
+312952,::1,OPTIONS,http://localhost:8000/api/profil,1749309521,,200,request
+a670c4,::1,OPTIONS,http://localhost:8000/api/profil,1749309521,,200,request
+93f520,::1,GET,http://localhost:8000/home,1749309521,,200,request
+19dab3,::1,GET,http://localhost:8000/api/profil,1749309521,,401,request
+269f87,::1,GET,http://localhost:8000/home,1749309521,,200,request
+0063f6,::1,GET,http://localhost:8000/api/profil,1749309521,,401,request
