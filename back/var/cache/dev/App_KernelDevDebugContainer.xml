@@ -635,7 +635,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.A0QioAA"/>
+      <argument type="service" id=".service_locator.Ra8nSE7"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3816,7 +3816,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.A0QioAA"/>
+      <argument type="service" id=".service_locator.Ra8nSE7"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -9074,19 +9074,17 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.kdj54tv" method="withContext"/>
     </service>
-    <service id=".service_locator.qdASCgT" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.OzEre6h" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="hub" type="service_closure" id="mercure.hub.default.traceable"/>
-        <argument key="messageRepository" type="service_closure" id="App\Repository\MessageRepository"/>
         <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.qdASCgT.App\Controller\MessageController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.OzEre6h.App\Controller\MessageController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\MessageController::index()"/>
       <argument>App\Controller\MessageController::index()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.qdASCgT" method="withContext"/>
+      <factory service=".service_locator.OzEre6h" method="withContext"/>
     </service>
     <service id=".service_locator.73Za615" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9239,7 +9237,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.A0QioAA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Ra8nSE7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -9260,7 +9258,7 @@
         <argument key="App\Controller\CategoryController::update" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::update()"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\CategoryController::getCategories" type="service_closure" id=".service_locator.kdj54tv.App\Controller\CategoryController::getCategories()"/>
-        <argument key="App\Controller\MessageController::index" type="service_closure" id=".service_locator.qdASCgT.App\Controller\MessageController::index()"/>
+        <argument key="App\Controller\MessageController::index" type="service_closure" id=".service_locator.OzEre6h.App\Controller\MessageController::index()"/>
         <argument key="App\Controller\MessageController::send" type="service_closure" id=".service_locator.73Za615.App\Controller\MessageController::send()"/>
         <argument key="App\Controller\MessageController::getMessages" type="service_closure" id=".service_locator.3Tauuah.App\Controller\MessageController::getMessages()"/>
         <argument key="App\Controller\MessageController::chatWithUser" type="service_closure" id=".service_locator.MzFp0LM.App\Controller\MessageController::chatWithUser()"/>
@@ -9290,7 +9288,7 @@
         <argument key="App\Controller\CategoryController:update" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::update()"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.2S0AJ0M.App\Controller\CategoryController::delete()"/>
         <argument key="App\Controller\CategoryController:getCategories" type="service_closure" id=".service_locator.kdj54tv.App\Controller\CategoryController::getCategories()"/>
-        <argument key="App\Controller\MessageController:index" type="service_closure" id=".service_locator.qdASCgT.App\Controller\MessageController::index()"/>
+        <argument key="App\Controller\MessageController:index" type="service_closure" id=".service_locator.OzEre6h.App\Controller\MessageController::index()"/>
         <argument key="App\Controller\MessageController:send" type="service_closure" id=".service_locator.73Za615.App\Controller\MessageController::send()"/>
         <argument key="App\Controller\MessageController:getMessages" type="service_closure" id=".service_locator.3Tauuah.App\Controller\MessageController::getMessages()"/>
         <argument key="App\Controller\MessageController:chatWithUser" type="service_closure" id=".service_locator.MzFp0LM.App\Controller\MessageController::chatWithUser()"/>
@@ -11671,7 +11669,7 @@
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.A0QioAA"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Ra8nSE7"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11730,7 +11728,7 @@
     <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
     <service id=".service_locator.7_4YRbs" alias=".service_locator.2S0AJ0M"/>
     <service id=".service_locator.m3NSx5z" alias=".service_locator.kdj54tv"/>
-    <service id=".service_locator.V7DMyS1" alias=".service_locator.qdASCgT"/>
+    <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
     <service id=".service_locator.G0SvSN6" alias=".service_locator.73Za615"/>
     <service id=".service_locator.is.n9Ik" alias=".service_locator.3Tauuah"/>
     <service id=".service_locator.jcKvL1c" alias=".service_locator.MzFp0LM"/>

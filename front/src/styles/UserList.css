@@ -1,0 +1,73 @@
+.chat-user-list {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.chat-title {
+  background: rgb(16, 44, 71);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 14px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 36px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chat-user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.chat-user-card-pro {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 54px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-user-card-pro:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar-pro {
+  width: 56px;
+  height: 56px;
+  background-color: rgb(16, 44, 71);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.user-role {
+  font-size: 0.9rem;
+  color: #6b7280;
+}

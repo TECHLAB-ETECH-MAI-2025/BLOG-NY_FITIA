@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {PencilIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
-import DeleteArticle from "../components/category/Delete";
+import "../styles/CategoryShow.css";
+import DeleteCategory from "../components/category/Delete";
 
 type Category = {
   id: number;
@@ -28,37 +28,57 @@ const NewCategory = () => {
 } 
 
   return (
-    <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Categorie depuis l'API</h1>
-        <button className="btn btn-active" onClick={() => NewCategory()}>New Category</button>
-        <div className="overflow-x-auto">
-            <table className="min-w-full bg-white shadow-md rounded-md border">
-                <thead className="bg-gray-200">
-                    <tr>
-                    <th className="py-2 px-4 text-left text-sm font-semibold">ID</th>
-                    <th className="py-2 px-4 text-left text-sm font-semibold">Titre</th>
-                    <th className="py-2 px-4 text-left text-sm font-semibold">Modifier</th>
-                    <th className="py-2 px-4 text-left text-sm font-semibold">Supprimer</th>                    
-                    </tr>
-                </thead>
-                <tbody>
-                    {category.map(category => (
-                    <tr key={category.id} className="border-t hover:bg-gray-100">
-                        <td className="py-2 px-4 text-sm">{category.id}</td>
-                        <td className="py-2 px-4 text-sm font-medium">{category.name}</td>
-                        <td className="py-2 px-4 text-sm font-medium">
-                          <button onClick={() => onEdit(category.id)}>
-                            <PencilIcon className="w-[2vh] h-[2vh] text-yellow-500 hover:text-yellow-700" />
+     <div className="category-container">
+      <div className="category-header">
+        <h1> <i className="bi bi-bookmarks-fill"></i>  All Categories</h1>
+        <button className="btn btn-success category-btn" onClick={NewCategory}>
+          <i className="bi bi-plus-circle"></i> New Category
+        </button>
+      </div>
+      <div className="card category-card">
+        <div className="card-body">
+          <div className="table-responsive">
+            <table className="table table-hover category-table">
+              <thead className="table-thead">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {category.length > 0 ? (
+                  category.map((cat) => (
+                    <tr key={cat.id}>
+                      <td>{cat.id}</td>
+                      <td>{cat.name}</td>
+                      <td>
+                        <div className="btn-group" role="group">
+                          <button className="btn btn-warning btn-outline-secondary" onClick={() => onEdit(cat.id)} title="Edit" >
+                            <i className="bi bi-pencil-fill"></i>
                           </button>
-                        </td>
-                        <td className="py-2 px-4 text-sm font-medium">
-                          <DeleteArticle  id={category.id} onDeleted={(deletedId) => setCategory(prev => prev.filter(category => category.id !== deletedId)) }/>
-                        </td>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="btn-group" role="group">
+                          <DeleteCategory id={cat.id} onDeleted={(deletedId) => setCategory((prev) => prev.filter((c) => c.id !== deletedId) ) } />
+                        </div>
+                      </td>
                     </tr>
-                    ))}
-                </tbody>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="category-empty">
+                      <i className="bi bi-exclamation-circle me-2"></i> No categories found
+                    </td>
+                  </tr>
+                )}
+              </tbody>
             </table>
+          </div>
         </div>
+      </div>
     </div>
   );
 };

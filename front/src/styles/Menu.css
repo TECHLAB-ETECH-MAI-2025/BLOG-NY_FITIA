@@ -1,0 +1,23 @@
+.nav-item {
+    color: white;
+}
+
+.nav-link {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.nav-link:visited {
+    color: white;
+}
+
+.nav-link:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.nav-link.active {
+    background-color: #0d6efd;
+    color: white !important;
+}
+

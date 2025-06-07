@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vote from "../components/article/Vote";
+import "../styles/Accueil.css";
 
 type Article = {
   id: number;
@@ -28,22 +29,31 @@ const Accueil: React.FC = () => {
   }, []);
 
   return (
-    <div className="container py-4">
-      <h1 className="text-center mb-4">Accueil</h1>
-      <div className="row">
+    <div className="container">
+      <div className="tete">
+            <h1>Bienvenue sur le Blog</h1>
+            <p> Bonjour et bienvenue sur ce blog ! Installez-vous confortablement et explorez les articles à votre rythme.</p>
+      </div>
+      <br/>
+      <div className="row acc-shadw row-cols-1 row-cols-md-3 g-4" >
         {articles.map((article) => (
-          <div key={article.id} className="col-12 col-sm-6 col-lg-4 mb-4">
-            <div className="card border-success h-100" style={{ maxWidth: "100%" }}>
-              <div className="card-header bg-transparent border-primary">
+          <div key={article.id} className="col">
+            <div className="card h-100" style={{ maxWidth: "100%" }}>
+              <div className="card-header">
                 <h5 className="card-title">{article.title}</h5>
-                <small className="text-muted">Créé à : {article.createdAt}</small>
+                <small className="text-muted">Publie le : {article.createdAt}</small>
               </div>
-              <div className="card-body text-white">
+              <div className="card-body ">
                 <p className="card-text">{article.description}</p>
-                {article.category ? article.category.name : <span className="fst-italic text-muted">Aucune catégorie</span>}
+                <p className="text-muted">
+                  <label htmlFor="">Category : .</label>
+                  {article.category ? <span className="badge bg-primary">{article.category.name} </span>: <span className="badge bg-warning">
+                    <i className="bi bi-exclamation-triangle me-1"></i>
+                  </span>}
+                </p>
               </div>
-              <div className="card-footer bg-transparent border-success">
-                <div className="mt-2">
+              <div className="card-footer">
+                <div className="vote-container">
                   <Vote
                     articleId={article.id}
                     initialLikes={article.likes}

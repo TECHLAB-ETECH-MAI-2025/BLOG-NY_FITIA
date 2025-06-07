@@ -23,7 +23,7 @@ return [
             [['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'get_category', '_controller' => 'App\\Controller\\CategoryController::getCategories'], null, ['GET' => 0], null, false, false, null],
         ],
-        '/chat' => [[['_route' => 'app_chat', '_controller' => 'App\\Controller\\MessageController::index'], null, null, null, false, false, null]],
+        '/api/chat' => [[['_route' => 'app_chat', '_controller' => 'App\\Controller\\MessageController::index'], null, ['GET' => 0], null, false, false, null]],
         '/chat/send' => [[['_route' => 'chat_send', '_controller' => 'App\\Controller\\MessageController::send'], null, ['POST' => 0], null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],

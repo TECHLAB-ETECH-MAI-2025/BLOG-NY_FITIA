@@ -8,6 +8,7 @@ import EditCategory from "./components/category/Edit";
 import EditArticle from "./components/article/Edit";
 import AddArticle from "./components/article/New";
 import AddCategory from "./components/category/New";
+import UserList from "./components/chat/UserList";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="categorie/:id/edit" element={<EditCategory />} />
           <Route path="categorie/New" element={<AddCategory />} />
           <Route path="article/New" element={<AddArticle />} />
+          <Route path="userList" element={<UserList />} />
           <Route index element={<Navigate to="/accueil" replace />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />

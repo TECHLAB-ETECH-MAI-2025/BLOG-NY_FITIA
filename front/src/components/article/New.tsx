@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../styles/NewArticle.css";
 
 const AddArticle: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -45,33 +46,44 @@ const AddArticle: React.FC = () => {
       });
   };
 
+  const handleCancel = () => {
+    navigate("/categorie")
+  }
+  
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">New Article</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="new-article-container">
+      <h1 className="new-article-title">New Article</h1>
+      <form onSubmit={handleSubmit} className="new-article-form">
         <div>
-          <label className="block mb-1 font-semibold">Titre :</label>
+          <label className="new-article-label">Title:</label>
           <input
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            className="w-full border rounded px-3 py-2"
+            className="new-article-input"
             required
           />
         </div>
+
         <div>
-          <label className="block mb-1 font-semibold">Description :</label>
+          <label className="new-article-label">Description :</label>
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
-            className="w-full border rounded px-3 py-2"
+            className="new-article-textarea"
             required
           />
         </div>
+
         <div>
-          <label className="block mb-1 font-semibold">Catégorie :</label>
-          <select value={categoryId || ""} onChange={e => setCategoryId(parseInt(e.target.value))}  required className="w-full border px-3 py-2 rounded" >
-            <option value="">-- Choisir une catégorie --</option>
+          <label className="new-article-label">Catégory :</label>
+          <select
+            value={categoryId || ""}
+            onChange={e => setCategoryId(parseInt(e.target.value))}
+            className="new-article-select"
+            required
+          >
+            <option value="">Select Category</option>
             {categories.map(cat => (
               <option key={cat.id} value={cat.id}>
                 {cat.name}
@@ -79,10 +91,16 @@ const AddArticle: React.FC = () => {
             ))}
           </select>
         </div>
-        {error && <p className="text-red-600">{error}</p>}
-        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" > Add </button>
-      </form>
+
+        {error && <p className="new-article-error">{error}</p>}
+
+        <div className="new-article-actions">
+          <button type="submit" className="new-article-button"> Add </button>
+          <button type="button" className="new-article-cancel"  onClick={handleCancel} > Cancel </button>
+        </div> 
+    </form>
     </div>
+
   );
 };
 

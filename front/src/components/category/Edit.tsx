@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "../../styles/EditCategory.css";
 
 type Category = {
   id: number;
@@ -44,9 +45,7 @@ const EditCategory: React.FC = () => {
     })
       .then(res => {
         if (!res.ok) {
-          return res.text().then(text => {
-            throw new Error("Erreur lors de la mise à jour");
-          });
+          return res.text();
         }
         return res.json();
       })
@@ -61,28 +60,30 @@ const EditCategory: React.FC = () => {
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>Erreur : {error}</p>;
 
+  const handleCancel = () => {
+    navigate("/categorie");
+  }
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Edit Category</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="edit-category-container">
+      <h1 className="edit-category-title">Edit Category</h1>
+      <form onSubmit={handleSubmit} className="edit-category-form">
         <div>
-          <label className="block mb-1 font-semibold">Name :</label>
+          <label className="edit-category-label">Name :</label>
           <input
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="w-full border rounded px-3 py-2"
+            className="edit-category-input"
             required
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Save
-        </button>
+       <div className="edit-category-actions">
+          <button type="submit" className="edit-category-button"> Save </button>
+          <button type="button" className="edit-category-cancel"  onClick={handleCancel} > Cancel </button>
+        </div>
       </form>
     </div>
+
   );
 };
 

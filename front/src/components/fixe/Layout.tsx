@@ -1,25 +1,27 @@
 import { Outlet } from "react-router-dom";
-import Deconnexion from "../security/Deconnexion" ;
 import Menu from "../fixe/Menu" ;
 import Profil from "../fixe/Profil" ;
+import "../../styles/Layout.css"
+import Logout from "../security/Logout";
+import MenuChat from "./MenuChat";
 
 const Layout = () => {
     return (
-        <div className="flex h-screen">
-            <aside className="w-60 bg-gray-200 p-4 sticky top-0 h-screen">
-                <Profil />
-                <Menu/>
-                <Deconnexion/>
-            </aside>
-            <main className="flex-1 p-6 overflow-auto">
-                <Outlet />
-            </main>
-            <aside className="w-60 bg-red-800 p-4 sticky top-0 h-screen">
-                <p>Info</p>
-                <ul>
-                    <li>Message</li>
-                </ul>
-            </aside>
+        <div className="container-fluid">
+            <div className="row">
+                <aside className="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                    <Profil />
+                    <Menu/>
+                    <Logout/>
+                </aside>
+                <main className="col-md-8 col-lg-9 main-content">
+                    <Outlet />
+                </main>
+                <aside className="col-md-1 col-lg-1 d-md-block sidebar2 collapse">
+                    <MenuChat/>
+                </aside>
+            </div>
+            
         </div>
     );
 };

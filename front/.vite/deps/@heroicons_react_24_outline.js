@@ -1,7 +1,9 @@
 import {
-  __toESM,
   require_react
-} from "./chunk-5WQJO2FO.js";
+} from "./chunk-KS2M7ZJI.js";
+import {
+  __toESM
+} from "./chunk-5WRI5ZAA.js";
 
 // node_modules/@heroicons/react/24/outline/esm/AcademicCapIcon.js
 var React = __toESM(require_react(), 1);

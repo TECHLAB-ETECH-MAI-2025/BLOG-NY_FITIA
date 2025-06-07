@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../styles/NewCategory.css";
 
 const AddCategory: React.FC = () => {
   const [name, setName] = useState("");
@@ -31,29 +32,25 @@ const AddCategory: React.FC = () => {
       });
   };
 
+  const handleCancel = () => {
+    navigate("/categorie")
+  }
+
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">New Category</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block mb-1 font-semibold">Nom :</label>
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        {error && <p className="text-red-600">{error}</p>}
-        <button
-          type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Ajouter
-        </button>
-      </form>
+    <div className="new-category-container">
+  <h1>New Category</h1>
+  <form onSubmit={handleSubmit} className="new-category-form">
+    <div>
+      <label className="new-category-label">Category Name :</label>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="new-category-input" required />
     </div>
+    {error && <p className="new-category-error">{error}</p>}
+    <div className="new-category-actions">
+      <button type="submit" className="new-category-button"> Add </button>
+      <button type="button" className="new-category-cancel"  onClick={handleCancel} > Cancel </button>
+    </div>
+  </form>
+</div>
   );
 };
 

@@ -1,0 +1,49 @@
+
+.vote-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.vote-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.vote-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vote-btn.like.active {
+    color: #4CAF50;
+    background-color: #e8f5e9;
+}
+
+.vote-btn.dislike.active {
+    color: #f44336;
+    background-color: #ffebee;
+}
+
+.vote-count {
+    font-size: 0.9rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.comment-btn {
+    color: rgb(2, 25, 46);
+    transition: color 0.3s;
+}
+
+.comment-btn:hover {
+    color: #0d6efd;
+}

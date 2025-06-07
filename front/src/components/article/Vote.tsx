@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../../styles/Vote.css";
 
 interface VoteProps {
   articleId: number;
@@ -46,10 +47,12 @@ const Vote: React.FC<VoteProps> = ({ articleId,  initialLikes, initialDislikes, 
   return (
     <div className="vote-container">
       <button className={`vote-btn like ${userVote === 1 ? 'active' : ''}`} onClick={() => handleVote(1)} >
-        👍 <span className="like-count">{likes}</span>
+        <i className="bi bi-hand-thumbs-up"></i>
+        <span className="like-count">{likes}</span>
       </button>
       <button className={`vote-btn dislike ${userVote === -1 ? "bg-red-500 text-white" : "bg-gray-100"}`} onClick={() => handleVote(-1)} >
-        👎 <span className="dislike-count">{dislikes}</span>
+        <i className="bi bi-hand-thumbs-down"></i> 
+        <span className="dislike-count">{dislikes}</span>
       </button>
     </div>
   );

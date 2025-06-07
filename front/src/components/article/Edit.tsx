@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "../../styles/EditArticle.css";
 
 type Category = {
   id: number;
@@ -86,57 +87,39 @@ const EditArticle: React.FC = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigate("/article");
+  }
+
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>Erreur : {error}</p>;
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Modifier l'article</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block mb-1 font-semibold">Titre :</label>
-          <input
-            type="text"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold">Description :</label>
-          <textarea
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            className="w-full border rounded px-3 py-2"
-            rows={4}
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold">Catégorie :</label>
-          <select
-            value={categoryId}
-            onChange={e => setCategoryId(e.target.value === "" ? "" : parseInt(e.target.value))}
-            className="w-full border px-3 py-2 rounded"
-            required
-          >
-            <option value="">-- Choisir une catégorie --</option>
-            {categories.map(cat => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-          </div>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Enregistrer
-        </button>
-      </form>
+    <div className="edit-article-container">
+  <h1 className="edit-article-title">Edit Article</h1>
+  <form onSubmit={handleSubmit} className="edit-article-form">
+    <div>
+      <label className="edit-article-label">Title :</label>
+      <input type="text" value={title} onChange={e => setTitle(e.target.value)}  className="edit-article-input" required />
     </div>
+    <div>
+      <label className="edit-article-label">Description :</label>
+      <textarea value={description} onChange={e => setDescription(e.target.value)} className="edit-article-textarea" rows={4}  required />
+    </div>
+    <div>
+      <label className="edit-article-label">Catégory :</label>
+      <select value={categoryId} onChange={e => setCategoryId(e.target.value === "" ? "" : parseInt(e.target.value))} className="edit-article-select" required >
+        <option value="">-- Select Category --</option>
+        {categories.map(cat => (  <option key={cat.id} value={cat.id}>{cat.name}</option> ))}
+      </select>
+    </div>
+    <div className="edit-article-actions">
+          <button type="submit" className="edit-article-button"> Save </button>
+          <button type="button" className="edit-article-cancel"  onClick={handleCancel} > Cancel </button>
+        </div>
+  </form>
+</div>
+
   );
 };
 

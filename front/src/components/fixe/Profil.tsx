@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 interface UserProfile {
   id: number;
@@ -64,29 +65,35 @@ const Profil: React.FC = () => {
   if (!user) return null;
 
   return (
-    <div className="profil-container" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      {user.avatar ? (
-        <img
-          src={`http://localhost:8000/uploads/avatars/${user.avatar}`}
-          alt={`${user.firstName} ${user.lastName}`}
-          style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-        />
-      ) : (
-        <div style={{ width: "40px", 
-            height: "40px",  
-            borderRadius: "50%", 
-            backgroundColor: "#ccc", 
-            display: "flex", 
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "bold",
-            color: "#555",
-          }}
-        >
-          {user.firstName[0].toUpperCase()}
-        </div>
-      )}
-      <span>{user.firstName} {user.lastName}</span>
+    <div className="text-center mb-9">
+      <div className="dropdown">
+        <a href="#" className="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          {user.avatar ? (
+            <img
+              src={`http://localhost:8000/uploads/avatars/${user.avatar}`}
+              alt={`${user.firstName} ${user.lastName}`}
+              style={{ width: "70px", height: "70px", borderRadius: "50%" }}
+            />
+          ) : (
+            <span className="avatar-placeholder">
+              {user.firstName[0].toUpperCase()}
+            </span>
+          )}
+            <span className="d-block mt-1 text-white">{user.firstName} {user.lastName}</span>
+        </a>
+        <ul className="dropdown-menu ">
+          <li>
+              <a className="dropdown-item" href="#">
+                  <i className="bi bi-person-lines-fill me-2"></i> Mon profil
+              </a>
+          </li>
+          <li>
+              <a className="dropdown-item" href="#">
+                  <i className="bi bi-gear me-2"></i> Paramètres
+              </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

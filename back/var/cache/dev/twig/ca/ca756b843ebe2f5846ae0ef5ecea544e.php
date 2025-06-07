@@ -46,31 +46,30 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
 
         // line 1
         yield "<div class=\"sidebar-sticky pt-3\">
-    <!-- Section Photo de profil (seulement si connecté) -->
     ";
-        // line 3
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 3, $this->source); })()), "user", [], "any", false, false, false, 3)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 4
+        // line 2
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 2, $this->source); })()), "user", [], "any", false, false, false, 2)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 3
             yield "    <div class=\"text-center mb-4\">
         <div class=\"dropdown\">
             <a href=\"#\" class=\"d-block text-decoration-none dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
                 <img src=\"";
-            // line 7
-            yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7), "avatar", [], "any", false, false, false, 7)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7), "avatar", [], "any", false, false, false, 7))), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true)));
+            // line 6
+            yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6), "avatar", [], "any", false, false, false, 6)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6), "avatar", [], "any", false, false, false, 6))), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true)));
             yield "\" 
                      class=\"rounded-circle mb-2\" 
                      width=\"80\" 
                      height=\"80\" 
                      alt=\"Photo profil\">
                 <div class=\"text-white small\">";
-            // line 12
-            yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 12), "firstname", [], "any", true, true, false, 12) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "firstname", [], "any", false, false, false, 12)))) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "firstname", [], "any", false, false, false, 12), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 12, $this->source); })()), "user", [], "any", false, false, false, 12), "email", [], "any", false, false, false, 12), "html", null, true)));
+            // line 11
+            yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 11), "firstname", [], "any", true, true, false, 11) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11), "firstname", [], "any", false, false, false, 11)))) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11), "firstname", [], "any", false, false, false, 11), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11), "email", [], "any", false, false, false, 11), "html", null, true)));
             yield "</div>
             </a>
             <ul class=\"dropdown-menu dropdown-menu-dark\">
                 <li>
                     <a class=\"dropdown-item\" href=\"";
-            // line 16
+            // line 15
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_profile");
             yield "\">
                         <i class=\"bi bi-person-lines-fill me-2\"></i> Mon profil
@@ -78,7 +77,7 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
                 </li>
                 <li>
                     <a class=\"dropdown-item\" href=\"";
-            // line 21
+            // line 20
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_profile_edit");
             yield "\">
                         <i class=\"bi bi-gear me-2\"></i> Paramètres
@@ -89,57 +88,57 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
     </div>
     ";
         }
-        // line 29
+        // line 28
         yield "
     <!-- Menu principal -->
     <ul class=\"nav flex-column\">
         <li class=\"nav-item\">
             <a href=\"";
-        // line 33
+        // line 32
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 33, $this->source); })()), "request", [], "any", false, false, false, 33), "get", ["_route"], "method", false, false, false, 33) == "home")) ? ("active") : (""));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 32, $this->source); })()), "request", [], "any", false, false, false, 32), "get", ["_route"], "method", false, false, false, 32) == "home")) ? ("active") : (""));
         yield "\">
                 <i class=\"bi bi-house-door me-2\"></i> Accueil
             </a>
         </li>
         <li class=\"nav-item\">
             <a href=\"";
-        // line 38
+        // line 37
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article_show");
         yield "\" class=\"nav-link ";
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 38, $this->source); })()), "request", [], "any", false, false, false, 38), "get", ["_route"], "method", false, false, false, 38) == "article_show")) ? ("active") : (""));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "request", [], "any", false, false, false, 37), "get", ["_route"], "method", false, false, false, 37) == "article_show")) ? ("active") : (""));
         yield "\">
                 <i class=\"bi bi-file-earmark-text me-2\"></i> Articles
             </a>
         </li>
         <li class=\"nav-item\">
             <a href=\"";
-        // line 43
+        // line 42
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_show");
         yield "\" class=\"nav-link ";
-        yield (((is_string($_v0 = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 43, $this->source); })()), "request", [], "any", false, false, false, 43), "get", ["_route"], "method", false, false, false, 43)) && is_string($_v1 = "category_") && str_starts_with($_v0, $_v1))) ? ("active") : (""));
+        yield (((is_string($_v0 = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 42, $this->source); })()), "request", [], "any", false, false, false, 42), "get", ["_route"], "method", false, false, false, 42)) && is_string($_v1 = "category_") && str_starts_with($_v0, $_v1))) ? ("active") : (""));
         yield "\">
                 <i class=\"bi bi-bookmark me-2\"></i> Catégories
             </a>
         </li>
-
+    </ul>
         <form action=\"";
-        // line 48
+        // line 47
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_search");
         yield "\" method=\"get\" onsubmit=\"return validateSearch()\">
     <div class=\"input-group position-relative\">
         <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"
             placeholder=\"Rechercher...\" value=\"";
-        // line 51
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 51, $this->source); })()), "request", [], "any", false, false, false, 51), "query", [], "any", false, false, false, 51), "get", ["q"], "method", false, false, false, 51), "html", null, true);
+        // line 50
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 50, $this->source); })()), "request", [], "any", false, false, false, 50), "query", [], "any", false, false, false, 50), "get", ["q"], "method", false, false, false, 50), "html", null, true);
         yield "\" required autocomplete=\"off\">
         <button type=\"submit\" class=\"btn btn-outline-secondary\">
             <i class=\"bi bi-search\"></i>
         </button>
 
         ";
-        // line 57
+        // line 56
         yield "        <div id=\"searchResultats\" class=\"dropdown-menu show w-100 mt-1 p-2 shadow-sm\"
              style=\"display: none; max-height: 300px; overflow-y: auto;\">
             <!-- Résultats en direct s’affichent ici -->
@@ -164,7 +163,7 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             fetch('";
-        // line 80
+        // line 79
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_search_live");
         yield "?q=' + encodeURIComponent(query))
                 .then(response => response.text())
@@ -191,12 +190,12 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
 
     <!-- Bouton Déconnexion en bas -->
     ";
-        // line 104
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 104, $this->source); })()), "user", [], "any", false, false, false, 104)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 105
+        // line 103
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 103, $this->source); })()), "user", [], "any", false, false, false, 103)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 104
             yield "    <div class=\"mt-auto pt-3 border-top\">
         <a href=\"";
-            // line 106
+            // line 105
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"btn btn-outline-danger btn-sm w-10 d-inline-flex align-items-center\">
             <i class=\"bi bi-box-arrow-right me-2\"></i> Logout
@@ -204,7 +203,7 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
     </div>
     ";
         }
-        // line 111
+        // line 110
         yield "</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -236,13 +235,12 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  208 => 111,  200 => 106,  197 => 105,  195 => 104,  168 => 80,  143 => 57,  135 => 51,  129 => 48,  119 => 43,  109 => 38,  99 => 33,  93 => 29,  82 => 21,  74 => 16,  67 => 12,  59 => 7,  54 => 4,  52 => 3,  48 => 1,);
+        return array (  207 => 110,  199 => 105,  196 => 104,  194 => 103,  167 => 79,  142 => 56,  134 => 50,  128 => 47,  118 => 42,  108 => 37,  98 => 32,  92 => 28,  81 => 20,  73 => 15,  66 => 11,  58 => 6,  53 => 3,  51 => 2,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<div class=\"sidebar-sticky pt-3\">
-    <!-- Section Photo de profil (seulement si connecté) -->
     {% if app.user %}
     <div class=\"text-center mb-4\">
         <div class=\"dropdown\">
@@ -287,7 +285,7 @@ class __TwigTemplate_e80595476f8fe7bac54b6ced30779558 extends Template
                 <i class=\"bi bi-bookmark me-2\"></i> Catégories
             </a>
         </li>
-
+    </ul>
         <form action=\"{{ path('app_search') }}\" method=\"get\" onsubmit=\"return validateSearch()\">
     <div class=\"input-group position-relative\">
         <input class=\"form-control\" type=\"text\" name=\"q\" id=\"searchInput\"

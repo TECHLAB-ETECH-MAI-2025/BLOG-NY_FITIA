@@ -1,5 +1,4 @@
 import React from "react";
-import { TrashIcon } from "@heroicons/react/24/solid"; 
 
 type Props = {
   id: number;
@@ -26,9 +25,7 @@ const DeleteArticle: React.FC<Props> = ({ id, onDeleted }) => {
   };
 
   return (
-    <button onClick={handleDelete}>
-      <TrashIcon className="w-[2vh] h-[2vh] text-red-600 hover:text-red-800" />
-    </button>
+      <button onClick={handleDelete} className="btn text-danger"><i className="bi bi-trash"></i></button>
   );
 };
 

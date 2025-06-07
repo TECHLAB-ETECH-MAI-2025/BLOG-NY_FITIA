@@ -1,12 +1,11 @@
 import React from "react";
-import { TrashIcon } from "@heroicons/react/24/solid"; 
 
 type Props = {
   id: number;
   onDeleted: (id: number) => void;
 };
 
-const DeleteCategoryButton: React.FC<Props> = ({ id, onDeleted }) => {
+const DeleteCategory: React.FC<Props> = ({ id, onDeleted }) => {
   const handleDelete = () => {
     if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?")) return;
 
@@ -25,10 +24,8 @@ const DeleteCategoryButton: React.FC<Props> = ({ id, onDeleted }) => {
   };
 
   return (
-    <button onClick={handleDelete} className="text-red-600 hover:text-red-800">
-        <TrashIcon className="w-[2vh] h-[2vh] text-red-600 hover:text-red-800" />
-    </button>
+    <button onClick={handleDelete} className="btn text-danger"><i className="bi bi-trash"></i></button>
   );
 };
 
-export default DeleteCategoryButton;
+export default DeleteCategory;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PencilIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
 import DeleteArticle from "../components/article/Delete";
+import "../styles/ArticleShow.css";
 
 type Article = {
   id: number;
@@ -31,42 +31,53 @@ const Article: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Articles depuis l'API</h1>
-        <button className="btn btn-active" onClick={() => NewArticle()}>New Article</button>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-md border">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="py-2 px-4 text-left text-sm font-semibold">ID</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Titre</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Description</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Category</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Modifier</th>
-              <th className="py-2 px-4 text-left text-sm font-semibold">Supprimer</th>
-            </tr>
-          </thead>
-          <tbody>
-            {articles.map(article => (
-              <tr key={article.id} className="border-t hover:bg-gray-100">
-                <td className="py-2 px-4 text-sm">{article.id}</td>
-                <td className="py-2 px-4 text-sm font-medium">{article.title}</td>
-                <td className="py-2 px-4 text-sm">{article.description}</td>
-                <td className="py-2 px-4 text-xs text-gray-500">{article.category ? article.category.name : <span className="italic text-gray-400">Aucune</span>}</td>
-                <td className="py-2 px-4 text-sm font-medium">
-                  <button onClick={() => onEdit(article.id)}>
-                    <PencilIcon className="w-[2vh] h-[2vh] text-yellow-500 hover:text-yellow-700" />
-                  </button>
-                </td>
-                <td className="py-2 px-4 text-sm font-medium">
-                  <DeleteArticle  id={article.id} onDeleted={(deletedId) => setArticles(prev => prev.filter(article => article.id !== deletedId)) }/>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div className="container-article">
+  <div className="article-header">
+    <h1><i className="bi bi-bookmarks-fill me-2"></i>All Articles</h1>
+    <button onClick={NewArticle} className="btn-new-article">
+      <i className="bi bi-plus-circle"></i> New Article
+    </button>
+  </div>
+
+  <table className="article-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {articles.length > 0 ? (
+        articles.map(article => (
+          <tr key={article.id}>
+            <td>{article.id}</td>
+            <td>{article.title}</td>
+            <td>{article.description}</td>
+            <td>{article.category ? article.category.name : <span className="no-article">Aucune</span>}</td>
+            <td>
+              <button onClick={() => onEdit(article.id)} className="btn btn-sm btn-warning">
+                <i className="bi bi-pencil"></i>
+              </button>
+            </td>
+            <td>
+              <DeleteArticle id={article.id} onDeleted={(id) => setArticles(prev => prev.filter(a => a.id !== id))} />
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td className="no-article">Aucun article pour le moment.</td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
+
   );
 };
 

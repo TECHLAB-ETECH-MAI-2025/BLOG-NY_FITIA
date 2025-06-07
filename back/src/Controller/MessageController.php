@@ -19,19 +19,17 @@ use Symfony\Component\Mercure\HubInterface;
 
 final class MessageController extends AbstractController
 {
-    #[Route('/chat', name: 'app_chat')]
-    public function index(HubInterface $hub, MessageRepository $messageRepository, UserRepository $userRepository): Response
+    #[Route('/api/chat', name: 'app_chat', methods: ['GET'])]
+    public function index(UserRepository $userRepository): JsonResponse
     {
-        $currentUser = $this->getUser();
         $users = $userRepository->findAll();
-
-        return $this->render('chat/index.html.twig', [
-            'users' => $users,
-            'messages' => $messageRepository->findAll(),
-            'mercure_publish_url' => $hub->getPublicUrl(),
-            'mercure_topic' => '/chat/'.($this->getUser()?->getId() ?? 'public'),
-            'current_user' => $this->getUser()?->getUserIdentifier()
-        ]);
+        $data = array_map(function ($users) {
+            return [
+                'id' => $users->getId(),
+                'email' => $users->getEmail()
+            ];
+        }, $users);
+        return $this->json($data);
     }
 
     #[Route('/chat/send', name: 'chat_send', methods: ['POST'])]
