@@ -1703,3 +1703,7 @@ a670c4,::1,OPTIONS,http://localhost:8000/api/profil,1749309521,,200,request
 19dab3,::1,GET,http://localhost:8000/api/profil,1749309521,,401,request
 269f87,::1,GET,http://localhost:8000/home,1749309521,,200,request
 0063f6,::1,GET,http://localhost:8000/api/profil,1749309521,,401,request
+2055f3,::1,GET,http://localhost:8000/api/profil,1749311655,,401,request
+649da8,::1,GET,http://localhost:8000/home,1749311655,,200,request
+639abe,::1,GET,http://localhost:8000/api/profil,1749311655,,401,request
+54fb6c,::1,GET,http://localhost:8000/home,1749311655,,200,request
