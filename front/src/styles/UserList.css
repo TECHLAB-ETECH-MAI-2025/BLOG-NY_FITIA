@@ -29,6 +29,7 @@
   padding: 20px;
   box-shadow: 0 10px 54px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
 }
 
 .chat-user-card-pro:hover {

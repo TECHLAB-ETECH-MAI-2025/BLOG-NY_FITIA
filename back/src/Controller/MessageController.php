@@ -32,22 +32,25 @@ final class MessageController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/chat/send', name: 'chat_send', methods: ['POST'])]
-    public function send(Request $request, EntityManagerInterface $em, Security $security): JsonResponse
+    #[Route('/api/chat/send', name: 'send_message', methods: ['POST'])]
+    public function sendMessage(Request $request, EntityManagerInterface $em, Security $security): JsonResponse 
     {
-        $content = $request->request->get('content');
-        if (!$content) {
-            return new JsonResponse(['error' => 'Le message est vide.'], 400);
+        $data = json_decode($request->getContent(), true);
+        $receiverId = $data['receiverId'] ?? null;
+        $content = $data['content'] ?? null;
+
+        if (!$receiverId || !$content) {
+            return new JsonResponse(['error' => 'Invalid input'], 400);
         }
-        $receiverId = $request->request->get('receiver_id');
-        if (!$receiverId) {
-            return new JsonResponse(['error' => 'Receiver ID missing.'], 400);
-        }
+
         $sender = $security->getUser();
+        if (!$sender) {
+            return new JsonResponse(['error' => 'User not authenticated'], 401);
+        }
 
         $receiver = $em->getRepository(User::class)->find($receiverId);
         if (!$receiver) {
-            return new JsonResponse(['error' => 'Receiver not found.'], 404);
+            return new JsonResponse(['error' => 'Receiver not found'], 404);
         }
 
         $message = new Message();
@@ -60,15 +63,9 @@ final class MessageController extends AbstractController
         $em->persist($message);
         $em->flush();
 
-        return new JsonResponse([
-            'id' => $message->getId(),
-            'sender' => $sender->getId(),
-            'receiver' => $receiver->getId(),
-            'content' => $message->getContent(),
-            'createdAt' => $message->getCreatedAt()->format(\DateTime::ATOM),
-            'isRead' => $message->isRead()
-        ]);
+        return new JsonResponse(['status' => 'Message sent'], 201);
     }
+
 
     #[Route('/chat/messages/{id}', name: 'chat_get_messages', methods: ['GET'])]
     public function getMessages(User $otherUser, MessageRepository $messageRepo, Security $security): JsonResponse
@@ -102,16 +99,10 @@ final class MessageController extends AbstractController
         return new JsonResponse($response);
     }
 
-    #[Route('/chat/{id}', name: 'chat_with_user')]
-    public function chatWithUser(
-        User $otherUser,
-        MessageRepository $messageRepo,
-        EntityManagerInterface $em,
-        Security $security,
-        HubInterface $hub
-    ): Response {
+    #[Route('/api/chat/{id}', name: 'chat_with_user')]
+    public function chatWithUser( User $otherUser,  MessageRepository $messageRepo, EntityManagerInterface $em, Security $security, Request $request): JsonResponse
+    {
         $currentUser = $security->getUser();
-        
         if (!$currentUser instanceof User) {
             throw $this->createAccessDeniedException('Accès refusé.');
         }
@@ -130,13 +121,21 @@ final class MessageController extends AbstractController
             }
         }
         $em->flush();
-
-        return $this->render('chat/conversation.html.twig', [
-            'messages' => $messages,
-            'otherUser' => $otherUser,
-            'currentUser' => $currentUser,
-            'mercure_publish_url' => $hub->getPublicUrl(),
-            'mercure_topic' => '/user/'.$currentUser->getId().'/messages',
+        return $this->json([
+            'messages' => array_map(function ($msg) {
+                return [
+                    'id' => $msg->getId(),
+                    'content' => $msg->getContent(),
+                    'createdAt' => $msg->getCreatedAt()->format('H:i:s'),
+                    'senderId' =>$msg->getSender()->getId(),
+                    'receiverId' =>$msg->getReceiver()->getId(),
+                ];
+            }, $messages),
+            'otherUser' => [
+                'id' => $otherUser->getId(),
+                'email' => $otherUser->getEmail()
+            ],
+            'currentUserId' => $currentUser->getId()
         ]);
     }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/UserList.css";
+import {Link} from 'react-router-dom';
 
 type User = {
   id: number;
@@ -31,17 +32,17 @@ const UserList: React.FC = () => {
       <h2 className="chat-title">Chat avec un utilisateur</h2>
       <div className="chat-user-grid">
         {users.map((user) => (
-          <div key={user.id} className="chat-user-card-pro">
-            <div className="card-header">
-              <div className="avatar-pro">
-                {user.email.charAt(0).toUpperCase()}
+          <Link to={`/chat/${user.id}`} key={user.id} className="chat-user-card-pro">
+              <div className="card-header">
+                <div className="avatar-pro">
+                  {user.email.charAt(0).toUpperCase()}
+                </div>
+                <div className="user-info">
+                  <h3 className="user-name">{user.email}</h3>
+                  <span className="user-role">En ligne / Hors ligne</span>
+                </div>
               </div>
-              <div className="user-info">
-                <h3 className="user-name">{user.email}</h3>
-                <span className="user-role">En ligne / Hors ligne</span>
-              </div>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

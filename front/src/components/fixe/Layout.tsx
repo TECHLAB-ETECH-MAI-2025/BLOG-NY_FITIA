@@ -9,7 +9,7 @@ const Layout = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <aside className="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <aside className="col-md-3 col-lg-2 d-md-block sidebar">
                     <Profil />
                     <Menu/>
                     <Logout/>
@@ -17,11 +17,10 @@ const Layout = () => {
                 <main className="col-md-8 col-lg-9 main-content">
                     <Outlet />
                 </main>
-                <aside className="col-md-1 col-lg-1 d-md-block sidebar2 collapse">
+                <aside className="col-md-1 col-lg-1 d-md-block sidebar2">
                     <MenuChat/>
                 </aside>
             </div>
-            
         </div>
     );
 };
