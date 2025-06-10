@@ -50,13 +50,13 @@ const ArticleInteractModal: React.FC<Props> = ({ articleId, onClose, token }) =>
     <div className="modal-container">
       <div className="modal-content">
         <div className="modal-header">
-          <h2 className="modal-title">{article.title}</h2>
+          <h2 className="modal-title"><span> Title : </span> {article.title}</h2>
         </div>
 
         <div className="modal-body">
-          <p>{article.description}</p>
+          <p><span> Description : </span>{article.description}</p>
           <div className="comment-section">
-            <h3>Commentaires</h3>
+            <h4>All Comments</h4>
             <div className="comment-list">
               {comments.map((c, i) => (
                 <div key={i} className="comment-item">
@@ -70,7 +70,7 @@ const ArticleInteractModal: React.FC<Props> = ({ articleId, onClose, token }) =>
               className="comment-textarea"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              placeholder="Ajouter un commentaire..."
+              placeholder="Add comment..."
             />
             <div className="commentAct"> 
               <button type="submit" className="submit-btn"> Send </button>

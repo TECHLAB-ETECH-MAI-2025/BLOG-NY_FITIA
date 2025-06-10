@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function SearchLive() {
   const [query, setQuery] = useState('');
@@ -6,6 +6,7 @@ function SearchLive() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (query.length === 0) {
@@ -15,10 +16,14 @@ function SearchLive() {
     }
 
     setLoading(true);
-    fetch(`http://localhost:8000/api/search/live?q=${encodeURIComponent(query)}`)
+    fetch(`http://localhost:8000/api/search/live?q=${encodeURIComponent(query)}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(res => {
         if (!res.ok) 
-          throw new Error('Erreur serveur');
+          throw new Error('');
         return res.json();
       })
       .then(data => {
@@ -35,45 +40,56 @@ function SearchLive() {
   }, [query]);
 
   return (
-    <div className=' border-bottom'>
-      <div >
-        <input type="search" placeholder="Search..." value={query} onChange={(e) => setQuery(e.target.value)}/>
-        {loading && <p>Chargement...</p>}
-        {error && <p style={{ color: 'red' }}>Erreur : {error}</p>}
-
-        {query.length > 0 && (
-          <>
-            {articles.length > 0 ? (
-              <>
-                <h3>Articles</h3>
-                <ul>
-                  {articles.map((a) => (
-                    <li key={a.id}>{a.title} - {a.summary}</li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <p>Aucun article trouvé</p>
-            )}
-
-            {categories.length > 0 ? (
-              <>
-                <h3>Catégories</h3>
-                <ul>
-                  {categories.map((c) => (
-                    <li key={c.id}>{c.name}</li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <p>Aucune catégorie trouvée</p>
-            )}
-          </>
-        )}
-        
+    <div className="search-container p-3 border-bottom">
+      <div className="mb-3">
+        <input
+          type="search"
+          className="form-control"
+          placeholder="Rechercher un article ou une catégorie..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </div>
-      <br />
+
+      {loading && <div className="alert alert-info p-2">Chargement...</div>}
+      {error && <div className="alert alert-danger p-2"> Erreur : {error}</div>}
+
+      {query.length > 0 && (
+        <div className="search-results mt-3">
+          {articles.length > 0 ? (
+            <>
+              <h5 className="text-primary">Articles trouvés</h5>
+              <ul className="list-group mb-3">
+                {articles.map((a) => (
+                  <li key={a.id} className="list-group-item">
+                      <strong>{a.title}</strong><br />
+                      <small className="text-muted">{a.content}</small>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p className="text-muted">Aucun article trouvé</p>
+          )}
+
+          {categories.length > 0 ? (
+            <>
+              <h5 className="text-success">Catégories trouvées</h5>
+              <ul className="list-group">
+                {categories.map((c) => (
+                  <li key={c.id} className="list-group-item">
+                        {c.name}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p className="text-muted">Aucune catégorie trouvée</p>
+          )}
+        </div>
+      )}
     </div>
+
   );
 }
 

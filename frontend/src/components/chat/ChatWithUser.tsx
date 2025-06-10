@@ -96,7 +96,7 @@ const ChatWithUser: React.FC = () => {
     <div className="chatWithUser">
       {otherUser ? (
         <>
-          <h2>Conversation avec {otherUser.email}</h2>
+          <h2>Chat With {otherUser.email}</h2>
           <div className="chat-messages">
             {messages.map((msg) => {
               const isSent = msg.senderId === currentUser;
@@ -107,7 +107,7 @@ const ChatWithUser: React.FC = () => {
                 >
                   <p>{msg.content}</p>
                   <span className="timestamp">
-                    {new Date(msg.createdAt).toLocaleString()}
+                    {msg.createdAt}
                   </span>
                 </div>
               );
