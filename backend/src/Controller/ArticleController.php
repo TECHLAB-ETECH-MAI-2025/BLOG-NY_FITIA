@@ -165,68 +165,59 @@ class ArticleController extends AbstractController
         return new JsonResponse($arrayArticle);
     }
 
-    #[Route('/article/{id}', name: 'article_show_one', methods: ['GET'])]
-    public function showArticleOne(int $id, ArticleRepository $articleRepository) : JsonResponse
+    #[Route('/api/article/{id}', name: 'api_article_show', methods: ['GET'])]
+    public function showOne( Article $article ): JsonResponse 
     {
-        $article = $articleRepository->find($id);
-        if (!$article)
-        {
-            return new JsonResponse(['error' => 'Article non trouve'], JsonResponse::HTTP_NOT_FOUND);
-        }
-        $category = $article->getCategory();
-        $ArticleData = [
+        $data = [
             'id' => $article->getId(),
             'title' => $article->getTitle(),
             'description' => $article->getDescription(),
-            'createdAt' => $article->getCreatedAt()->format('H:i:s'),
-            'category' => $category ? [
-                'id' => $category->getId(),
-                'name' => $category->getName()
-            ] : null
+            'createdAt' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
+            'category' => $article->getCategory()?->getName(),
+            'comments' => array_map(fn($comment) => [
+                'id' => $comment->getId(),
+                'content' => $comment->getContent(),
+                'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i'),
+            ], $article->getComments()->toArray())
         ];
-        return new JsonResponse($ArticleData);
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
 
-
-    #[Route('/article/{id}/interact', name: 'article_interact', methods: ['GET', 'POST'])]
-    public function interact(Article $article, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/api/article/{id}/comment', name: 'api_article_comment', methods: ['POST'])]
+    public function comment( Article $article, Request $request, EntityManagerInterface $entityManager): JsonResponse 
     {
+        $data = json_decode($request->getContent(), true);
+        if (empty($data['content'])) {
+            return new JsonResponse(['error' => 'Le contenu du commentaire est requis'], JsonResponse::HTTP_BAD_REQUEST);
+        }
         $comment = new Comment();
         $comment->setArticle($article);
+        $comment->setContent($data['content']);
+        $comment->setCreatedAt(new \DateTimeImmutable());
 
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
+        $entityManager->persist($comment);
+        $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($comment);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('article_interact', ['id' => $article->getId()]);
-        }
-
-        return $this->render('article/interact.html.twig', [
-            'article' => $article,
-            'commentForm' => $form->createView(),
-        ]);
+        return new JsonResponse([
+            'id' => $comment->getId(),
+            'content' => $comment->getContent(),
+            'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i'),
+        ], JsonResponse::HTTP_CREATED);
     }
 
     #[Route('/search', name: 'app_search', methods: ['GET'])]
-    public function search(Request $request, ArticleRepository $articleRepository): Response
+    public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+        $query = $request->query->get('query', '');
 
         $results = [];
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $query = $form->get('query')->getData();
+        if ($query) {
             $results = $articleRepository->search($query);
         }
 
-        return $this->render('article/search.html.twig', [
-            'searchForm' => $form->createView(),
+        return new JsonResponse([
+            'query' => $query,
             'results' => $results,
-            'query' => $query ?? null
         ]);
     }
 }

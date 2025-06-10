@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Login.css"
+import { Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -16,6 +17,7 @@ function Login() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({ email, password }),
             });
             const data = await response.json();
@@ -47,11 +49,12 @@ function Login() {
                                 <input type="password" className="form-control form-control-lg rounded-pill" id="password" placeholder="Your password"  value={password} onChange={(e) => setPassword(e.target.value)} required/>
                             </div>
                              <p><input type="checkbox" />  Remember Me</p>
-                            <p>Forgot Password ?</p>
+                            <Link to="/forgot-password">Forgot Password?</Link>
                             <div className="d-grid">
+                                <br/>
                                 <button type="submit" className="btn btn-primary btn-lg rounded-pill shadow-sm"> Sign In  </button>
                             </div><br />
-                            <p>You don't have an account ? <a href="#">Sign Up</a></p>
+                            <p>You don't have an account ? <Link to="/register"> Sign Up</Link></p>
                         </form>
                         {message && ( <div className="alert alert-danger mt-4 text-center rounded-3" role="alert"> {message} </div> )}
                     </div>

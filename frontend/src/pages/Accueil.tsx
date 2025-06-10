@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vote from "../components/article/Vote";
+import ArticleInteractModal from "../components/article/Comment";
 import "../styles/Accueil.css";
 
 type Article = {
@@ -17,6 +18,7 @@ const Accueil: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const token = localStorage.getItem("token");
+  const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -27,6 +29,14 @@ const Accueil: React.FC = () => {
       .then((data) => setArticles(data))
       .catch((err) => console.error("Erreur lors du fetch :", err));
   }, []);
+
+  const openCommentModal = (id: number) => {
+    setActiveArticleId(id);
+  };
+
+  const closeCommentModal = () => {
+    setActiveArticleId(null);
+  };
 
   return (
     <div className="container">
@@ -54,6 +64,9 @@ const Accueil: React.FC = () => {
               </div>
               <div className="card-footer">
                 <div className="vote-container">
+                  <button  className="btn btn-outline-secondary" onClick={() => openCommentModal(article.id)} title="Commenter" >
+                    <i className="bi bi-chat-dots"></i>
+                  </button>
                   <Vote
                     articleId={article.id}
                     initialLikes={article.likes}
@@ -68,6 +81,9 @@ const Accueil: React.FC = () => {
           </div>
         ))}
       </div>
+      {activeArticleId && (
+        <ArticleInteractModal  articleId={activeArticleId} onClose={closeCommentModal} token={token}/>
+      )}
     </div>
   );
 };

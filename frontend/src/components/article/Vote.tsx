@@ -15,33 +15,41 @@ const Vote: React.FC<VoteProps> = ({ articleId,  initialLikes, initialDislikes, 
   const [dislikes, setDislikes] = useState(initialDislikes);
   const [userVote, setUserVote] = useState(initialUserVote);
 
-  const handleVote = (value: number )=> {
+  const handleVote = async (value: number) => {
     if (!isAuthenticated) {
       alert('Veuillez vous connecter pour voter.');
       return;
     }
-    const voteType = value === 1 ? "like" : "dislike";
-    const newVote = userVote === value ? 0 : value;
     if (!token) {
       console.error("Aucun token trouvé.");
       return;
     }
-    fetch(`http://localhost:8000/article/${articleId}/vote/${voteType}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` 
-      },
-      credentials: "include",
-      body: JSON.stringify({newVote})
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLikes(data.likes);
-        setDislikes(data.dislikes);
-        setUserVote(data.userVote);
-      })
-      .catch((err) => console.error("Erreur lors du vote :", err));
+    const voteType = value === 1 ? "like" : "dislike";
+    const newVote = userVote === value ? 0 : value;
+    try {
+      const response = await fetch(`http://localhost:8000/api/article/${articleId}/vote/${voteType}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ newVote })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log("Received data:", data);
+      
+      setLikes(data.likes);
+      setDislikes(data.dislikes);
+      setUserVote(data.userVote);
+    } catch (error) {
+      console.error("Erreur lors du vote:", error);
+    }
   };
 
   return (
@@ -50,7 +58,7 @@ const Vote: React.FC<VoteProps> = ({ articleId,  initialLikes, initialDislikes, 
         <i className="bi bi-hand-thumbs-up"></i>
         <span className="like-count">{likes}</span>
       </button>
-      <button className={`vote-btn dislike ${userVote === -1 ? "bg-red-500 text-white" : "bg-gray-100"}`} onClick={() => handleVote(-1)} >
+      <button className={`vote-btn dislike ${userVote === -1 ? 'active' : ''}`} onClick={() => handleVote(-1)} >
         <i className="bi bi-hand-thumbs-down"></i> 
         <span className="dislike-count">{dislikes}</span>
       </button>

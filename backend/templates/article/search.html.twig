@@ -13,7 +13,6 @@
         <h2>Résultats pour "{{ query }}"</h2>
         <div class="articles-list">
             {% for article in results %}
-                {# Affichez chaque article comme dans votre liste habituelle #}
                 {% include 'article/_article_card.html.twig' with {'article': article} %}
             {% endfor %}
         </div>

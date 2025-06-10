@@ -9,13 +9,17 @@ import EditArticle from "./components/article/Edit";
 import AddArticle from "./components/article/New";
 import AddCategory from "./components/category/New";
 import UserList from "./components/chat/UserList";
-import ChatWithUser from "./components/chat/ChatWithUser"
+import ChatWithUser from "./components/chat/ChatWithUser";
+import Register from "./components/security/Register";
+import ForgotPassword from "./components/security/ForgotPassword";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/" element={<Layout />}>
           <Route path="accueil" element={<Accueil />} />
           <Route path="article" element={<Article />} />

@@ -29,27 +29,19 @@ class ResetPasswordController extends AbstractController
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager
-    ) {
-    }
+    ) {}
 
-    #[Route('', name: 'app_forgot_password_request')]
-    public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
+    #[Route('', name: 'app_forgot_password_request', methods: ['POST'])]
+    public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): JsonResponse
     {
-        $form = $this->createForm(ResetPasswordRequestForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $email */
-            $email = $form->get('email')->getData();
-
-            return $this->processSendingPasswordResetEmail($email, $mailer, $translator
-            );
+        $data = json_decode($request->getContent(), true);
+        $email = $data['email'] ?? null;
+        if (!$email) {
+            return $this->json(['error' => 'Email requis'], 400);
         }
-
-        return $this->render('reset_password/request.html.twig', [
-            'requestForm' => $form,
-        ]);
+        return $this->processSendingPasswordResetEmail($email, $mailer, $translator);
     }
+
 
     #[Route('/check-email', name: 'app_check_email')]
     public function checkEmail(): Response
@@ -63,73 +55,47 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
-    #[Route('/reset/{token}', name: 'app_reset_password')]
-    public function reset( Request $request, UserPasswordHasherInterface $passwordHasher,?string $token = null): Response {
-        if ($token) {
-            $this->storeTokenInSession($token);
-            return $this->redirectToRoute('app_reset_password');
-        }
-
-        $sessionToken = $this->getTokenFromSession();
-        dump("Token en session:", $sessionToken);
-
-        if (null === $sessionToken) {
-            $this->addFlash('error', 'Lien de réinitialisation invalide ou expiré.');
-            return $this->redirectToRoute('app_forgot_password_request');
-        }
-
+    #[Route('/reset/{token}', name: 'app_reset_password', methods: ['POST'])]
+    public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, string $token): JsonResponse
+    {
         try {
-            $user = $this->resetPasswordHelper->validateTokenAndFetchUser($sessionToken);
-            dump("Utilisateur trouvé:", $user->getEmail());
+            $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
-            $this->addFlash('error', 'Ce lien de réinitialisation est invalide ou a expiré.');
-            return $this->redirectToRoute('app_forgot_password_request');
+            return $this->json(['error' => 'Lien invalide ou expiré'], 400);
         }
 
-        $form = $this->createForm(ChangePasswordFormType::class);
-        $form->handleRequest($request);
+        $data = json_decode($request->getContent(), true);
+        $plainPassword = $data['password'] ?? null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->resetPasswordHelper->removeResetRequest($sessionToken);
-
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            $this->entityManager->flush();
-
-            $this->cleanSessionAfterReset();
-            
-            $this->addFlash('success', 'Votre mot de passe a été réinitialisé avec succès.');
-            return $this->redirectToRoute('app_login');
+        if (!$plainPassword) {
+            return $this->json(['error' => 'Mot de passe requis'], 400);
         }
 
-        return $this->render('reset_password/reset.html.twig', [
-            'resetForm' => $form->createView(),
-        ]);
+        $this->resetPasswordHelper->removeResetRequest($token);
+
+        $user->setPassword(
+            $passwordHasher->hashPassword($user, $plainPassword)
+        );
+
+        $this->entityManager->flush();
+
+        return $this->json(['message' => 'Mot de passe réinitialisé avec succès']);
     }
 
-    private function processSendingPasswordResetEmail(
-        string $emailFormData,
-        MailerInterface $mailer,
-        TranslatorInterface $translator
-    ): RedirectResponse {
+
+    private function processSendingPasswordResetEmail( string $emailFormData,  MailerInterface $mailer, TranslatorInterface $translator ): RedirectResponse
+    {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'email' => $emailFormData,
         ]);
-
         if (!$user) {
-            return $this->redirectToRoute('app_check_email');
+            return new JsonResponse(['message' => 'Si un compte existe, un mail sera envoyé.'], 200);
         }
-
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
         } catch (ResetPasswordExceptionInterface $e) {
             return $this->redirectToRoute('app_check_email');
         }
-
         $email = (new TemplatedEmail())
             ->from(new Address('noreply@tonsite.com', 'TonSite'))
             ->to($user->getEmail())
@@ -143,23 +109,7 @@ class ResetPasswordController extends AbstractController
             ]);
 
         $mailer->send($email);
-
         $this->setTokenObjectInSession($resetToken);
-
-        return $this->redirectToRoute('app_check_email');
-    }
-
-
-    #[Route('/test-mail')]
-    public function testMail(MailerInterface $mailer): Response
-    {
-        $email = (new Email())
-            ->from('test@example.com')
-            ->to('recipient@example.com')
-            ->subject('Test Mailer')
-            ->text('Ceci est un test');
-
-        $mailer->send($email);
-        return new Response('Email envoyé!');
+        return new JsonResponse(['message' => 'Mail envoyé avec le lien de réinitialisation.'], 200);
     }
 }

@@ -20,10 +20,6 @@ class RegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
        $builder
-            ->add('email', null, [
-                'label' => 'Email *',
-                'attr' => ['placeholder' => 'Enter your email']
-            ])
             ->add('firstName', null, [
                 'attr' => ['placeholder' => 'First Name']
             ])
@@ -32,6 +28,10 @@ class RegistrationForm extends AbstractType
             ])
             ->add('phone', null, [
                 'attr' => ['placeholder' => 'Phone number']
+            ])
+            ->add('email', null, [
+                'label' => 'Email *',
+                'attr' => ['placeholder' => 'Enter your email']
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -54,7 +54,6 @@ class RegistrationForm extends AbstractType
                     ]),
                 ],
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

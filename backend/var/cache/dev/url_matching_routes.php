@@ -26,13 +26,11 @@ return [
         '/api/chat' => [[['_route' => 'app_chat', '_controller' => 'App\\Controller\\MessageController::index'], null, ['GET' => 0], null, false, false, null]],
         '/api/chat/send' => [[['_route' => 'send_message', '_controller' => 'App\\Controller\\MessageController::sendMessage'], null, ['POST' => 0], null, false, false, null]],
         '/chat/mark-read' => [[['_route' => 'chat_mark_read', '_controller' => 'App\\Controller\\MessageController::markRead'], null, ['POST' => 0], null, false, false, null]],
-        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
-        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
-        '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
+        '/api/register' => [[['_route' => 'api_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, ['POST' => 0], null, false, false, null]],
+        '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, ['POST' => 0], null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
-        '/reset-password/test-mail' => [[['_route' => 'app_resetpassword_testmail', '_controller' => 'App\\Controller\\ResetPasswordController::testMail'], null, null, null, false, false, null]],
-        '/search' => [[['_route' => 'app_search', '_controller' => 'App\\Controller\\SearchController::search'], null, null, null, false, false, null]],
-        '/search/live' => [[['_route' => 'app_search_live', '_controller' => 'App\\Controller\\SearchController::searchLive'], null, null, null, false, false, null]],
+        '/api/search' => [[['_route' => 'app_search', '_controller' => 'App\\Controller\\SearchController::search'], null, null, null, false, false, null]],
+        '/api/search/live' => [[['_route' => 'app_search_live', '_controller' => 'App\\Controller\\SearchController::searchLive'], null, ['GET' => 0], null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/api/profil' => [[['_route' => 'app_user_profile', '_controller' => 'App\\Controller\\UserProfileController::index'], null, ['GET' => 0], null, false, false, null]],
         '/mon-profil/modifier' => [[['_route' => 'app_user_profile_edit', '_controller' => 'App\\Controller\\UserProfileController::edit'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
@@ -63,23 +61,28 @@ return [
                 .'|/a(?'
                     .'|rticle/([^/]++)(?'
                         .'|(*:225)'
-                        .'|/(?'
-                            .'|interact(*:245)'
-                            .'|vote/([^/]++)(*:266)'
-                        .')'
                     .')'
-                    .'|pi/chat/([^/]++)(*:292)'
+                    .'|pi/(?'
+                        .'|article/([^/]++)(?'
+                            .'|(*:259)'
+                            .'|/(?'
+                                .'|comment(*:278)'
+                                .'|vote/([^/]++)(*:299)'
+                            .')'
+                        .')'
+                        .'|chat/([^/]++)(*:322)'
+                    .')'
                 .')'
                 .'|/c(?'
                     .'|ategory/([^/]++)(?'
-                        .'|(*:325)'
+                        .'|(*:356)'
                     .')'
                     .'|hat/(?'
-                        .'|messages/([^/]++)(*:358)'
-                        .'|([^/]++)(*:374)'
+                        .'|messages/([^/]++)(*:389)'
+                        .'|([^/]++)(*:405)'
                     .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:420)'
+                .'|/reset\\-password/reset/([^/]++)(*:446)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -94,20 +97,20 @@ return [
         225 => [
             [['_route' => 'article_update', '_controller' => 'App\\Controller\\ArticleController::update'], ['id'], ['PUT' => 0], null, false, true, null],
             [['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['DELETE' => 0], null, false, true, null],
-            [['_route' => 'article_show_one', '_controller' => 'App\\Controller\\ArticleController::showArticleOne'], ['id'], ['GET' => 0], null, false, true, null],
         ],
-        245 => [[['_route' => 'article_interact', '_controller' => 'App\\Controller\\ArticleController::interact'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        266 => [[['_route' => 'article_vote', '_controller' => 'App\\Controller\\VoteController::vote'], ['id', 'type'], ['POST' => 0], null, false, true, null]],
-        292 => [[['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null]],
-        325 => [
+        259 => [[['_route' => 'api_article_show', '_controller' => 'App\\Controller\\ArticleController::showOne'], ['id'], ['GET' => 0], null, false, true, null]],
+        278 => [[['_route' => 'api_article_comment', '_controller' => 'App\\Controller\\ArticleController::comment'], ['id'], ['POST' => 0], null, false, false, null]],
+        299 => [[['_route' => 'article_vote', '_controller' => 'App\\Controller\\VoteController::vote'], ['id', 'type'], ['POST' => 0], null, false, true, null]],
+        322 => [[['_route' => 'chat_with_user', '_controller' => 'App\\Controller\\MessageController::chatWithUser'], ['id'], null, null, false, true, null]],
+        356 => [
             [['_route' => 'category_show_one', '_controller' => 'App\\Controller\\CategoryController::showCategory'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'category_update', '_controller' => 'App\\Controller\\CategoryController::update'], ['id'], ['PUT' => 0], null, false, true, null],
             [['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['DELETE' => 0], null, false, true, null],
         ],
-        358 => [[['_route' => 'chat_get_messages', '_controller' => 'App\\Controller\\MessageController::getMessages'], ['id'], ['GET' => 0], null, false, true, null]],
-        374 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
-        420 => [
-            [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
+        389 => [[['_route' => 'chat_get_messages', '_controller' => 'App\\Controller\\MessageController::getMessages'], ['id'], ['GET' => 0], null, false, true, null]],
+        405 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
+        446 => [
+            [['_route' => 'app_reset_password', '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
