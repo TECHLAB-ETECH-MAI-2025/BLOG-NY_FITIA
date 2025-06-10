@@ -1,0 +1,22 @@
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[2]!./assets/styles/login.css ***!
+  \***********************************************************************************************************************************************************************************************/
+body {
+    background-color: rgb(16, 44, 71);
+    color: white;
+}
+
+.login-container {
+    width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff10;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+.form-control, .btn {
+    border-radius: 8px;
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4uY3NzIiwibWFwcGluZ3MiOiI7OztBQUFBO0lBQ0ksaUNBQWlDO0lBQ2pDLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLGFBQWE7SUFDYiwyQkFBMkI7SUFDM0IsbUJBQW1CO0lBQ25CLDBCQUEwQjtBQUM5QjtBQUNBO0lBQ0ksa0JBQWtCO0FBQ3RCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vYmxvZy8uL2Fzc2V0cy9zdHlsZXMvbG9naW4uY3NzIl0sInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYigxNiwgNDQsIDcxKTtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5cbi5sb2dpbi1jb250YWluZXIge1xuICAgIHdpZHRoOiA0MDBweDtcbiAgICBtYXJnaW46IDYwcHggYXV0bztcbiAgICBwYWRkaW5nOiAzMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmYxMDtcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICAgIGJhY2tkcm9wLWZpbHRlcjogYmx1cig1cHgpO1xufVxuLmZvcm0tY29udHJvbCwgLmJ0biB7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xufVxuIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9*/

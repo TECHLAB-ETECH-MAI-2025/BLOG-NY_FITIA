@@ -1,0 +1,17 @@
+.page_body {
+    background-color: rgb(16, 44, 71);
+}
+
+.card-body  {
+    background-color: rgb(16, 44, 71);
+    color: rgb(255, 255, 255);
+}
+
+.card-body form {
+    color: rgb(16, 44, 71);
+    font-size: 18px;
+}
+
+.card-body h1 {
+    color: rgb(16, 44, 71);
+}

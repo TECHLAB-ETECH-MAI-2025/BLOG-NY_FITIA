@@ -1,0 +1,74 @@
+.tete {
+    background-color:rgb(16, 44, 71);
+    color: white;
+    padding: 24px 0;
+    margin: 24px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+small {
+    color: white;
+    font-family: 'Georgia', serif;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+}
+
+span {
+    color:  #002366;
+    font-family: 'Georgia', serif, 'bold';
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.25rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.card-body {
+    font-size: 0.95rem;
+    background-color: white;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.card-title {
+    color: rgb(255, 255, 255);
+}
+
+.vote-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

@@ -1,38 +1,38 @@
 # Symfony directories
-/var/
-/vendor/
-/public/build/
-/node_modules/
+back/var/
+back//vendor/
+back//public/build/
+back//node_modules/
 
 # Symfony environment files
-.env.local
-.env.*.local
-.env.test
-.env.test.local
+back/.env.local
+back/.env.*.local
+back/.env.test
+back/.env.test.local
 
 # Composer
-/composer.phar
+back//composer.phar
 
 # Cache, logs, etc.
-*.log
-*.cache
+back/*.log
+back/*.cache
 
 # IDEs and editors
-/.idea/
-/.vscode/
-/*.swp
-*.swo
-*~
+back//.idea/
+back//.vscode/
+back//*.swp
+back/*.swo
+back/*~
 
 # OS-specific files
-.DS_Store
-Thumbs.db
+back/.DS_Store
+back/Thumbs.db
 
 # PHPUnit
-/phpunit.xml
-/phpunit.xml.dist
+back//phpunit.xml
+back//phpunit.xml.dist
 
 # Coverage
-/coverage/
-var/cache/
-var/log/*.log
+back//coverage/
+back/var/cache/
+back/var/log/*.log
