@@ -898,6 +898,6 @@ class __TwigTemplate_4fa102e8d08ba441e4ee008397f0f2b3 extends Template
     </table>
     {% endfor %}
 {% endmacro %}
-", "@WebProfiler/Collector/messenger.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/web-profiler-bundle/Resources/views/Collector/messenger.html.twig");
+", "@WebProfiler/Collector/messenger.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/web-profiler-bundle/Resources/views/Collector/messenger.html.twig");
     }
 }

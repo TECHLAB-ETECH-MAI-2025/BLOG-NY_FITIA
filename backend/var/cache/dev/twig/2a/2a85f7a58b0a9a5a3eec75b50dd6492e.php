@@ -329,6 +329,6 @@ class __TwigTemplate_b9bec0a09e616a342a02aea11c6944b8 extends Template
         {% endif %}
     </ul>
 {% endif %}
-", "@KnpPaginator/Pagination/uikit_v3_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/knplabs/knp-paginator-bundle/templates/Pagination/uikit_v3_pagination.html.twig");
+", "@KnpPaginator/Pagination/uikit_v3_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/knplabs/knp-paginator-bundle/templates/Pagination/uikit_v3_pagination.html.twig");
     }
 }

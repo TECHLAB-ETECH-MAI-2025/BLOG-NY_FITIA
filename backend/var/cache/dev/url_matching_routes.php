@@ -77,12 +77,9 @@ return [
                     .'|ategory/([^/]++)(?'
                         .'|(*:356)'
                     .')'
-                    .'|hat/(?'
-                        .'|messages/([^/]++)(*:389)'
-                        .'|([^/]++)(*:405)'
-                    .')'
+                    .'|hat/([^/]++)(*:377)'
                 .')'
-                .'|/reset\\-password/reset/([^/]++)(*:446)'
+                .'|/reset\\-password/reset/([^/]++)(*:417)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -107,9 +104,8 @@ return [
             [['_route' => 'category_update', '_controller' => 'App\\Controller\\CategoryController::update'], ['id'], ['PUT' => 0], null, false, true, null],
             [['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['DELETE' => 0], null, false, true, null],
         ],
-        389 => [[['_route' => 'chat_get_messages', '_controller' => 'App\\Controller\\MessageController::getMessages'], ['id'], ['GET' => 0], null, false, true, null]],
-        405 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
-        446 => [
+        377 => [[['_route' => 'chat_show', '_controller' => 'App\\Controller\\MessageController::show'], ['id'], null, null, false, true, null]],
+        417 => [
             [['_route' => 'app_reset_password', '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

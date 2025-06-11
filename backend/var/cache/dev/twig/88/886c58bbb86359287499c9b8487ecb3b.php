@@ -170,6 +170,6 @@ class __TwigTemplate_4810caaadeb98c0c775a5d4672417a47 extends Template
     </ul>
 </div>
 {% endblock %}
-", "vote/index.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/vote/index.html.twig");
+", "vote/index.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/vote/index.html.twig");
     }
 }

@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 
 final class MessageController extends AbstractController
 {
@@ -33,7 +34,7 @@ final class MessageController extends AbstractController
     }
 
     #[Route('/api/chat/send', name: 'send_message', methods: ['POST'])]
-    public function sendMessage(Request $request, EntityManagerInterface $em, Security $security): JsonResponse 
+    public function sendMessage(Request $request, EntityManagerInterface $em, Security $security, HubInterface $hub): JsonResponse 
     {
         $data = json_decode($request->getContent(), true);
         $receiverId = $data['receiverId'] ?? null;
@@ -42,17 +43,14 @@ final class MessageController extends AbstractController
         if (!$receiverId || !$content) {
             return new JsonResponse(['error' => 'Invalid input'], 400);
         }
-
         $sender = $security->getUser();
         if (!$sender) {
             return new JsonResponse(['error' => 'User not authenticated'], 401);
         }
-
         $receiver = $em->getRepository(User::class)->find($receiverId);
         if (!$receiver) {
             return new JsonResponse(['error' => 'Receiver not found'], 404);
         }
-
         $message = new Message();
         $message->setSender($sender);
         $message->setReceiver($receiver);
@@ -63,40 +61,23 @@ final class MessageController extends AbstractController
         $em->persist($message);
         $em->flush();
 
-        return new JsonResponse(['status' => 'Message sent'], 201);
-    }
+        $ids = [$sender->getId(), $receiver->getId()];
+        sort($ids);
+        $topic = 'http://localhost:3000/chat/' . $ids[0] . '-' . $ids[1];
 
-
-    #[Route('/chat/messages/{id}', name: 'chat_get_messages', methods: ['GET'])]
-    public function getMessages(User $otherUser, MessageRepository $messageRepo, Security $security): JsonResponse
-    {
-        $currentUser = $security->getUser();
-        if (!$currentUser instanceof User) {
-            return new JsonResponse(['error' => 'Accès refusé.'], 403);
-        }
-
-        $messages = $messageRepo->createQueryBuilder('m')
-            ->where('(m.sender = :me AND m.receiver = :other) OR (m.sender = :other AND m.receiver = :me)')
-            ->setParameter('me', $currentUser)
-            ->setParameter('other', $otherUser)
-            ->orderBy('m.createdAt', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-        $response = [];
-
-        foreach ($messages as $message) {
-            $response[] = [
-                'id' => $message->getId(),
-                'sender' => $message->getSender()->getId(),
-                'receiver' => $message->getReceiver()->getId(),
-                'content' => $message->getContent(),
-                'createdAt' => $message->getCreatedAt()->format(\DateTime::ATOM),
-                'isRead' => $message->isRead(),
-            ];
-        }
-
-        return new JsonResponse($response);
+        $updateData = [
+            'id' => $message->getId(),
+            'senderId' => $sender->getId(),
+            'receiverId' => $receiver->getId(),
+            'content' => $message->getContent(),
+            'createdAt' => $message->getCreatedAt()->format(\DateTime::ATOM),
+        ];
+        $update = new Update(
+            $topic,
+            json_encode($updateData)
+        );
+        $hub->publish($update);
+        return new JsonResponse($updateData, 201);
     }
 
     #[Route('/api/chat/{id}', name: 'chat_with_user')]

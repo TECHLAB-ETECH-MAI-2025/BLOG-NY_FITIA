@@ -85,6 +85,6 @@ class __TwigTemplate_ea23baf934ca7f780336f5322d61f169 extends Template
     public function getSourceContext(): Source
     {
         return new Source("{% extends \"@email/zurb_2/notification/body.html.twig\" %}
-", "@email/default/notification/body.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/twig-bridge/Resources/views/Email/default/notification/body.html.twig");
+", "@email/default/notification/body.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/twig-bridge/Resources/views/Email/default/notification/body.html.twig");
     }
 }

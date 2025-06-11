@@ -108,7 +108,6 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/conversation.css"), "html", null, true);
         yield "\">
     <style>
-      /* Quelques styles en ligne pour la démo, à extraire ensuite dans conversation.css si tu préfères */
       #messages {
         max-height: 400px;
         overflow-y: auto;
@@ -191,7 +190,7 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         yield from [];
     }
 
-    // line 85
+    // line 84
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -204,144 +203,144 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 86
+        // line 85
         yield "    <div class=\"chat-container container py-3\" style=\"max-width: 600px;\">
 
         ";
-        // line 89
+        // line 88
         yield "        <div class=\"chat-header\">
             <div class=\"d-flex align-items-center\">
                 <div class=\"avatar-container me-3\">
                     ";
-        // line 92
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 92, $this->source); })()), "avatar", [], "any", false, false, false, 92)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 93
+        // line 91
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 91, $this->source); })()), "avatar", [], "any", false, false, false, 91)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 92
             yield "                        <img src=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 93, $this->source); })()), "avatar", [], "any", false, false, false, 93))), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 92, $this->source); })()), "avatar", [], "any", false, false, false, 92))), "html", null, true);
             yield "\"
                              alt=\"";
-            // line 94
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 94, $this->source); })()), "firstName", [], "any", false, false, false, 94), "html", null, true);
+            // line 93
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 93, $this->source); })()), "firstName", [], "any", false, false, false, 93), "html", null, true);
             yield " ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 94, $this->source); })()), "lastName", [], "any", false, false, false, 94), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 93, $this->source); })()), "lastName", [], "any", false, false, false, 93), "html", null, true);
             yield "\"
                              class=\"avatar-image\">
                     ";
         } else {
-            // line 97
+            // line 96
             yield "                        <div class=\"avatar-initials d-flex align-items-center justify-content-center bg-primary text-white fw-bold\">
                             ";
-            // line 98
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 98, $this->source); })()), "firstName", [], "any", false, false, false, 98))), "html", null, true);
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 98, $this->source); })()), "lastName", [], "any", false, false, false, 98))), "html", null, true);
+            // line 97
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 97, $this->source); })()), "firstName", [], "any", false, false, false, 97))), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 97, $this->source); })()), "lastName", [], "any", false, false, false, 97))), "html", null, true);
             yield "
                         </div>
                     ";
         }
-        // line 101
+        // line 100
         yield "                </div>
                 <div class=\"user-info\">
                     <h4>";
-        // line 103
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 103, $this->source); })()), "firstName", [], "any", false, false, false, 103), "html", null, true);
+        // line 102
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 102, $this->source); })()), "firstName", [], "any", false, false, false, 102), "html", null, true);
         yield " ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 103, $this->source); })()), "lastName", [], "any", false, false, false, 103), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 102, $this->source); })()), "lastName", [], "any", false, false, false, 102), "html", null, true);
         yield "</h4>
                     <div class=\"user-status text-muted\">
                         ";
-        // line 105
-        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 105, $this->source); })()), "isActiveNow", [], "method", false, false, false, 105)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 106
+        // line 104
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 104, $this->source); })()), "isActiveNow", [], "method", false, false, false, 104)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 105
             yield "                            <span class=\"text-success\">🟢 En ligne</span>
                         ";
         } else {
-            // line 108
+            // line 107
             yield "                            <span class=\"text-muted\">🔴 Hors ligne</span>
                             ";
-            // line 109
-            if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 109, $this->source); })()), "lastActivityAt", [], "any", false, false, false, 109)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-                // line 110
+            // line 108
+            if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 108, $this->source); })()), "lastActivityAt", [], "any", false, false, false, 108)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+                // line 109
                 yield "                                <small class=\"ms-1 text-muted\">Dernière activité : ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 110, $this->source); })()), "lastActivityAt", [], "any", false, false, false, 110), "H:i"), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 109, $this->source); })()), "lastActivityAt", [], "any", false, false, false, 109), "H:i"), "html", null, true);
                 yield "</small>
                             ";
             }
-            // line 112
+            // line 111
             yield "                        ";
         }
-        // line 113
+        // line 112
         yield "                    </div>
                 </div>
             </div>
             <a href=\"";
-        // line 116
+        // line 115
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_chat");
         yield "\" class=\"btn-close\" aria-label=\"Fermer la conversation\"></a>
         </div>
 
         ";
-        // line 120
+        // line 119
         yield "        <div id=\"messages\">
             ";
-        // line 121
+        // line 120
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["messages"]) || array_key_exists("messages", $context) ? $context["messages"] : (function () { throw new RuntimeError('Variable "messages" does not exist.', 121, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["messages"]) || array_key_exists("messages", $context) ? $context["messages"] : (function () { throw new RuntimeError('Variable "messages" does not exist.', 120, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 122
+            // line 121
             yield "                <div id=\"msg-";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "id", [], "any", false, false, false, 122), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "id", [], "any", false, false, false, 121), "html", null, true);
             yield "\"
                      class=\"message ";
-            // line 123
-            if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["message"], "sender", [], "any", false, false, false, 123), "id", [], "any", false, false, false, 123) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 123, $this->source); })()), "id", [], "any", false, false, false, 123))) {
+            // line 122
+            if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["message"], "sender", [], "any", false, false, false, 122), "id", [], "any", false, false, false, 122) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 122, $this->source); })()), "id", [], "any", false, false, false, 122))) {
                 yield "sent";
             } else {
                 yield "received";
             }
             yield "\">
                     <div>";
-            // line 124
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "content", [], "any", false, false, false, 124));
+            // line 123
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "content", [], "any", false, false, false, 123));
             yield "</div>
                     <div class=\"message-info\">
                         ";
-            // line 126
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "createdAt", [], "any", false, false, false, 126), "H:i"), "html", null, true);
+            // line 125
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["message"], "createdAt", [], "any", false, false, false, 125), "H:i"), "html", null, true);
             yield "
                         ";
-            // line 127
-            if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["message"], "sender", [], "any", false, false, false, 127), "id", [], "any", false, false, false, 127) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 127, $this->source); })()), "id", [], "any", false, false, false, 127))) {
-                // line 128
+            // line 126
+            if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["message"], "sender", [], "any", false, false, false, 126), "id", [], "any", false, false, false, 126) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 126, $this->source); })()), "id", [], "any", false, false, false, 126))) {
+                // line 127
                 yield "                            ";
-                yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, $context["message"], "isRead", [], "any", false, false, false, 128)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("✓✓") : ("✓"));
+                yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, $context["message"], "isRead", [], "any", false, false, false, 127)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("✓✓") : ("✓"));
                 yield "
                         ";
             }
-            // line 130
+            // line 129
             yield "                    </div>
                 </div>
             ";
             $context['_iterated'] = true;
         }
-        // line 132
+        // line 131
         if (!$context['_iterated']) {
-            // line 133
+            // line 132
             yield "                <p class=\"text-center fst-italic text-muted\">Aucun message pour le moment.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 135
+        // line 134
         yield "        </div>
 
         ";
-        // line 138
+        // line 137
         yield "        <form id=\"send-message-form\" class=\"mt-3\">
             <input type=\"hidden\" name=\"receiver_id\" value=\"";
-        // line 139
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 139, $this->source); })()), "id", [], "any", false, false, false, 139), "html", null, true);
+        // line 138
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 138, $this->source); })()), "id", [], "any", false, false, false, 138), "html", null, true);
         yield "\">
             <div class=\"form-group mb-2\">
                 <textarea id=\"message-input\"
@@ -367,7 +366,7 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         yield from [];
     }
 
-    // line 156
+    // line 155
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -380,7 +379,7 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 157
+        // line 156
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -391,12 +390,12 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         const sendButton        = document.getElementById('send-button');
         const sendForm          = document.getElementById('send-message-form');
         const currentUserId     = Number(";
-        // line 164
-        yield json_encode(CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 164, $this->source); })()), "id", [], "any", false, false, false, 164));
+        // line 163
+        yield json_encode(CoreExtension::getAttribute($this->env, $this->source, (isset($context["currentUser"]) || array_key_exists("currentUser", $context) ? $context["currentUser"] : (function () { throw new RuntimeError('Variable "currentUser" does not exist.', 163, $this->source); })()), "id", [], "any", false, false, false, 163));
         yield ");
         const otherUserId       = Number(";
-        // line 165
-        yield json_encode(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 165, $this->source); })()), "id", [], "any", false, false, false, 165));
+        // line 164
+        yield json_encode(CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 164, $this->source); })()), "id", [], "any", false, false, false, 164));
         yield ");
 
         /**
@@ -426,8 +425,8 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
          */
         function fetchMessages() {
             fetch('";
-        // line 193
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("chat_get_messages", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 193, $this->source); })()), "id", [], "any", false, false, false, 193)]), "html", null, true);
+        // line 192
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("chat_get_messages", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["otherUser"]) || array_key_exists("otherUser", $context) ? $context["otherUser"] : (function () { throw new RuntimeError('Variable "otherUser" does not exist.', 192, $this->source); })()), "id", [], "any", false, false, false, 192)]), "html", null, true);
         yield "')
                 .then(response => response.json())
                 .then(data => {
@@ -448,7 +447,7 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
             const formData = new FormData(sendForm);
 
             fetch('";
-        // line 212
+        // line 211
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("chat_send");
         yield "', {
                 method: 'POST',
@@ -514,7 +513,7 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  452 => 212,  430 => 193,  399 => 165,  395 => 164,  384 => 157,  371 => 156,  344 => 139,  341 => 138,  337 => 135,  330 => 133,  328 => 132,  322 => 130,  316 => 128,  314 => 127,  310 => 126,  305 => 124,  297 => 123,  292 => 122,  287 => 121,  284 => 120,  278 => 116,  273 => 113,  270 => 112,  264 => 110,  262 => 109,  259 => 108,  255 => 106,  253 => 105,  246 => 103,  242 => 101,  235 => 98,  232 => 97,  224 => 94,  219 => 93,  217 => 92,  212 => 89,  208 => 86,  195 => 85,  108 => 8,  103 => 7,  90 => 6,  66 => 4,  43 => 2,);
+        return array (  451 => 211,  429 => 192,  398 => 164,  394 => 163,  383 => 156,  370 => 155,  343 => 138,  340 => 137,  336 => 134,  329 => 132,  327 => 131,  321 => 129,  315 => 127,  313 => 126,  309 => 125,  304 => 123,  296 => 122,  291 => 121,  286 => 120,  283 => 119,  277 => 115,  272 => 112,  269 => 111,  263 => 109,  261 => 108,  258 => 107,  254 => 105,  252 => 104,  245 => 102,  241 => 100,  234 => 97,  231 => 96,  223 => 93,  218 => 92,  216 => 91,  211 => 88,  207 => 85,  194 => 84,  108 => 8,  103 => 7,  90 => 6,  66 => 4,  43 => 2,);
     }
 
     public function getSourceContext(): Source
@@ -528,7 +527,6 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
     {{ parent() }}
     <link rel=\"stylesheet\" href=\"{{ asset('build/conversation.css') }}\">
     <style>
-      /* Quelques styles en ligne pour la démo, à extraire ensuite dans conversation.css si tu préfères */
       #messages {
         max-height: 400px;
         overflow-y: auto;
@@ -763,6 +761,6 @@ class __TwigTemplate_40f1c275ae89f61b60df6567cbbcc471 extends Template
         setInterval(fetchMessages, 5000);
     });
     </script>
-{% endblock %}", "chat/conversation.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/chat/conversation.html.twig");
+{% endblock %}", "chat/conversation.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/chat/conversation.html.twig");
     }
 }

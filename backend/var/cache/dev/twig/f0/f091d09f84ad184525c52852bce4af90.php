@@ -92,6 +92,6 @@ class __TwigTemplate_9672972d7fdc22784fa3345798ec7c84 extends Template
         return new Source("<form method=\"post\" action=\"{{ path('category_delete', {'id': category.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ category.id) }}\">
     <button class=\"btn\"><i class=\"bi bi-trash\"></i></button>
-</form>", "category/_delete_form.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/category/_delete_form.html.twig");
+</form>", "category/_delete_form.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/category/_delete_form.html.twig");
     }
 }

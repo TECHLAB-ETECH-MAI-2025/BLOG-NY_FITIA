@@ -836,6 +836,6 @@ class __TwigTemplate_28051778d4fb30de76904f54506bdf3c extends Template
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Collector/command.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/web-profiler-bundle/Resources/views/Collector/command.html.twig");
+", "@WebProfiler/Collector/command.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/web-profiler-bundle/Resources/views/Collector/command.html.twig");
     }
 }

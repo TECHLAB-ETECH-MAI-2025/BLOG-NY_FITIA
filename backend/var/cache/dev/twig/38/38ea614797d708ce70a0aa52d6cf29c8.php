@@ -111,6 +111,6 @@ class __TwigTemplate_a10f225ca29cfa10987253ee5ab295e5 extends Template
         <link rel=\"next\" href=\"{{ path(route, knp_pagination_query(query, next, options)) }}\" />
     {% endif %}
 {% endif %}
-", "@KnpPaginator/Pagination/rel_links.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/knplabs/knp-paginator-bundle/templates/Pagination/rel_links.html.twig");
+", "@KnpPaginator/Pagination/rel_links.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/knplabs/knp-paginator-bundle/templates/Pagination/rel_links.html.twig");
     }
 }

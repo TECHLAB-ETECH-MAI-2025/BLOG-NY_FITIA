@@ -463,6 +463,6 @@ class __TwigTemplate_fc78c48c33b72f05dbef92e17f16f4f2 extends Template
         </div>
     </div>
 {% endblock %}
-", "@WebProfiler/Profiler/layout.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
+", "@WebProfiler/Profiler/layout.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/layout.html.twig");
     }
 }

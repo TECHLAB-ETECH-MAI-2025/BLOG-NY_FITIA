@@ -3,6 +3,7 @@
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^5.0.0",
+        "@types/react": "^19.1.8",
         "core-js": "^3.38.0",
         "postcss": "^8.5.4",
         "postcss-loader": "^8.1.0",

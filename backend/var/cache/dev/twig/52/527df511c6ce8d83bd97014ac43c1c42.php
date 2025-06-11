@@ -341,6 +341,6 @@ class __TwigTemplate_1876c1e00d58c737cf3e07f93ff747b2 extends Template
         </ul>
     </nav>
 {% endif %}
-", "@KnpPaginator/Pagination/bulma_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/knplabs/knp-paginator-bundle/templates/Pagination/bulma_pagination.html.twig");
+", "@KnpPaginator/Pagination/bulma_pagination.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/knplabs/knp-paginator-bundle/templates/Pagination/bulma_pagination.html.twig");
     }
 }

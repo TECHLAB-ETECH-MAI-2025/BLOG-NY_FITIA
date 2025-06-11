@@ -305,6 +305,6 @@ class __TwigTemplate_35d2f947d560e0fa39f132e5657ecea5 extends Template
         });
     </script>
 {% endblock %}
-", "@WebProfiler/Profiler/open.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.html.twig");
+", "@WebProfiler/Profiler/open.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.html.twig");
     }
 }

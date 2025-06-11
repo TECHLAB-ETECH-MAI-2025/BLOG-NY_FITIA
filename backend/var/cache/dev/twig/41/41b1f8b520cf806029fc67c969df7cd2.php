@@ -106,6 +106,6 @@ class __TwigTemplate_5d29da78d5d42a1ee76b5547d02cf278 extends Template
 </p>
 
 <p>Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail.</p>
-", "reset_password/email.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/reset_password/email.html.twig");
+", "reset_password/email.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/reset_password/email.html.twig");
     }
 }

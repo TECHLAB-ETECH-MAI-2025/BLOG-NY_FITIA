@@ -92,6 +92,6 @@ class __TwigTemplate_05a02de598b9ddedc8b45b0b9ef56b3f extends Template
     <a class=\"dropdown-item\" href=\"{{ path('app_chat') }}\">
         <i class=\"bi bi-chat-dots-fill text-primary\" style=\"font-size: 2rem;\"></i>
     </a>
-</div>", "includes/_menuChat.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/includes/_menuChat.html.twig");
+</div>", "includes/_menuChat.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/includes/_menuChat.html.twig");
     }
 }
