@@ -5,6 +5,7 @@ import "../../styles/Layout.css"
 import Logout from "../security/Logout";
 import MenuChat from "./MenuChat";
 import Search from "./Search";
+import ChatNotifier from '../chat/ChatNotifier';
 
 const Layout = () => {
     return (
@@ -21,6 +22,7 @@ const Layout = () => {
                 </main>
                 <aside className="col-md-1 col-lg-1 d-md-block sidebar2">
                     <MenuChat/>
+                    <ChatNotifier/>
                 </aside>
             </div>
         </div>
