@@ -654,7 +654,11 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.7R_WN15"/>
+=======
+      <argument type="service" id=".service_locator.lZoti88"/>
+>>>>>>> 7c704d2aa (Final Pagination react cote Backend)
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3835,7 +3839,11 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.7R_WN15"/>
+=======
+      <argument type="service" id=".service_locator.lZoti88"/>
+>>>>>>> 7c704d2aa (Final Pagination react cote Backend)
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -9004,23 +9012,24 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
-    <service id=".service_locator.BCgH70e" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LXH8CDw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.BCgH70e.App\Controller\ArticleController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::index()"/>
       <argument>App\Controller\ArticleController::index()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.BCgH70e" method="withContext"/>
+      <factory service=".service_locator.LXH8CDw" method="withContext"/>
     </service>
-    <service id=".service_locator.BCgH70e.App\Controller\ArticleController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::show()"/>
       <argument>App\Controller\ArticleController::show()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.BCgH70e" method="withContext"/>
+      <factory service=".service_locator.LXH8CDw" method="withContext"/>
     </service>
     <service id=".service_locator.hAbj0.E" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9046,6 +9055,12 @@
       <argument>App\Controller\ArticleController::comment()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.d6UE9.H" method="withContext"/>
+    </service>
+    <service id=".service_locator.BCgH70e" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
+      </argument>
     </service>
     <service id=".service_locator.BCgH70e.App\Controller\ArticleController::search()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ArticleController::search()"/>
@@ -9246,7 +9261,11 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.e51BVih" method="withContext"/>
     </service>
+<<<<<<< HEAD
     <service id=".service_locator.7R_WN15" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+    <service id=".service_locator.lZoti88" class="Symfony\Component\DependencyInjection\ServiceLocator">
+>>>>>>> 7c704d2aa (Final Pagination react cote Backend)
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -9256,8 +9275,8 @@
         <argument key="App\Controller\ArticleController::New" type="service_closure" id=".service_locator.5LwPXeW.App\Controller\ArticleController::New()"/>
         <argument key="App\Controller\ArticleController::update" type="service_closure" id=".service_locator.ud_TUF1.App\Controller\ArticleController::update()"/>
         <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.e51BVih.App\Controller\ArticleController::delete()"/>
-        <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
-        <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
+        <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController::showOne" type="service_closure" id=".service_locator.hAbj0.E.App\Controller\ArticleController::showOne()"/>
         <argument key="App\Controller\ArticleController::comment" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::comment()"/>
         <argument key="App\Controller\ArticleController::search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
@@ -9283,8 +9302,8 @@
         <argument key="App\Controller\ArticleController:New" type="service_closure" id=".service_locator.5LwPXeW.App\Controller\ArticleController::New()"/>
         <argument key="App\Controller\ArticleController:update" type="service_closure" id=".service_locator.ud_TUF1.App\Controller\ArticleController::update()"/>
         <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.e51BVih.App\Controller\ArticleController::delete()"/>
-        <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::index()"/>
-        <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::show()"/>
+        <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::index()"/>
+        <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.LXH8CDw.App\Controller\ArticleController::show()"/>
         <argument key="App\Controller\ArticleController:showOne" type="service_closure" id=".service_locator.hAbj0.E.App\Controller\ArticleController::showOne()"/>
         <argument key="App\Controller\ArticleController:comment" type="service_closure" id=".service_locator.d6UE9.H.App\Controller\ArticleController::comment()"/>
         <argument key="App\Controller\ArticleController:search" type="service_closure" id=".service_locator.BCgH70e.App\Controller\ArticleController::search()"/>
@@ -11672,7 +11691,11 @@
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
+<<<<<<< HEAD
     <service id="argument_resolver.controller_locator" alias=".service_locator.7R_WN15"/>
+=======
+    <service id="argument_resolver.controller_locator" alias=".service_locator.lZoti88"/>
+>>>>>>> 7c704d2aa (Final Pagination react cote Backend)
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11725,9 +11748,10 @@
     <service id=".service_locator.JoGA7NJ" alias=".service_locator.5LwPXeW"/>
     <service id=".service_locator.fduTf.1" alias=".service_locator.ud_TUF1"/>
     <service id=".service_locator.xayLYFJ" alias=".service_locator.e51BVih"/>
-    <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
+    <service id=".service_locator.iGPZn12" alias=".service_locator.LXH8CDw"/>
     <service id=".service_locator.cDdleCX" alias=".service_locator.hAbj0.E"/>
     <service id=".service_locator.ZaihGhx" alias=".service_locator.d6UE9.H"/>
+    <service id=".service_locator..HFDGJV" alias=".service_locator.BCgH70e"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
     <service id=".service_locator.qTXz_j5" alias=".service_locator.MTCWnA5"/>
     <service id=".service_locator.7_4YRbs" alias=".service_locator.2S0AJ0M"/>

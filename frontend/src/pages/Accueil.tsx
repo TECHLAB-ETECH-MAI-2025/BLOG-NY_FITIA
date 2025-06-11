@@ -19,16 +19,21 @@ const Accueil: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const token = localStorage.getItem("token");
   const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     if (token) {
       setIsAuthenticated(true);
     }
-    fetch("http://localhost:8000/home")
-      .then((res) => res.json())
-      .then((data) => setArticles(data))
-      .catch((err) => console.error("Erreur lors du fetch :", err));
-  }, []);
+    fetch(`http://localhost:8000/home?page=${currentPage}&limit=6`)
+        .then((res) => res.json())
+        .then((data) => {
+          setArticles(data.items);
+          setTotalPages(data.totalPages);
+        })
+        .catch((err) => console.error("Erreur lors du fetch :", err));
+    }, [currentPage]);
 
   const openCommentModal = (id: number) => {
     setActiveArticleId(id);
@@ -39,6 +44,7 @@ const Accueil: React.FC = () => {
   };
 
   return (
+    <div>
     <div className="container">
       <div className="tete">
             <h1>Bienvenue sur le Blog</h1>
@@ -84,7 +90,27 @@ const Accueil: React.FC = () => {
       {activeArticleId && (
         <ArticleInteractModal  articleId={activeArticleId} onClose={closeCommentModal} token={token}/>
       )}
+      </div>
+      <div className="d-flex justify-content-center my-4">
+      <nav>
+        <ul className="pagination">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>  <i className="bi bi-arrow-left-short"></i>  </button>
+          </li>
+          {[...Array(totalPages)].map((_, i) => (
+            <li key={i + 1} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
+              <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                {i + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}> <i className="bi bi-arrow-right-short"></i> </button>
+          </li>
+        </ul>
+      </nav>
     </div>
+  </div>
   );
 };
 

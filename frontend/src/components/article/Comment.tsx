@@ -50,9 +50,9 @@ const ArticleInteractModal: React.FC<Props> = ({ articleId, onClose, token }) =>
     <div className="modal-container">
       <div className="modal-content">
         <div className="modal-header">
-          <h2 className="modal-title"><span> Title : </span> {article.title}</h2>
+          <h2 className="modal-title"><span> </span> {article.title}</h2>
         </div>
-
+        <br/>
         <div className="modal-body">
           <p><span> Description : </span>{article.description}</p>
           <div className="comment-section">

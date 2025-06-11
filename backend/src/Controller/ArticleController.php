@@ -82,38 +82,30 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/home', name: 'home',  methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): JsonResponse
+    public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginator): JsonResponse
     {
-        $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
         $user = $this->getUser();
+        $page = max(1, (int) $request->query->get('page', 1));
+        $limit = max(1, (int) $request->query->get('limit', 5));
+
+        $query = $articleRepository->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery();
+        $pagination = $paginator->paginate($query, $page, $limit);
+
         $arrayArticle = [];
-        foreach ($articles as $article)
-        {
+        foreach ($pagination->getItems() as $article) {
             $category = $article->getCategory();
-            if ($category === null) {
-                $categoryData = null;
-            } 
-            else {
-                try {
-                    $categoryData = [
-                        'id' => $category->getId(),
-                        'name' => $category->getName()
-                    ];
-                } 
-                catch (\Throwable $e) {
-                    $categoryData = null;
-                }
-            }
+            $categoryData = $category ? [
+                'id' => $category->getId(),
+                'name' => $category->getName()
+            ] : null;
+
             $likes = 0;
             $dislikes = 0;
             $userVote = 0;
             foreach ($article->getVotes() as $vote) {
-                if ($vote->getValue() === 1) {
-                    $likes++;
-                }
-                else {
-                    $dislikes++;
-                }
+                $vote->getValue() === 1 ? $likes++ : $dislikes++;
                 if ($user && $vote->getUser() === $user) {
                     $userVote = $vote->getValue() ? 1 : -1;
                 }
@@ -129,31 +121,39 @@ class ArticleController extends AbstractController
                 'userVote' => $userVote,
             ];
         }
-        return new JsonResponse($arrayArticle);
+        return $this->json([
+            'items' => $arrayArticle,
+            'currentPage' => $page,
+            'totalPages' => ceil($pagination->getTotalItemCount() / $limit),
+            'totalItems' => $pagination->getTotalItemCount(),
+        ]);
     }
     
     #[Route('/article', name: 'article_show',  methods: ['GET'])]
-    public function show(ArticleRepository $articleRepository): JsonResponse
+    public function show(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginator): JsonResponse
     {
-        $articles = $articleRepository->findBy([], ['createdAt' => 'DESC']);
+        $page = max(1, (int) $request->query->get('page', 1)); // page=1 par défaut
+        $limit = max(1, (int) $request->query->get('limit', 6)); // 6 articles par page par défaut
+        $offset = ($page - 1) * $limit;
+
+        $totalArticles = $articleRepository->count([]);
+        $articles = $articleRepository->findBy([], ['createdAt' => 'DESC'], $limit, $offset);
+
         $arrayArticle = [];
-        foreach ($articles as $article)
-        {
+        foreach ($articles as $article) {
             $category = $article->getCategory();
-            if ($category === null) {
-                $categoryData = null;
-            } 
-            else {
+            $categoryData = null;
+            if ($category) {
                 try {
                     $categoryData = [
                         'id' => $category->getId(),
                         'name' => $category->getName()
                     ];
-                } 
-                catch (\Throwable $e) {
+                } catch (\Throwable $e) {
                     $categoryData = null;
                 }
             }
+
             $arrayArticle[] = [
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
@@ -162,7 +162,13 @@ class ArticleController extends AbstractController
                 'category' => $categoryData
             ];
         }
-        return new JsonResponse($arrayArticle);
+
+        return new JsonResponse([
+            'currentPage' => $page,
+            'limit' => $limit,
+            'total' => $totalArticles,
+            'articles' => $arrayArticle
+        ]);
     }
 
     #[Route('/api/article/{id}', name: 'api_article_show', methods: ['GET'])]
