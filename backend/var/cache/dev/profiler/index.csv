@@ -442,3 +442,15 @@ a6fec3,::1,GET,http://localhost:8000/api/chat/13,1749675411,,200,request
 c0c893,::1,GET,http://localhost:8000/api/chat/13,1749675416,,200,request
 013d42,::1,GET,http://localhost:8000/api/profil,1749675416,,200,request
 1174cb,::1,GET,http://localhost:8000/api/chat/13,1749675416,,200,request
+3169ac,::1,GET,http://localhost:8000/api/profil,1749675591,,200,request
+3e4ecd,::1,GET,http://localhost:8000/home,1749675591,,200,request
+1d6afd,::1,GET,http://localhost:8000/api/profil,1749675591,,200,request
+39a640,::1,GET,http://localhost:8000/home,1749675591,,200,request
+d0d01e,::1,GET,http://localhost:8000/api/profil,1749675630,,200,request
+fef3f7,::1,GET,http://localhost:8000/api/chat/13,1749675630,,200,request
+a96e5a,::1,GET,http://localhost:8000/api/profil,1749675630,,200,request
+a4960c,::1,GET,http://localhost:8000/api/chat/13,1749675630,,200,request
+77d77e,::1,GET,http://localhost:8000/api/profil,1749675632,,200,request
+079dc0,::1,GET,http://localhost:8000/home,1749675632,,200,request
+0aaf9e,::1,GET,http://localhost:8000/api/profil,1749675632,,200,request
+1eab26,::1,GET,http://localhost:8000/home,1749675632,,200,request
