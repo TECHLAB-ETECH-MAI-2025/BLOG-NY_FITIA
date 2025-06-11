@@ -45,7 +45,7 @@ function SearchLive() {
         <input
           type="search"
           className="form-control"
-          placeholder="Rechercher un article ou une catégorie..."
+          placeholder="Search ....."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

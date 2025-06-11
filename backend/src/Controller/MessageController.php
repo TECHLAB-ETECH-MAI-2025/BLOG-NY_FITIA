@@ -142,6 +142,28 @@ final class MessageController extends AbstractController
         return new JsonResponse(['success' => true]);
     }
 
+    #[Route('/api/chat/unread', name: 'chat_unread_check', methods: ['GET'])]
+    public function checkUnreadMessages(Security $security, MessageRepository $messageRepo): JsonResponse
+    {
+        $currentUser = $security->getUser();
+        if (!$currentUser) {
+            return new JsonResponse(['error' => 'Non authentifié'], 401);
+        }
+
+        $unreadCount = $messageRepo->createQueryBuilder('m')
+            ->select('COUNT(m.id)')
+            ->where('m.receiver = :user')
+            ->andWhere('m.isRead = false')
+            ->setParameter('user', $currentUser)
+            ->getQuery()
+            ->getSingleScalarResult();
+        return new JsonResponse([
+            'hasNewMessages' => $unreadCount > 0,
+            'count' => (int) $unreadCount
+        ]);
+    }
+
+
     #[Route('/chat/{id}', name: 'chat_show')]
     public function show(User $receiver, MessageRepository $messageRepo, Security $security): Response
     {
