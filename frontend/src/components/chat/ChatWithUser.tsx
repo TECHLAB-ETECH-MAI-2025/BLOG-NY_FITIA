@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../styles/ChatWithUser.css';
+// import { useNotification } from './Notification';
 
 interface Message {
   id: number;
@@ -49,8 +50,13 @@ const ChatWithUser: React.FC = () => {
       .catch((err) => console.error('Erreur chargement messages:', err));
   };
 
+  // const { unreadMessages, setUnreadForUser, markMessagesAsRead } = useNotification();
+
   useEffect(() => {
     fetchMessages();
+  //   if (id) {
+  //   markMessagesAsRead(id);
+  // }
   }, [id]);
 
   useEffect(() => {
@@ -89,6 +95,12 @@ const ChatWithUser: React.FC = () => {
             return withoutTempDuplicates;
           return [...withoutTempDuplicates, data];
         });
+
+        // if (data.receiverId === currentUser) {
+        //   const senderKey = data.senderId.toString();
+        //   setUnreadForUser(senderKey, (unreadMessages[senderKey] || 0) + 1);
+        // }
+
       } catch (e) {
         console.error('Erreur parsing message Mercure', e);
       }
@@ -108,7 +120,7 @@ const ChatWithUser: React.FC = () => {
     if (!newMessage.trim() || !otherUser || !currentUser) return;
 
     const tempMessage: Message = {
-      id: Date.now(), // ID temporaire
+      id: Date.now(),
       content: newMessage,
       senderId: currentUser,
       receiverId: otherUser.id,

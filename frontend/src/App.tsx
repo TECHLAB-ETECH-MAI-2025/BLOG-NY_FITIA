@@ -15,26 +15,26 @@ import ForgotPassword from "./components/security/ForgotPassword";
 
 function App() {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/" element={<Layout />}>
-          <Route path="accueil" element={<Accueil />} />
-          <Route path="article" element={<Article />} />
-          <Route path="categorie" element={<Category />} />
-          <Route path="article/:id/edit" element={<EditArticle />} />
-          <Route path="categorie/:id/edit" element={<EditCategory />} />
-          <Route path="categorie/New" element={<AddCategory />} />
-          <Route path="article/New" element={<AddArticle />} />
-          <Route path="userList" element={<UserList />} />
-          <Route path="chat/:id" element={<ChatWithUser />} />
-          <Route index element={<Navigate to="/accueil" replace />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/" element={<Layout />}>
+              <Route path="accueil" element={<Accueil />} />
+              <Route path="article" element={<Article />} />
+              <Route path="categorie" element={<Category />} />
+              <Route path="article/:id/edit" element={<EditArticle />} />
+              <Route path="categorie/:id/edit" element={<EditCategory />} />
+              <Route path="categorie/New" element={<AddCategory />} />
+              <Route path="article/New" element={<AddArticle />} />
+              <Route path="userList" element={<UserList />} />
+              <Route path="chat/:id" element={<ChatWithUser />} />
+              <Route index element={<Navigate to="/accueil" replace />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 export default App;
