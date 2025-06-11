@@ -10,7 +10,7 @@ const useMercure = (userId: number): MercureMessage | null => {
   const [event, setEvent] = useState<MercureMessage | null>(null);
 
   useEffect(() => {
-    const url = new URL("http://localhost/.well-known/mercure"); // adapte selon ton projet
+    const url = new URL("http://localhost/.well-known/mercure");
     url.searchParams.append("topic", `user/${userId}`);
 
     const eventSource = new EventSource(url.toString(), { withCredentials: true });
