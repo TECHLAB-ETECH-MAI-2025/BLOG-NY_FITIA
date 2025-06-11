@@ -174,6 +174,6 @@ class __TwigTemplate_f700dba3881548e454a2e5ed147cfc06 extends Template
         </ul>
     {% endif %}
 {% endblock %}
-", "category/showOne.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/category/showOne.html.twig");
+", "category/showOne.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/category/showOne.html.twig");
     }
 }

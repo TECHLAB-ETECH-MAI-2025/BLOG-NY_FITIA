@@ -8,14 +8,13 @@ interface Message {
   createdAt: string;
   senderId: number;
   receiverId: number;
+  temp?: boolean;
 }
 
 interface User {
   id: number;
   email: string;
 }
-
-const POLLING_INTERVAL_MS = 3000;
 
 const ChatWithUser: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,10 +30,6 @@ const ChatWithUser: React.FC = () => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const fetchMessages = () => {
     fetch(`http://localhost:8000/api/chat/${id}`, {
@@ -56,18 +51,73 @@ const ChatWithUser: React.FC = () => {
 
   useEffect(() => {
     fetchMessages();
-
-    const intervalId = setInterval(() => {
-      fetchMessages();
-    }, POLLING_INTERVAL_MS);
-
-    return () => clearInterval(intervalId);
   }, [id]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    if (!currentUser || !otherUser) 
+      return;
+
+    const ids = [currentUser, otherUser.id].sort((a, b) => a - b);
+    const topic = `http://localhost:3000/chat/${ids[0]}-${ids[1]}`;
+
+    const mercureUrl = new URL('http://localhost:3000/.well-known/mercure');
+    mercureUrl.searchParams.append('topic', topic);
+    if (token) {
+      mercureUrl.searchParams.append('jwt', token);
+    }
+
+    const eventSource = new EventSource(mercureUrl.toString(), { withCredentials: true });
+
+    eventSource.onmessage = (event) => {
+      try {
+        const data: Message = JSON.parse(event.data);
+
+        setMessages((prevMessages) => {
+          const withoutTempDuplicates = prevMessages.filter(
+            (m) =>
+              !(
+                m.temp &&
+                m.content === data.content &&
+                m.senderId === data.senderId
+              )
+          );
+          if (withoutTempDuplicates.find((m) => m.id === data.id)) 
+            return withoutTempDuplicates;
+          return [...withoutTempDuplicates, data];
+        });
+      } catch (e) {
+        console.error('Erreur parsing message Mercure', e);
+      }
+    };
+
+    eventSource.onerror = (error) => {
+      console.error('Erreur Mercure EventSource', error);
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, [currentUser, otherUser]);
+
   const handleSend = () => {
-    if (!newMessage.trim())
-        return;
-    
+    if (!newMessage.trim() || !otherUser || !currentUser) return;
+
+    const tempMessage: Message = {
+      id: Date.now(), // ID temporaire
+      content: newMessage,
+      senderId: currentUser,
+      receiverId: otherUser.id,
+      createdAt: new Date().toISOString(),
+      temp: true,
+    };
+
+    setMessages((prevMessages) => [...prevMessages, tempMessage]);
+
     fetch('http://localhost:8000/api/chat/send', {
       method: 'POST',
       headers: {
@@ -76,7 +126,7 @@ const ChatWithUser: React.FC = () => {
       },
       body: JSON.stringify({
         content: newMessage,
-        receiverId: otherUser?.id,
+        receiverId: otherUser.id,
       }),
     })
       .then((res) => {
@@ -87,16 +137,29 @@ const ChatWithUser: React.FC = () => {
         }
         return res.json();
       })
-      .then(() => setNewMessage(''))
-      .catch((err) => console.error('Erreur envoi:', err));
-    console.log('Envoi Mess : ' + newMessage);
+      .then((savedMessage: Message) => {
+        setMessages((prevMessages) =>
+          prevMessages.map((msg) =>
+            msg.temp &&
+            msg.content === savedMessage.content &&
+            msg.senderId === savedMessage.senderId
+              ? savedMessage
+              : msg
+          )
+        );
+      })
+      .catch((err) => {
+        console.error('Erreur envoi:', err);
+      });
+
+    setNewMessage('');
   };
 
   return (
     <div className="chatWithUser">
       {otherUser ? (
         <>
-          <h2>Chat With {otherUser.email}</h2>
+          <h2>Chat avec {otherUser.email}</h2>
           <div className="chat-messages">
             {messages.map((msg) => {
               const isSent = msg.senderId === currentUser;
@@ -106,9 +169,7 @@ const ChatWithUser: React.FC = () => {
                   className={`message ${isSent ? 'sent' : 'received'}`}
                 >
                   <p>{msg.content}</p>
-                  <span className="timestamp">
-                    {msg.createdAt}
-                  </span>
+                  <span className="timestamp">{msg.createdAt}</span>
                 </div>
               );
             })}
@@ -125,7 +186,7 @@ const ChatWithUser: React.FC = () => {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Écrire un message..."
         />
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend}>Envoyer</button>
       </div>
     </div>
   );

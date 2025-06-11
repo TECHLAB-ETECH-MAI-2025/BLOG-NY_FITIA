@@ -424,6 +424,6 @@ class __TwigTemplate_657fcc1121b4773bfc409af30350ba5b extends Template
         </div>
     {% endif %}
 {% endblock %}
-", "@Mercure/Collector/mercure.html.twig", "/home/eny-fiti/Documents/etech/blog/back/vendor/symfony/mercure-bundle/src/Resources/views/Collector/mercure.html.twig");
+", "@Mercure/Collector/mercure.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/vendor/symfony/mercure-bundle/src/Resources/views/Collector/mercure.html.twig");
     }
 }

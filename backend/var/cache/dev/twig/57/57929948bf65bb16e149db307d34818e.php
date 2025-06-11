@@ -140,10 +140,8 @@ class __TwigTemplate_4714d8d227327633bc1363c4a05e2474 extends Template
             foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
                 // line 16
                 yield "                ";
+                yield from $this->load("article/_article_card.html.twig", 16)->unwrap()->yield(CoreExtension::merge($context, ["article" => $context["article"]]));
                 // line 17
-                yield "                ";
-                yield from $this->load("article/_article_card.html.twig", 17)->unwrap()->yield(CoreExtension::merge($context, ["article" => $context["article"]]));
-                // line 18
                 yield "            ";
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -157,14 +155,14 @@ class __TwigTemplate_4714d8d227327633bc1363c4a05e2474 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 19
+            // line 18
             yield "        </div>
     ";
-        } elseif (        // line 20
+        } elseif (        // line 19
 array_key_exists("query", $context)) {
-            // line 21
+            // line 20
             yield "        <p>Aucun résultat trouvé pour \"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["query"]) || array_key_exists("query", $context) ? $context["query"] : (function () { throw new RuntimeError('Variable "query" does not exist.', 21, $this->source); })()), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["query"]) || array_key_exists("query", $context) ? $context["query"] : (function () { throw new RuntimeError('Variable "query" does not exist.', 20, $this->source); })()), "html", null, true);
             yield "\"</p>
     ";
         }
@@ -198,7 +196,7 @@ array_key_exists("query", $context)) {
      */
     public function getDebugInfo(): array
     {
-        return array (  166 => 21,  164 => 20,  161 => 19,  147 => 18,  144 => 17,  142 => 16,  125 => 15,  119 => 13,  117 => 12,  112 => 10,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  164 => 20,  162 => 19,  159 => 18,  145 => 17,  142 => 16,  125 => 15,  119 => 13,  117 => 12,  112 => 10,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -218,13 +216,12 @@ array_key_exists("query", $context)) {
         <h2>Résultats pour \"{{ query }}\"</h2>
         <div class=\"articles-list\">
             {% for article in results %}
-                {# Affichez chaque article comme dans votre liste habituelle #}
                 {% include 'article/_article_card.html.twig' with {'article': article} %}
             {% endfor %}
         </div>
     {% elseif query is defined %}
         <p>Aucun résultat trouvé pour \"{{ query }}\"</p>
     {% endif %}
-{% endblock %}", "article/search.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/article/search.html.twig");
+{% endblock %}", "article/search.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/article/search.html.twig");
     }
 }

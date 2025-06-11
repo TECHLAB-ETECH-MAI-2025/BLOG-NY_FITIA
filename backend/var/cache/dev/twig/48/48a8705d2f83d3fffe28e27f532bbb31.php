@@ -411,6 +411,6 @@ class __TwigTemplate_07c2687e4185259a713eef97f011eae1 extends Template
         };
     </script> #}
 
-    {% endblock %}", "chat/index.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/chat/index.html.twig");
+    {% endblock %}", "chat/index.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/chat/index.html.twig");
     }
 }

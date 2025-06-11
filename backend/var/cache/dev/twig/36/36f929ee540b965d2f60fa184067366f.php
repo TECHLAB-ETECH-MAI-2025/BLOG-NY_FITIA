@@ -298,6 +298,6 @@ class __TwigTemplate_0a7c4e0b21c47f144022f13da4961671 extends Template
         {% endif %}
     </body>
 
-</html>", "base.html.twig", "/home/eny-fiti/Documents/etech/blog/back/templates/base.html.twig");
+</html>", "base.html.twig", "/home/eny-fiti/Documents/etech/blog/backend/templates/base.html.twig");
     }
 }
