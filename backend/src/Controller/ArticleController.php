@@ -95,11 +95,17 @@ class ArticleController extends AbstractController
 
         $arrayArticle = [];
         foreach ($pagination->getItems() as $article) {
-            $category = $article->getCategory();
-            $categoryData = $category ? [
-                'id' => $category->getId(),
-                'name' => $category->getName()
-            ] : null;
+            $categoryData = null;
+            try {
+                $category = $article->getCategory();
+                if ($category !== null) {
+                    $categoryData = [
+                        'id' => $category->getId(),
+                        'name' => $category->getName(),
+                    ];
+                }
+            } catch (\Throwable $e) {
+            }
 
             $likes = 0;
             $dislikes = 0;
@@ -172,14 +178,26 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/api/article/{id}', name: 'api_article_show', methods: ['GET'])]
-    public function showOne( Article $article ): JsonResponse 
+    public function showOne( Article $article, EntityManagerInterface $em ): JsonResponse 
     {
+        $categoryData = null;
+        try {
+            $category = $article->getCategory();
+            if ($category !== null) {
+                $categoryData = [
+                    'id' => $category->getId(),
+                    'name' => $category->getName(),
+                ];
+            }
+        } catch (\Throwable $e) {
+        }
+
         $data = [
             'id' => $article->getId(),
             'title' => $article->getTitle(),
             'description' => $article->getDescription(),
             'createdAt' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
-            'category' => $article->getCategory()?->getName(),
+            'category' => $categoryData,
             'comments' => array_map(fn($comment) => [
                 'id' => $comment->getId(),
                 'content' => $comment->getContent(),

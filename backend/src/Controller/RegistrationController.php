@@ -44,10 +44,11 @@ class RegistrationController extends AbstractController
         $user->setLastName($data['lastName']);
         $user->setPhone($data['phone']);
         $user->setEmail($data['email']);
+        $user->setAvatar('default.jpeg');
         $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
         $em->persist($user);
         $em->flush();
-        return $this->json(['success' => true, 'message' => 'Registration successful. Please check your email.']);
+        return $this->json(['success' => true, 'message' => 'Registration successful.']);
     }
 
 }

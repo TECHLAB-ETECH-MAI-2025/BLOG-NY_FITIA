@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function SearchLive() {
   const [query, setQuery] = useState('');
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -22,8 +23,7 @@ function SearchLive() {
       }
     })
       .then(res => {
-        if (!res.ok) 
-          throw new Error('');
+        if (!res.ok) throw new Error('Erreur serveur');
         return res.json();
       })
       .then(data => {
@@ -52,7 +52,7 @@ function SearchLive() {
       </div>
 
       {loading && <div className="alert alert-info p-2">Chargement...</div>}
-      {error && <div className="alert alert-danger p-2"> Erreur : {error}</div>}
+      {error && <div className="alert alert-danger p-2">Erreur : {error}</div>}
 
       {query.length > 0 && (
         <div className="search-results mt-3">
@@ -62,8 +62,10 @@ function SearchLive() {
               <ul className="list-group mb-3">
                 {articles.map((a) => (
                   <li key={a.id} className="list-group-item">
+                    <Link to={`/article/${a.id}`} className="text-decoration-none">
                       <strong>{a.title}</strong><br />
                       <small className="text-muted">{a.content}</small>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -78,7 +80,9 @@ function SearchLive() {
               <ul className="list-group">
                 {categories.map((c) => (
                   <li key={c.id} className="list-group-item">
-                        {c.name}
+                    <Link to={`/categorie/${c.id}`} className="text-decoration-none">
+                      {c.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -89,7 +93,6 @@ function SearchLive() {
         </div>
       )}
     </div>
-
   );
 }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/Register.css";
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -9,10 +10,11 @@ const RegisterForm = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [errors, setErrors] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage(null);
     setErrors(null);
@@ -29,7 +31,6 @@ const RegisterForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName, lastName, phone, email, password }),
         });
-        console.log('Oui');
         const data = await response.json();
         if (!response.ok) {
             setErrors(data.message || data.error || 'Erreur inconnue');
@@ -41,6 +42,17 @@ const RegisterForm = () => {
             setPhone('');
             setEmail('');
             setPassword('');
+
+            const loginResponse = await fetch('http://localhost:8000/api/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password }),
+            });
+            const loginData = await loginResponse.json();
+            if (loginResponse.ok && loginData.token) {
+              localStorage.setItem('token', loginData.token);
+              navigate('/accueil');
+            }
       }
     }
     catch (error) {

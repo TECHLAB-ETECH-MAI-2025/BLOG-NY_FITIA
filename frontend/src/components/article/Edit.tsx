@@ -26,14 +26,20 @@ const EditArticle: React.FC = () => {
   const [categoryId, setCategoryId] = useState<number | "">("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const token = localStorage.getItem('token');
+  
   useEffect(() => {
     if (!id) {
       setError("ID introuvable");
       setLoading(false);
       return;
     }
-    fetch(`http://localhost:8000/article/${id}`)
+    fetch(`http://localhost:8000/api/article/${id}`, {
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+    })
       .then(res => {
         if (!res.ok) 
           throw new Error("Erreur lors du chargement");
