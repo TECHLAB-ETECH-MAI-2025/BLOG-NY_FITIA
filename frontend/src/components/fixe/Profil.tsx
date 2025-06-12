@@ -69,17 +69,11 @@ const Profil: React.FC = () => {
       <div className="dropdown">
         <a href="#" className="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {user.avatar ? (
-            <img
-              src={`http://localhost:8000/uploads/avatars/${user.avatar}`}
-              alt={`${user.firstName} ${user.lastName}`}
-              style={{ width: "70px", height: "70px", borderRadius: "50%" }}
-            />
+            <img src={`http://localhost:8000/uploads/avatars/${user.avatar}`} alt={`${user.firstName} ${user.lastName}`} style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
           ) : (
-            <span className="avatar-placeholder">
-              {user.firstName[0].toUpperCase()}
-            </span>
+            <img src={`http://localhost:8000/uploads/avatars/default.jpeg`}  alt="Default avatar" style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
           )}
-            <span className="d-block mt-1 text-white">{user.firstName} {user.lastName}</span>
+          <span className="d-block mt-1 text-white">{user.firstName} {user.lastName}</span>
         </a>
         <ul className="dropdown-menu ">
           <li>
