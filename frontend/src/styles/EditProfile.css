@@ -1,0 +1,83 @@
+.edit-profile-card {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.edit-profile-card h2 {
+  margin-bottom: 1.5rem;
+  color: #222;
+  font-weight: 700;
+  text-align: center;
+}
+
+.edit-profile-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.edit-profile-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-profile-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 6px #7bb8ff88;
+}
+
+.edit-profile-form button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #007bff;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-form button:disabled {
+  background-color: #89b6ff;
+  cursor: not-allowed;
+}
+
+.edit-profile-form button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.success {
+  margin-top: 1rem;
+  color: #2f8a3e;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error {
+  margin-top: 1rem;
+  color: #cc2a2a;
+  font-weight: 600;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}

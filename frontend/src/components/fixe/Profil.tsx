@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Link } from 'react-router-dom';
 
 interface UserProfile {
   id: number;
@@ -67,24 +68,24 @@ const Profil: React.FC = () => {
   return (
     <div className="text-center mb-9">
       <div className="dropdown">
-        <a href="#" className="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {user.avatar ? (
             <img src={`http://localhost:8000/uploads/avatars/${user.avatar}`} alt={`${user.firstName} ${user.lastName}`} style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
           ) : (
             <img src={`http://localhost:8000/uploads/avatars/default.jpeg`}  alt="Default avatar" style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
           )}
           <span className="d-block mt-1 text-white">{user.firstName} {user.lastName}</span>
-        </a>
-        <ul className="dropdown-menu ">
+        </div>
+        <ul className="dropdown-menu">
           <li>
-              <a className="dropdown-item" href="#">
-                  <i className="bi bi-person-lines-fill me-2"></i> Mon profil
-              </a>
+            <Link className="dropdown-item" to="/infoProfile">
+              <i className="bi bi-person-lines-fill me-2"></i> Mon profil
+            </Link>
           </li>
           <li>
-              <a className="dropdown-item" href="#">
-                  <i className="bi bi-gear me-2"></i> Paramètres
-              </a>
+            <Link className="dropdown-item" to="/editProfile">
+              <i className="bi bi-gear me-2"></i> Paramètres
+            </Link>
           </li>
         </ul>
       </div>
