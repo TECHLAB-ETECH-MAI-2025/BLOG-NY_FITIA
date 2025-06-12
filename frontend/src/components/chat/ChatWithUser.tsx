@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../styles/ChatWithUser.css';
-// import { useNotification } from './Notification';
+import { FiSend } from 'react-icons/fi';
 
 interface Message {
   id: number;
@@ -15,6 +15,8 @@ interface Message {
 interface User {
   id: number;
   email: string;
+  firstName: string;
+  lastName: string;
 }
 
 const ChatWithUser: React.FC = () => {
@@ -168,10 +170,12 @@ const ChatWithUser: React.FC = () => {
   };
 
   return (
-    <div className="chatWithUser">
+    <div className="chat-container">
       {otherUser ? (
         <>
-          <h2>Chat avec {otherUser.email}</h2>
+          <div className="chat-header">
+            <h2 className="chat-title" >{otherUser.firstName} {otherUser.lastName}</h2>
+          </div>
           <div className="chat-messages">
             {messages.map((msg) => {
               const isSent = msg.senderId === currentUser;
@@ -181,7 +185,9 @@ const ChatWithUser: React.FC = () => {
                   className={`message ${isSent ? 'sent' : 'received'}`}
                 >
                   <p>{msg.content}</p>
-                  <span className="timestamp">{msg.createdAt}</span>
+                  <span className="timestamp">
+                    {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
                 </div>
               );
             })}
@@ -189,16 +195,22 @@ const ChatWithUser: React.FC = () => {
           </div>
         </>
       ) : (
-        <h2>Chargement...</h2>
+        <div className="loading-state">
+          <h2>Chargement...</h2>
+        </div>
       )}
       <div className="chat-send">
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Écrire un message..."
+          placeholder="Write a mess..."
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
         />
-        <button onClick={handleSend}>Envoyer</button>
+        <button onClick={handleSend}>
+          <FiSend className="send-icon" />
+          Send
+        </button>
       </div>
     </div>
   );

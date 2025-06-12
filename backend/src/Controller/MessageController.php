@@ -114,7 +114,9 @@ final class MessageController extends AbstractController
             }, $messages),
             'otherUser' => [
                 'id' => $otherUser->getId(),
-                'email' => $otherUser->getEmail()
+                'email' => $otherUser->getEmail(),
+                'firstName' => $otherUser->getFirstName(),
+                'lastName' => $otherUser->getLastName(),
             ],
             'currentUserId' => $currentUser->getId()
         ]);

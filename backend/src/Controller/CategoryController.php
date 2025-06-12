@@ -44,7 +44,7 @@ final class CategoryController extends AbstractController
         return new JsonResponse($arrayCategory);
     }
 
-    #[Route('/category/{id}', name: 'category_show_one', methods: ['GET'])]
+    #[Route('/api/category/{id}', name: 'category_show_one', methods: ['GET'])]
     public function showCategory(int $id, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->find($id);
