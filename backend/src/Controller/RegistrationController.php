@@ -47,7 +47,7 @@ class RegistrationController extends AbstractController
         $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
         $em->persist($user);
         $em->flush();
-        return $this->json(['success' => true, 'message' => 'Registration successful. Please check your email.']);
+        return $this->json(['success' => true, 'message' => 'Registration successful.']);
     }
 
 }
